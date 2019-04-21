@@ -1,0 +1,28 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nekocheik/Portfolio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nekocheik/Portfolio/issues"
+  },
+  "homepage": "https://github.com/nekocheik/Portfolio#readme",
+  "dependencies": {
+    "blocs": "^2.0.0",
+    "parcel": "^1.12.3",
+    "reset.css": "^2.0.2"
+  },
+  "devDependencies": {
+    "sass": "^1.19.0"
+  }
+}

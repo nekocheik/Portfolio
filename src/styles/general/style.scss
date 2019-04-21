@@ -1,0 +1,48 @@
+body{
+  background-color: black;
+}
+.logo{
+  padding-top: 15px;
+  img{
+    height: 65px;;
+  }
+}
+
+nav{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  p{
+    font-size: 1px;
+    color: black;
+    border: 1px solid white;
+    margin: 5px;
+    padding-left: 45px;
+    padding-top: 6px;
+  }
+}
+
+.circle {
+  z-index: -1;
+  display: block;
+  margin: -190px auto auto auto;
+  top: -1050px;
+  left: calc(50% - 150px);
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 50px #fff,
+    inset 20px 0 80px #f0f,
+    inset -20px 0 80px #0ff,
+    inset 20px 0 300px #f0f,
+    inset -20px 0 300px #0ff,
+    0 0 50px #fff,
+    -10px 0 80px #f0f,
+    10px 0 80px #0ff;
+}
+.circles{
+
+  @keyframes tourn { from { transform: rotate(0deg);  } to {  transform: rotate(360deg) }  }
+  transition-delay: 10s
+}
