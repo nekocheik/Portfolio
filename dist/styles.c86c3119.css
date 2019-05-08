@@ -48,21 +48,14 @@ table {
 }
 body {
   background-color: black;
+  color: white;
 }
-
-.logo {
-  padding-top: 15px;
-}
-.logo img {
-  height: 65px;
-}
-
-nav {
-  position: absolute;
+body nav {
+  position: fixed;
   bottom: 10px;
   right: 10px;
 }
-nav p {
+body nav p {
   font-size: 1px;
   color: black;
   border: 1px solid white;
@@ -70,42 +63,59 @@ nav p {
   padding-left: 45px;
   padding-top: 6px;
 }
-
-.circle {
+body .circle {
   z-index: -1;
   display: block;
   margin: -190px auto auto auto;
   top: -1050px;
   left: calc(50% - 150px);
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   box-shadow: inset 0 0 50px #fff, inset 20px 0 80px #f0f, inset -20px 0 80px #0ff, inset 20px 0 300px #f0f, inset -20px 0 300px #0ff, 0 0 50px #fff, -10px 0 80px #f0f, 10px 0 80px #0ff;
+  -webkit-animation: rotation 4s infinite linear;
 }
-
-.circles {
-  transition-delay: 10s;
-}
-@keyframes tourn {
+@-webkit-keyframes rotation {
   from {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
   }
   to {
-    transform: rotate(360deg);
+    -webkit-transform: rotate(359deg);
   }
+}
+body .logo {
+  padding-top: 15px;
+}
+body .logo img {
+  height: 65px;
 }
 
 body {
   background-color: black;
 }
 
-.my_description {
+.name__and__profession {
   color: white;
   font-size: 40px;
-}
-.my_description p {
-  display: block;
+  width: 70%;
+  height: 200px;
   margin: auto;
+  padding-top: 100px;
+  padding-bottom: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.projets h2 {
+  font-size: 62px;
+}
+.projets .projet {
+  height: 90vh;
+}
+.projets .projet img {
+  margin: auto;
+  display: block;
 }
 
 /*# sourceMappingURL=/styles.c86c3119.css.map */

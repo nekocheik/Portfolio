@@ -1,8 +1,23 @@
-.my_description{
+.name__and__profession{
   color: white;
   font-size: 40px;
-  p{
-    display: block;
-    margin: auto;
+  width: 70%;
+  height: 200px;
+  margin: auto;
+  padding-top: 100px;
+  padding-bottom: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.projets{
+  h2{
+    font-size: 62px;
+  }.projet{
+    height: 90vh;
+    img{
+      margin: auto;
+      display: block;
+    }
   }
 }
