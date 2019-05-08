@@ -10,14 +10,51 @@
   flex-direction: column;
   justify-content: space-between;
 }
-.projets{
+.projects{
   h2{
     font-size: 62px;
-  }.projet{
-    height: 90vh;
+    padding-left: 15%;
+    padding-bottom: 50px;
+  }.project{
+    height: 75vh;
     img{
+      padding-top: 30px;
+      width: 206px;
       margin: auto;
       display: block;
     }
   }
+}
+
+.title__of__project{
+  display: block;
+  padding-left: 15%;
+  h3{
+    font-size: 51px;
+  }.type__of__projet{
+    font-size: 19px;
+  }
+}
+
+.nav__project{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: max-content;
+  font-size: 40px;
+  height: 20%;
+  justify-content: flex-end;
+  section{
+    position: relative;
+    bottom: 0;
+  }
+}
+
+.sroll__barre{
+  width: 100vw;
+  background-color: white;
+  height: 10px;
+  position: absolute;
+  transition-duration: 100ms;
+  //transform: translateX(-90vw)
 }

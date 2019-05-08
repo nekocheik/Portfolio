@@ -49,6 +49,8 @@ table {
 body {
   background-color: black;
   color: white;
+  font-family: Avenir;
+  overscroll-behavior: none;
 }
 body nav {
   position: fixed;
@@ -64,10 +66,10 @@ body nav p {
   padding-top: 6px;
 }
 body .circle {
+  position: sticky;
+  top: 150px;
   z-index: -1;
-  display: block;
   margin: -190px auto auto auto;
-  top: -1050px;
   left: calc(50% - 150px);
   width: 200px;
   height: 200px;
@@ -107,15 +109,52 @@ body {
   justify-content: space-between;
 }
 
-.projets h2 {
+.projects h2 {
   font-size: 62px;
+  padding-left: 15%;
+  padding-bottom: 50px;
 }
-.projets .projet {
-  height: 90vh;
+.projects .project {
+  height: 75vh;
 }
-.projets .projet img {
+.projects .project img {
+  padding-top: 30px;
+  width: 206px;
   margin: auto;
   display: block;
+}
+
+.title__of__project {
+  display: block;
+  padding-left: 15%;
+}
+.title__of__project h3 {
+  font-size: 51px;
+}
+.title__of__project .type__of__projet {
+  font-size: 19px;
+}
+
+.nav__project {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: max-content;
+  font-size: 40px;
+  height: 20%;
+  justify-content: flex-end;
+}
+.nav__project section {
+  position: relative;
+  bottom: 0;
+}
+
+.sroll__barre {
+  width: 100vw;
+  background-color: white;
+  height: 10px;
+  position: absolute;
+  transition-duration: 100ms;
 }
 
 /*# sourceMappingURL=/styles.c86c3119.css.map */

@@ -1,6 +1,8 @@
 body{
   background-color: black;
   color: white;
+  font-family: Avenir ;
+  overscroll-behavior: none;
   nav{
     position: fixed;
     bottom: 10px;
@@ -16,10 +18,11 @@ body{
   }
   
   .circle {
+    position: sticky;
+    top: 150px;
     z-index: -1;
-    display: block;
     margin: -190px auto auto auto;
-    top: -1050px;
+    //top: -1050px;
     left: calc(50% - 150px);
     width: 200px;
     height: 200px;
