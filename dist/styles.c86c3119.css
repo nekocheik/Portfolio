@@ -56,14 +56,45 @@ body nav {
   position: fixed;
   bottom: 10px;
   right: 10px;
+  z-index: 3;
+  transition-duration: 400ms;
+  display: flex;
+  flex-direction: column;
+}
+body nav.move {
+  opacity: 0;
+}
+body nav .croi {
+  height: 30px;
+  display: block;
+  margin: auto;
+  transform: translateY(50px);
+  z-index: -2;
+  fill: black;
+  opacity: 0;
+}
+body nav .croi.active {
+  transform: initial;
+  opacity: initial;
 }
 body nav p {
+  z-index: 2;
   font-size: 1px;
   color: black;
   border: 1px solid white;
-  margin: 5px;
+  margin: 2px;
   padding-left: 45px;
   padding-top: 6px;
+  background-color: black;
+}
+body nav p.active {
+  font-size: initial;
+  color: white;
+  border: 1px solid white;
+  margin: 5px;
+  width: 90vw;
+  text-align: center;
+  padding: 5px;
 }
 body .circle {
   position: sticky;
@@ -109,15 +140,36 @@ body {
   justify-content: space-between;
 }
 
+.projects {
+  height: 60vh;
+}
 .projects h2 {
   font-size: 62px;
   padding-left: 15%;
   padding-bottom: 50px;
 }
-.projects .project {
-  height: 75vh;
+.projects .container__of__project {
+  height: 100%;
+  width: 100vw;
+  perspective: 2000px;
 }
-.projects .project img {
+.projects .project {
+  display: block;
+  transform: translate3d(0px, 0px, 0px);
+  transition-duration: 0.5s;
+}
+.projects .project.back {
+  opacity: 0;
+  transform: translate3d(0px, -550px, -7000px);
+}
+.projects .project.come {
+  transition-duration: 0s;
+  transform: translate3d(0px, 0px, 2024px);
+}
+.projects .project .illustration__of__project {
+  height: 256px;
+}
+.projects .project .illustration__of__project img {
   padding-top: 30px;
   width: 206px;
   margin: auto;
@@ -129,7 +181,7 @@ body {
   padding-left: 15%;
 }
 .title__of__project h3 {
-  font-size: 51px;
+  font-size: 38px;
 }
 .title__of__project .type__of__projet {
   font-size: 19px;
@@ -153,6 +205,7 @@ body {
   width: 100vw;
   background-color: white;
   height: 10px;
+  position: relative;
   transition-duration: 100ms;
   bottom: -10px;
 }

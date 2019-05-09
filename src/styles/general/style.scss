@@ -7,13 +7,43 @@ body{
     position: fixed;
     bottom: 10px;
     right: 10px;
+    z-index: 3;
+    transition-duration: 400ms;
+    display: flex;
+    flex-direction: column;
+    &.move{
+      opacity: 0;
+    }.croi{
+      height: 30px;
+      display: block;
+      margin: auto;
+      transform: translateY(50px);
+      z-index: -2;
+      fill: black;
+      opacity: 0 ;
+      &.active{
+        transform: initial;
+        opacity: initial;
+      }
+    }
     p{
+      z-index: 2;
       font-size: 1px;
       color: black;
       border: 1px solid white;
-      margin: 5px;
+      margin: 2px;
       padding-left: 45px;
       padding-top: 6px;
+      background-color: black;
+      &.active{
+        font-size: initial;
+        color: white;
+        border: 1px solid white;
+        margin: 5px;
+        width: 90vw;
+        text-align: center;
+        padding: 5px;
+      }
     }
   }
   

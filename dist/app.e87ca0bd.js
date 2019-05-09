@@ -576,14 +576,49 @@ require("setimmediate"); // On some exotic environments, it's not clear which ob
 
 exports.setImmediate = typeof self !== "undefined" && self.setImmediate || typeof global !== "undefined" && global.setImmediate || this && this.setImmediate;
 exports.clearImmediate = typeof self !== "undefined" && self.clearImmediate || typeof global !== "undefined" && global.clearImmediate || this && this.clearImmediate;
-},{"setimmediate":"../node_modules/setimmediate/setImmediate.js"}],"assets/armani__home__page.png":[function(require,module,exports) {
-module.exports = "/armani__home__page.e4a52146.png";
+},{"setimmediate":"../node_modules/setimmediate/setImmediate.js"}],"assets/MontreConnecter.svg":[function(require,module,exports) {
+module.exports = "/MontreConnecter.d1308733.svg";
+},{}],"assets/logoSocomptoir.svg":[function(require,module,exports) {
+module.exports = "/logoSocomptoir.905e08d9.svg";
+},{}],"assets/alien.svg":[function(require,module,exports) {
+module.exports = "/alien.06625d74.svg";
 },{}],"app/app.js":[function(require,module,exports) {
 "use strict";
 
 var _timers = require("timers");
 
-///______________________________________________scroll
+var nav = document.querySelector('nav');
+nav.querySelector('p').addEventListener('click', function () {
+  var p = nav.querySelectorAll('p');
+
+  for (var i = 0; i < p.length; i++) {
+    p[i].classList.add('active');
+  }
+
+  nav.querySelector('.croi').classList.add('active');
+});
+nav.querySelector('.croi').addEventListener('click', function () {
+  var p = nav.querySelectorAll('p');
+
+  for (var i = 0; i < p.length; i++) {
+    p[i].classList.remove('active');
+  }
+
+  nav.querySelector('.croi').classList.remove('active');
+});
+window.addEventListener('scroll', function (event) {
+  var p = nav.querySelector('p');
+
+  if (p.className === 'active') {
+    nav.classList.add('move');
+  }
+
+  window.clearTimeout(isScrolling);
+  var isScrolling = (0, _timers.setTimeout)(function () {
+    nav.classList.remove('move');
+  }, 1000);
+}, false); ///______________________________________________scroll
+
 var scrollBarre = document.querySelector('.sroll__barre');
 var delta = -100;
 var memo = 0;
@@ -595,7 +630,7 @@ document.addEventListener("mousewheel", function (event) {
   if (delta < 0) {
     delta = delta + event.deltaY / 3;
 
-    if (delta > 0) {
+    if (delta >= 0) {
       delta = 0;
       changeOfProject();
     }
@@ -612,12 +647,11 @@ document.addEventListener("mousewheel", function (event) {
     memo++;
 
     if (numberResizing <= memo) {
-      console.log(numberResizing, memo);
       resizeBarreIterval = setInterval(function () {
         resizeBarre();
       }, 10);
     }
-  }, 10);
+  }, 400);
 });
 var resizeBarreIterval = setInterval(function () {
   resizeBarre();
@@ -625,41 +659,16 @@ var resizeBarreIterval = setInterval(function () {
 
 function resizeBarre() {
   if (delta > -100) {
-    delta = delta - 1;
+    delta = delta - 2;
     scrollBarre.style.transform = "translateX( ".concat(delta, "vw)");
   }
 }
-
-var numberProject = 0;
-var projects = {
-  Armani: {
-    title: 'ARMANI',
-    type: 'Projet personnel',
-    numberProject: '1',
-    subTitle: 'Projet : intégration',
-    description: "R\xE9aliser un redesign du site Armani dans le quel j\u2019ai du fair le design des pages News , Produits et de la home page.\n    J\u2019ai aussi int\xE9gr\xE9 de tout le site en Mobile first responsive. ",
-    skills: ['xd', 'JavaScript', 'Rellax', 'Html', 'Sass'],
-    assets: [require('../assets/armani__home__page.png')]
-  },
-  SOCOMPTOIR: {
-    title: 'SO’COMPTOIR',
-    type: 'Projet école',
-    numberProject: '2',
-    subTitle: 'Projet : UI / UI',
-    description: "R\xE9aliser un redesign pour un site \n    E-commer de vente de salade en ligne.</br>\n    Pour ce projet nous \xE9tions une \xE9quipe de 4 dans la quelle j\u2019\xE9tais Chef de projet ",
-    skills: ['xd', 'illustrator'],
-    assets: [require('../assets/armani__home__page.png')]
-  }
-};
-
-function changeOfProject() {}
 
 var startClientX;
 document.addEventListener('touchstart', function (evnt) {
   startClientX = evnt.changedTouches[0].clientX;
   document.addEventListener('touchmove', function (event) {
-    numberResizing++;
-    var touchDelta = event.changedTouches[0].clientX - startClientX; //console.log(touchDelta)
+    var touchDelta = event.changedTouches[0].clientX - startClientX;
 
     if (touchDelta < -1) {
       touchDelta = touchDelta.toString();
@@ -670,7 +679,6 @@ document.addEventListener('touchstart', function (evnt) {
     }
 
     if (delta < 0) {
-      console.log(touchDelta);
       delta = delta + touchDelta;
 
       if (delta > 0) {
@@ -682,14 +690,90 @@ document.addEventListener('touchstart', function (evnt) {
       }
 
       scrollBarre.style.transform = "translateX( ".concat(delta, "vw)");
-      clearInterval(resizeBarreIterval);
     }
   });
   document.addEventListener('touchend', function (e) {
     startClientX = e.changedTouches[0].clientX;
   });
 });
-},{"timers":"../node_modules/timers-browserify/main.js","../assets/armani__home__page.png":"assets/armani__home__page.png"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var numberProject = 0;
+var projects = [{
+  title: 'ARMANI',
+  type: 'Projet personnel',
+  numberProject: '1',
+  subTitle: 'Projet : intégration',
+  description: "R\xE9aliser un redesign du site Armani dans le quel j\u2019ai du fair le design des pages News , Produits et de la home page.\n    J\u2019ai aussi int\xE9gr\xE9 de tout le site en Mobile first responsive. ",
+  skills: ['xd', 'JavaScript', 'Rellax', 'Html', 'Sass'],
+  assets: {
+    pesentation: require('../assets/MontreConnecter.svg')
+  }
+}, {
+  title: 'SO’COMPTOIR',
+  type: 'Projet école',
+  numberProject: '2',
+  subTitle: 'Projet : UI / UI',
+  description: "R\xE9aliser un redesign pour un site \n    E-commer de vente de salade en ligne.</br>\n    Pour ce projet nous \xE9tions une \xE9quipe de 4 dans la quelle j\u2019\xE9tais Chef de projet ",
+  skills: ['xd', 'illustrator'],
+  assets: {
+    pesentation: require('../assets/logoSocomptoir.svg')
+  }
+}, {
+  title: 'SPACE-INVADOR',
+  type: 'Projet personnel',
+  numberProject: '3',
+  subTitle: 'Projet : Javascript',
+  description: "R\xE9aliser la cr\xE9ation d\u2019un jeu original en JavaScript.\n    J\u2019ai fait Le jeu en Canvas JavaScript natif sans l\u2019utilisation d\u2019aucune librairie .\n    Avec l\u2019ajout d\u2019\xE9l\xE9ments de gamplay qui ne sont pas dans le jeu original  ",
+  skills: ['JavaScript', 'Canvas', 'Html', 'Sass'],
+  assets: {
+    pesentation: require('../assets/alien.svg')
+  }
+}];
+
+function changeOfProject() {
+  renderChangeOfProject();
+}
+
+function renderChangeOfProject() {
+  var project = document.querySelector('.project');
+  project.classList.add('back');
+  (0, _timers.setTimeout)(function () {
+    project.innerHTML = "";
+    numberProject++;
+
+    if (numberProject > projects.length - 1) {
+      numberProject = 0;
+    }
+
+    var view = ChangeOfProjectView(projects[numberProject]);
+    project.appendChild(view.illustrationOfProject);
+    project.appendChild(view.titlOfProject);
+    (0, _timers.setTimeout)(function () {
+      project.classList.remove('back');
+      project.classList.add('come');
+      (0, _timers.setTimeout)(function () {
+        project.classList.remove('come');
+      }, 10);
+    }, 500);
+  }, 500);
+}
+
+var ChangeOfProjectView = function ChangeOfProjectView(project) {
+  var view = {
+    img: document.createElement('img'),
+    titlOfProject: document.createElement('div'),
+    illustrationOfProject: document.createElement('div'),
+    render: function render() {
+      this.img.src = project.assets.pesentation;
+      this.illustrationOfProject.appendChild(this.img);
+      this.titlOfProject.innerHTML = "<h3>".concat(project.title, "</h3> <h4 class=\"type__of__projet\" >").concat(project.subTitle, "</h4>");
+    }
+  };
+  view.illustrationOfProject.className = 'illustration__of__project';
+  view.titlOfProject.className = 'title__of__project';
+  view.render();
+  return view;
+};
+},{"timers":"../node_modules/timers-browserify/main.js","../assets/MontreConnecter.svg":"assets/MontreConnecter.svg","../assets/logoSocomptoir.svg":"assets/logoSocomptoir.svg","../assets/alien.svg":"assets/alien.svg"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -717,7 +801,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52206" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58891" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
