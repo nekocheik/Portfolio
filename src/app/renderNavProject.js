@@ -10,8 +10,8 @@ var renderNavProject = function (project){
     setTimeout(()=>{
       nav.innerHTML = numberProject + 1;
       nav.className = "";
-    }, 600)
-  }, 700)
+    }, 200)
+  }, 400)
 
 }
 

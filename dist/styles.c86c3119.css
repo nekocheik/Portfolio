@@ -51,6 +51,7 @@ body {
   color: white;
   font-family: Avenir;
   overscroll-behavior: none;
+  height: 100%;
 }
 body nav {
   position: fixed;
@@ -78,6 +79,7 @@ body nav .croi.active {
   opacity: initial;
 }
 body nav p {
+  transition: font-size 0.5s 0.5s, width 0.5s;
   z-index: 2;
   font-size: 1px;
   color: black;
@@ -86,6 +88,7 @@ body nav p {
   padding-left: 45px;
   padding-top: 6px;
   background-color: black;
+  width: 0vw;
 }
 body nav p.active {
   font-size: initial;
@@ -98,7 +101,7 @@ body nav p.active {
 }
 body .circle {
   position: sticky;
-  top: 150px;
+  top: 200px;
   z-index: -1;
   margin: -190px auto auto auto;
   left: calc(50% - 150px);
@@ -123,10 +126,82 @@ body .logo img {
   height: 65px;
 }
 
+@keyframes blinkArmani {
+  from {
+    color: black;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #0757AA;
+  }
+  to {
+    color: #0757AA;
+    -webkit-text-stroke-width: 0px;
+    -webkit-text-stroke-color: black;
+  }
+}
+@keyframes blinkso_comptoir {
+  from {
+    color: black;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #F4CB65;
+  }
+  to {
+    color: #F4CB65;
+    -webkit-text-stroke-width: 0px;
+    -webkit-text-stroke-color: black;
+  }
+}
+@keyframes blinkInvaders {
+  from {
+    color: black;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+  }
+  to {
+    color: white;
+    -webkit-text-stroke-width: 0px;
+    -webkit-text-stroke-color: black;
+  }
+}
 body {
   background-color: black;
 }
 
+@font-face {
+  font-family: "Lemon/Milk";
+  src: url("/LemonMilkbold.b785748e.woff2") format("woff2"), url("/LemonMilkbold.0085f45f.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lemon/Milk";
+  src: url("/LemonMilklight.5fd2687f.woff2") format("woff2"), url("/LemonMilklight.2eda4e56.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lemon/Milk";
+  src: url("/LemonMilkbolditalic.dab474cc.woff2") format("woff2"), url("/LemonMilkbolditalic.14a0682e.woff") format("woff");
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Lemon/Milk";
+  src: url("/LemonMilkitalic.ca9da5c0.woff2") format("woff2"), url("/LemonMilkitalic.922ddf2d.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Lemon/Milk";
+  src: url("/LemonMilk.9a18b867.woff2") format("woff2"), url("/LemonMilk.7d446439.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lemon/Milk";
+  src: url("/LemonMilklightitalic.ed5df282.woff2") format("woff2"), url("/LemonMilklightitalic.f25e7342.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+}
 .name__and__profession {
   color: white;
   font-size: 40px;
@@ -138,13 +213,16 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: "Lemon/Milk";
 }
 
 .projects {
   height: 60vh;
 }
 .projects h2 {
+  font-family: "Lemon/Milk";
   font-size: 62px;
+  letter-spacing: 13px;
   padding-left: 15%;
   padding-bottom: 50px;
 }
@@ -154,6 +232,7 @@ body {
   perspective: 2000px;
 }
 .projects .project {
+  font-family: "Lemon/Milk";
   display: block;
   transition: transform 0.5s;
   transform: translate3d(0px, 0px, 0px);
@@ -184,8 +263,20 @@ body {
 .title__of__project h3 {
   font-size: 38px;
 }
+.title__of__project h3.armani {
+  color: #0757AA;
+  animation: blinkArmani 3.5s infinite alternate;
+}
+.title__of__project h3.so_comptoir {
+  color: #F4CB65;
+  animation: blinkso_comptoir 3.5s infinite alternate;
+}
+.title__of__project h3.space_invaders {
+  animation: blinkInvaders 3.5s infinite alternate;
+}
 .title__of__project .type__of__projet {
   font-size: 19px;
+  letter-spacing: 4px;
 }
 
 .nav__project {

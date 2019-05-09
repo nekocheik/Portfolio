@@ -9,19 +9,25 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: 'Lemon/Milk'
 }
 .projects{
-    height: 60vh;
+  height: 60vh;
   h2{
+    font-family: 'Lemon/Milk' ;
     font-size: 62px;
+    letter-spacing: 13px;
     padding-left: 15%;
     padding-bottom: 50px;
+    
+    
   }.container__of__project{
     height: 100%;
     width: 100vw ;
     perspective: 2000px;
   }
   .project{
+    font-family: 'Lemon/Milk';
     display: block;  
     transition: transform 0.5s;
     transform : translate3d( 0px , 0px , 0px);
@@ -51,8 +57,19 @@
   padding-left: 15%;
   h3{
     font-size: 38px;
-  }.type__of__projet{
+    &.armani{
+      color: $blueArmani;
+      animation: blinkArmani 3.5s infinite alternate;
+    }&.so_comptoir{
+      color: $jauneComptoir;
+      animation: blinkso_comptoir 3.5s infinite alternate;
+    }&.space_invaders{
+      animation: blinkInvaders 3.5s infinite alternate;
+    }
+  }
+  .type__of__projet{
     font-size: 19px;
+    letter-spacing: 4px;
   }
 }
 
@@ -64,7 +81,7 @@
   font-size: 40px;
   height: 20%;
   justify-content: flex-end;
-
+  
   section{
     position: relative;
     display: flex;
@@ -100,3 +117,4 @@
   bottom: -10px;
   //transform: translateX(-90vw)
 }
+

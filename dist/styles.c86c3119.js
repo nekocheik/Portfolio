@@ -195,7 +195,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"reset.css":"../node_modules/reset.css/reset.css","_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"reset.css":"../node_modules/reset.css/reset.css","./../fonts/LemonMilkbold.woff2":[["LemonMilkbold.b785748e.woff2","fonts/LemonMilkbold.woff2"],"fonts/LemonMilkbold.woff2"],"./../fonts/LemonMilkbold.woff":[["LemonMilkbold.0085f45f.woff","fonts/LemonMilkbold.woff"],"fonts/LemonMilkbold.woff"],"./../fonts/LemonMilklight.woff2":[["LemonMilklight.5fd2687f.woff2","fonts/LemonMilklight.woff2"],"fonts/LemonMilklight.woff2"],"./../fonts/LemonMilklight.woff":[["LemonMilklight.2eda4e56.woff","fonts/LemonMilklight.woff"],"fonts/LemonMilklight.woff"],"./../fonts/LemonMilkbolditalic.woff2":[["LemonMilkbolditalic.dab474cc.woff2","fonts/LemonMilkbolditalic.woff2"],"fonts/LemonMilkbolditalic.woff2"],"./../fonts/LemonMilkbolditalic.woff":[["LemonMilkbolditalic.14a0682e.woff","fonts/LemonMilkbolditalic.woff"],"fonts/LemonMilkbolditalic.woff"],"./../fonts/LemonMilkitalic.woff2":[["LemonMilkitalic.ca9da5c0.woff2","fonts/LemonMilkitalic.woff2"],"fonts/LemonMilkitalic.woff2"],"./../fonts/LemonMilkitalic.woff":[["LemonMilkitalic.922ddf2d.woff","fonts/LemonMilkitalic.woff"],"fonts/LemonMilkitalic.woff"],"./../fonts/LemonMilk.woff2":[["LemonMilk.9a18b867.woff2","fonts/LemonMilk.woff2"],"fonts/LemonMilk.woff2"],"./../fonts/LemonMilk.woff":[["LemonMilk.7d446439.woff","fonts/LemonMilk.woff"],"fonts/LemonMilk.woff"],"./../fonts/LemonMilklightitalic.woff2":[["LemonMilklightitalic.ed5df282.woff2","fonts/LemonMilklightitalic.woff2"],"fonts/LemonMilklightitalic.woff2"],"./../fonts/LemonMilklightitalic.woff":[["LemonMilklightitalic.f25e7342.woff","fonts/LemonMilklightitalic.woff"],"fonts/LemonMilklightitalic.woff"],"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -223,7 +223,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58891" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49517" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

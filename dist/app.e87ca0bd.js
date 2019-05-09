@@ -596,8 +596,8 @@ var renderNavProject = function renderNavProject(project) {
     setTimeout(function () {
       nav.innerHTML = _app.numberProject + 1;
       nav.className = "";
-    }, 600);
-  }, 700);
+    }, 200);
+  }, 400);
 };
 
 exports.renderNavProject = renderNavProject;
@@ -743,7 +743,8 @@ var projects = [{
   skills: ['xd', 'JavaScript', 'Rellax', 'Html', 'Sass'],
   assets: {
     pesentation: require('../assets/MontreConnecter.svg')
-  }
+  },
+  modifier: 'armani'
 }, {
   title: 'SO’COMPTOIR',
   type: 'Projet école',
@@ -753,9 +754,10 @@ var projects = [{
   skills: ['xd', 'illustrator'],
   assets: {
     pesentation: require('../assets/logoSocomptoir.svg')
-  }
+  },
+  modifier: 'so_comptoir'
 }, {
-  title: 'SPACE-INVADOR',
+  title: 'SPACE-INVADERS',
   type: 'Projet personnel',
   numberProject: '3',
   subTitle: 'Projet : Javascript',
@@ -763,7 +765,8 @@ var projects = [{
   skills: ['JavaScript', 'Canvas', 'Html', 'Sass'],
   assets: {
     pesentation: require('../assets/alien.svg')
-  }
+  },
+  modifier: 'space_invaders'
 }];
 exports.projects = projects;
 
@@ -791,7 +794,7 @@ function renderChangeOfProject() {
       project.classList.add('come');
       (0, _timers.setTimeout)(function () {
         project.classList.remove('come');
-      }, 10);
+      }, 40);
     }, 500);
   }, 500);
 }
@@ -804,7 +807,7 @@ var ChangeOfProjectView = function ChangeOfProjectView(project) {
     render: function render() {
       this.img.src = project.assets.pesentation;
       this.illustrationOfProject.appendChild(this.img);
-      this.titlOfProject.innerHTML = "<h3>".concat(project.title, "</h3> <h4 class=\"type__of__projet\" >").concat(project.subTitle, "</h4>");
+      this.titlOfProject.innerHTML = "<h3 class='".concat(project.modifier, "'>").concat(project.title, "</h3> <h4 class=\"type__of__projet\" >").concat(project.subTitle, "</h4>");
     }
   };
   view.illustrationOfProject.className = 'illustration__of__project';
@@ -840,7 +843,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58891" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49517" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

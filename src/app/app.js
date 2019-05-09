@@ -117,7 +117,8 @@ var projects = [
     skills : ['xd' , 'JavaScript' , 'Rellax' , 'Html' , 'Sass'] ,
     assets : {
       pesentation : require('../assets/MontreConnecter.svg')
-    }
+    },
+    modifier : 'armani'
   },
   {
     title : 'SO’COMPTOIR',
@@ -130,9 +131,10 @@ var projects = [
     skills : ['xd' , 'illustrator'] ,
     assets : {
       pesentation : require('../assets/logoSocomptoir.svg') ,
-    }
+    },
+    modifier : 'so_comptoir'
   },{
-    title : 'SPACE-INVADOR',
+    title : 'SPACE-INVADERS',
     type : 'Projet personnel' ,
     numberProject : '3',
     subTitle : 'Projet : Javascript',
@@ -142,7 +144,8 @@ var projects = [
     skills : ['JavaScript' , 'Canvas' , 'Html' , 'Sass'] ,
     assets : {
       pesentation : require('../assets/alien.svg') ,
-    }
+    },
+    modifier : 'space_invaders'
   }
 ]
 
@@ -173,7 +176,7 @@ function renderChangeOfProject() {
       project.classList.add('come');
       setTimeout( ()=>{
         project.classList.remove('come');
-      }, 10)
+      }, 40)
     }, 500 )
   }, 500);
 }
@@ -186,7 +189,7 @@ var ChangeOfProjectView = function(project) {
     render: function() {
       this.img.src = project.assets.pesentation;
       this.illustrationOfProject.appendChild(this.img);
-      this.titlOfProject.innerHTML = `<h3>${project.title}</h3> <h4 class="type__of__projet" >${project.subTitle}</h4>`;
+      this.titlOfProject.innerHTML = `<h3 class='${project.modifier}'>${project.title}</h3> <h4 class="type__of__projet" >${project.subTitle}</h4>`;
     },
   }
   
