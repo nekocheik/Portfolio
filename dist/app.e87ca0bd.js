@@ -683,6 +683,7 @@ document.addEventListener('touchstart', function (evnt) {
 
       if (delta > 0) {
         delta = 0;
+        changeOfProject();
       }
 
       if (delta < -100) {
