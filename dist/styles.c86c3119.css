@@ -153,7 +153,6 @@ body {
   width: 100vw;
   background-color: white;
   height: 10px;
-  position: relative;
   transition-duration: 100ms;
   bottom: -10px;
 }

@@ -577,7 +577,7 @@ require("setimmediate"); // On some exotic environments, it's not clear which ob
 exports.setImmediate = typeof self !== "undefined" && self.setImmediate || typeof global !== "undefined" && global.setImmediate || this && this.setImmediate;
 exports.clearImmediate = typeof self !== "undefined" && self.clearImmediate || typeof global !== "undefined" && global.clearImmediate || this && this.clearImmediate;
 },{"setimmediate":"../node_modules/setimmediate/setImmediate.js"}],"assets/armani__home__page.png":[function(require,module,exports) {
-module.exports = "/0f788ba84551fefa52261902e4a52146.png";
+module.exports = "/armani__home__page.e4a52146.png";
 },{}],"app/app.js":[function(require,module,exports) {
 "use strict";
 
@@ -630,12 +630,36 @@ function resizeBarre() {
   }
 }
 
+var numberProject = 0;
+var projects = {
+  Armani: {
+    title: 'ARMANI',
+    type: 'Projet personnel',
+    numberProject: '1',
+    subTitle: 'Projet : intégration',
+    description: "R\xE9aliser un redesign du site Armani dans le quel j\u2019ai du fair le design des pages News , Produits et de la home page.\n    J\u2019ai aussi int\xE9gr\xE9 de tout le site en Mobile first responsive. ",
+    skills: ['xd', 'JavaScript', 'Rellax', 'Html', 'Sass'],
+    assets: [require('../assets/armani__home__page.png')]
+  },
+  SOCOMPTOIR: {
+    title: 'SO’COMPTOIR',
+    type: 'Projet école',
+    numberProject: '2',
+    subTitle: 'Projet : UI / UI',
+    description: "R\xE9aliser un redesign pour un site \n    E-commer de vente de salade en ligne.</br>\n    Pour ce projet nous \xE9tions une \xE9quipe de 4 dans la quelle j\u2019\xE9tais Chef de projet ",
+    skills: ['xd', 'illustrator'],
+    assets: [require('../assets/armani__home__page.png')]
+  }
+};
+
+function changeOfProject() {}
+
 var startClientX;
 document.addEventListener('touchstart', function (evnt) {
   startClientX = evnt.changedTouches[0].clientX;
   document.addEventListener('touchmove', function (event) {
     numberResizing++;
-    var touchDelta = (event.changedTouches[0].clientX - startClientX) / 7;
+    var touchDelta = (event.changedTouches[0].clientX - startClientX) / 2;
 
     if (touchDelta > -1) {
       touchDelta = touchDelta.toString();
@@ -670,29 +694,6 @@ document.addEventListener('touchstart', function (evnt) {
     startClientX = e.changedTouches[0].clientX;
   });
 });
-var numberProject = 0;
-var projects = {
-  Armani: {
-    title: 'ARMANI',
-    type: 'Projet personnel',
-    numberProject: '1',
-    subTitle: 'Projet : intégration',
-    description: "R\xE9aliser un redesign du site Armani dans le quel j\u2019ai du fair le design des pages News , Produits et de la home page.\n    J\u2019ai aussi int\xE9gr\xE9 de tout le site en Mobile first responsive. ",
-    skills: ['xd', 'JavaScript', 'Rellax', 'Html', 'Sass'],
-    assets: [require('../assets/armani__home__page.png')]
-  },
-  SOCOMPTOIR: {
-    title: 'SO’COMPTOIR',
-    type: 'Projet école',
-    numberProject: '2',
-    subTitle: 'Projet : UI / UI',
-    description: "R\xE9aliser un redesign pour un site \n    E-commer de vente de salade en ligne.</br>\n    Pour ce projet nous \xE9tions une \xE9quipe de 4 dans la quelle j\u2019\xE9tais Chef de projet ",
-    skills: ['xd', 'illustrator'],
-    assets: [require('../assets/armani__home__page.png')]
-  } // function changeOfProject (){
-  // }
-
-};
 },{"timers":"../node_modules/timers-browserify/main.js","../assets/armani__home__page.png":"assets/armani__home__page.png"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -721,7 +722,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52682" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63010" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
