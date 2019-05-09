@@ -20,7 +20,7 @@ document.addEventListener("mousewheel",  function(event){
     scrollBarre.style.transform = `translateX( ${delta}vw)`
     clearInterval(resizeBarreIterval);
   }
-
+  
   setTimeout(( ) => {
     memo++;
     if (  numberResizing <= memo ) {
@@ -29,7 +29,7 @@ document.addEventListener("mousewheel",  function(event){
         resizeBarre()
       }  , 10 )
     }
-  } , 2000 )
+  } , 10 )
   
 })
 
@@ -43,41 +43,41 @@ function resizeBarre() {
     scrollBarre.style.transform = `translateX( ${delta}vw)`
   }
 }
-
-
+let startClientX  ;
 document.addEventListener('touchstart' , function(evnt){
-let startClientX = evnt.changedTouches[0].clientX ;
+  startClientX = evnt.changedTouches[0].clientX ;
+  document.addEventListener('touchmove' , function(event){
+    numberResizing++;
+    let touchDelta = ( event.changedTouches[0].clientX - startClientX ) / 10 ;
+    if (touchDelta > -1 ) {
+      touchDelta = touchDelta.toString();
+      touchDelta = '-' + touchDelta ;
+      touchDelta = Number(touchDelta);
+      }else{
+        touchDelta = touchDelta.toString();
+        touchDelta = touchDelta.replace(/-/, ' ')
+        touchDelta = Number(touchDelta);
+        console.log(touchDelta)
+      }
 
-document.addEventListener('touchmove' , function(event){
-  numberResizing++;
-  //console.log(event.changedTouches[0].clientX , delta )
-  if( delta < 0 ){
-    delta = delta + (  ( event.changedTouches[0].clientX - startClientX ) / 150  ) ;
-    console.log(( event.changedTouches[0].clientX - startClientX ))
-    if (delta > 0 ) {
-      delta = 0 ;
-      //changeOfProject()
-    }if (delta < -100 ) {
-      delta = -100
-    }
-    scrollBarre.style.transform = `translateX( ${delta}vw)`
-    clearInterval(resizeBarreIterval);
-  }
 
-  setTimeout(( ) => {
-    memo++;
-    if (  numberResizing <= memo ) {
-      console.log( numberResizing , memo )
-      resizeBarreIterval =  setInterval( () =>{
-        resizeBarre()
-      }  , 10 )
+
+    if( delta < 0 ){
+      delta = delta + touchDelta   ;
+      if (delta > 0 ) {
+        delta = 0 ;
+      }if (delta < -100 ) {
+        delta = -100
+      }
+      scrollBarre.style.transform = `translateX( ${delta}vw)`
+      clearInterval(resizeBarreIterval);
     }
-  } , 2000 )
-})
+
+  })
+  document.addEventListener('touchend' , function(e){
+    startClientX = e.changedTouches[0].clientX
+  })
 });
-
-
-
 
 
 var numberProject = 0 ;

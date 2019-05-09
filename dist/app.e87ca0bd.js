@@ -577,7 +577,7 @@ require("setimmediate"); // On some exotic environments, it's not clear which ob
 exports.setImmediate = typeof self !== "undefined" && self.setImmediate || typeof global !== "undefined" && global.setImmediate || this && this.setImmediate;
 exports.clearImmediate = typeof self !== "undefined" && self.clearImmediate || typeof global !== "undefined" && global.clearImmediate || this && this.clearImmediate;
 },{"setimmediate":"../node_modules/setimmediate/setImmediate.js"}],"assets/armani__home__page.png":[function(require,module,exports) {
-module.exports = "/armani__home__page.e4a52146.png";
+module.exports = "/0f788ba84551fefa52261902e4a52146.png";
 },{}],"app/app.js":[function(require,module,exports) {
 "use strict";
 
@@ -617,7 +617,7 @@ document.addEventListener("mousewheel", function (event) {
         resizeBarre();
       }, 10);
     }
-  }, 2000);
+  }, 10);
 });
 var resizeBarreIterval = setInterval(function () {
   resizeBarre();
@@ -630,17 +630,29 @@ function resizeBarre() {
   }
 }
 
+var startClientX;
 document.addEventListener('touchstart', function (evnt) {
-  var startClientX = evnt.changedTouches[0].clientX;
+  startClientX = evnt.changedTouches[0].clientX;
   document.addEventListener('touchmove', function (event) {
-    numberResizing++; //console.log(event.changedTouches[0].clientX , delta )
+    numberResizing++;
+    var touchDelta = (event.changedTouches[0].clientX - startClientX) / 10;
+
+    if (touchDelta > -1) {
+      touchDelta = touchDelta.toString();
+      touchDelta = '-' + touchDelta;
+      touchDelta = Number(touchDelta);
+    } else {
+      touchDelta = touchDelta.toString();
+      touchDelta = touchDelta.replace(/-/, ' ');
+      touchDelta = Number(touchDelta);
+      console.log(touchDelta);
+    }
 
     if (delta < 0) {
-      delta = delta + (event.changedTouches[0].clientX - startClientX) / 150;
-      console.log(event.changedTouches[0].clientX - startClientX);
+      delta = delta + touchDelta;
 
       if (delta > 0) {
-        delta = 0; //changeOfProject()
+        delta = 0;
       }
 
       if (delta < -100) {
@@ -650,17 +662,9 @@ document.addEventListener('touchstart', function (evnt) {
       scrollBarre.style.transform = "translateX( ".concat(delta, "vw)");
       clearInterval(resizeBarreIterval);
     }
-
-    (0, _timers.setTimeout)(function () {
-      memo++;
-
-      if (numberResizing <= memo) {
-        console.log(numberResizing, memo);
-        resizeBarreIterval = setInterval(function () {
-          resizeBarre();
-        }, 10);
-      }
-    }, 2000);
+  });
+  document.addEventListener('touchend', function (e) {
+    startClientX = e.changedTouches[0].clientX;
   });
 });
 var numberProject = 0;
@@ -714,7 +718,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52800" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52682" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
