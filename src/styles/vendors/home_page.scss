@@ -12,7 +12,6 @@
 }
 .projects{
     height: 60vh;
-  //perspective-origin : 100vw 100vh ;
   h2{
     font-size: 62px;
     padding-left: 15%;
@@ -23,14 +22,15 @@
     perspective: 2000px;
   }
   .project{
-    display: block;
+    display: block;  
+    transition: transform 0.5s;
     transform : translate3d( 0px , 0px , 0px);
-    transition-duration: 0.5s ;
     &.back{
       opacity: 0;
-      transform : translate3d(-0px, -550px, -7000px)
+      transition: transform 0.5s , opacity 0.7s;
+      transform : translate3d(-0px, -550px, -7000px);
     }&.come{
-      transition-duration: 0s ;
+      transition: transform 0s;
       transform : translate3d(0px, 0px, 2024px)
     }
     .illustration__of__project{
@@ -64,9 +64,30 @@
   font-size: 40px;
   height: 20%;
   justify-content: flex-end;
+
   section{
     position: relative;
+    display: flex;
     bottom: 0;
+    overflow: hidden;
+    p{
+      display: inline-block;
+      z-index: -1;
+      transition-duration: 400ms ;
+      // transform: translateX(-4px);
+      // transition: transform 0.5s;
+      width: 30px;
+      &.trasition__back{
+        transform: translateX(30px)
+      }&.trasition__come{
+        transition-duration: 0ms ;
+        transform: translateX(-30px)
+      }
+    }
+    span{
+      background-color: black;
+      z-index: 1;
+    }
   }
 }
 

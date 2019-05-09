@@ -1,13 +1,17 @@
 import { setTimeout } from "timers";
+import { renderNavProject } from "./renderNavProject";
+
 
 var nav = document.querySelector('nav');
-nav.querySelector('p').addEventListener('click', function(){
+nav.addEventListener('click', function(){
   let p =  nav.querySelectorAll('p');
-  for (let i = 0; i < p.length; i++) {
-    p[i].classList.add('active')
+  if(p[0].classList.value[0] !== 'active'){
+    for (let i = 0; i < p.length; i++) {
+      p[i].classList.add('active')
+    }
+    nav.querySelector('.croi').classList.add('active')
   }
-  nav.querySelector('.croi').classList.add('active')
-})
+} , true)
 
 nav.querySelector('.croi').addEventListener('click', function(){
   let p =  nav.querySelectorAll('p');
@@ -15,7 +19,7 @@ nav.querySelector('.croi').addEventListener('click', function(){
     p[i].classList.remove('active')
   }
   nav.querySelector('.croi').classList.remove('active')
-})
+}, true )
 
 window.addEventListener('scroll', function ( event ) {
   let p = nav.querySelector('p');
@@ -144,7 +148,6 @@ var projects = [
 
 
 
-
 function changeOfProject() {
   renderChangeOfProject();
 }
@@ -162,8 +165,10 @@ function renderChangeOfProject() {
     
     var view = ChangeOfProjectView(projects[numberProject]);
     project.appendChild(view.illustrationOfProject)
-    project.appendChild(view.titlOfProject);   
+    project.appendChild(view.titlOfProject);
     setTimeout( ()=>{
+      renderNavProject(project)
+      
       project.classList.remove('back');
       project.classList.add('come');
       setTimeout( ()=>{
@@ -190,3 +195,7 @@ var ChangeOfProjectView = function(project) {
   view.render();
   return view
 }
+
+
+
+export{renderChangeOfProject , projects ,  numberProject }

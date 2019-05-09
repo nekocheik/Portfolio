@@ -155,15 +155,16 @@ body {
 }
 .projects .project {
   display: block;
+  transition: transform 0.5s;
   transform: translate3d(0px, 0px, 0px);
-  transition-duration: 0.5s;
 }
 .projects .project.back {
   opacity: 0;
+  transition: transform 0.5s, opacity 0.7s;
   transform: translate3d(0px, -550px, -7000px);
 }
 .projects .project.come {
-  transition-duration: 0s;
+  transition: transform 0s;
   transform: translate3d(0px, 0px, 2024px);
 }
 .projects .project .illustration__of__project {
@@ -198,7 +199,26 @@ body {
 }
 .nav__project section {
   position: relative;
+  display: flex;
   bottom: 0;
+  overflow: hidden;
+}
+.nav__project section p {
+  display: inline-block;
+  z-index: -1;
+  transition-duration: 400ms;
+  width: 30px;
+}
+.nav__project section p.trasition__back {
+  transform: translateX(30px);
+}
+.nav__project section p.trasition__come {
+  transition-duration: 0ms;
+  transform: translateX(-30px);
+}
+.nav__project section span {
+  background-color: black;
+  z-index: 1;
 }
 
 .sroll__barre {

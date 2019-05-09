@@ -576,7 +576,32 @@ require("setimmediate"); // On some exotic environments, it's not clear which ob
 
 exports.setImmediate = typeof self !== "undefined" && self.setImmediate || typeof global !== "undefined" && global.setImmediate || this && this.setImmediate;
 exports.clearImmediate = typeof self !== "undefined" && self.clearImmediate || typeof global !== "undefined" && global.clearImmediate || this && this.clearImmediate;
-},{"setimmediate":"../node_modules/setimmediate/setImmediate.js"}],"assets/MontreConnecter.svg":[function(require,module,exports) {
+},{"setimmediate":"../node_modules/setimmediate/setImmediate.js"}],"app/renderNavProject.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.renderNavProject = void 0;
+
+var _app = require("./app");
+
+var renderNavProject = function renderNavProject(project) {
+  var nav = document.querySelector('.nav__project p');
+  console.log(nav);
+  nav.classList.add('trasition__back');
+  setTimeout(function () {
+    nav.innerHTML = "";
+    nav.className = "trasition__come";
+    setTimeout(function () {
+      nav.innerHTML = _app.numberProject + 1;
+      nav.className = "";
+    }, 600);
+  }, 700);
+};
+
+exports.renderNavProject = renderNavProject;
+},{"./app":"app/app.js"}],"assets/MontreConnecter.svg":[function(require,module,exports) {
 module.exports = "/MontreConnecter.d1308733.svg";
 },{}],"assets/logoSocomptoir.svg":[function(require,module,exports) {
 module.exports = "/logoSocomptoir.905e08d9.svg";
@@ -585,18 +610,28 @@ module.exports = "/alien.06625d74.svg";
 },{}],"app/app.js":[function(require,module,exports) {
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.renderChangeOfProject = renderChangeOfProject;
+exports.numberProject = exports.projects = void 0;
+
 var _timers = require("timers");
 
+var _renderNavProject = require("./renderNavProject");
+
 var nav = document.querySelector('nav');
-nav.querySelector('p').addEventListener('click', function () {
+nav.addEventListener('click', function () {
   var p = nav.querySelectorAll('p');
 
-  for (var i = 0; i < p.length; i++) {
-    p[i].classList.add('active');
-  }
+  if (p[0].classList.value[0] !== 'active') {
+    for (var i = 0; i < p.length; i++) {
+      p[i].classList.add('active');
+    }
 
-  nav.querySelector('.croi').classList.add('active');
-});
+    nav.querySelector('.croi').classList.add('active');
+  }
+}, true);
 nav.querySelector('.croi').addEventListener('click', function () {
   var p = nav.querySelectorAll('p');
 
@@ -605,7 +640,7 @@ nav.querySelector('.croi').addEventListener('click', function () {
   }
 
   nav.querySelector('.croi').classList.remove('active');
-});
+}, true);
 window.addEventListener('scroll', function (event) {
   var p = nav.querySelector('p');
 
@@ -698,6 +733,7 @@ document.addEventListener('touchstart', function (evnt) {
   });
 });
 var numberProject = 0;
+exports.numberProject = numberProject;
 var projects = [{
   title: 'ARMANI',
   type: 'Projet personnel',
@@ -729,6 +765,7 @@ var projects = [{
     pesentation: require('../assets/alien.svg')
   }
 }];
+exports.projects = projects;
 
 function changeOfProject() {
   renderChangeOfProject();
@@ -739,16 +776,17 @@ function renderChangeOfProject() {
   project.classList.add('back');
   (0, _timers.setTimeout)(function () {
     project.innerHTML = "";
-    numberProject++;
+    exports.numberProject = numberProject = numberProject + 1;
 
     if (numberProject > projects.length - 1) {
-      numberProject = 0;
+      exports.numberProject = numberProject = 0;
     }
 
     var view = ChangeOfProjectView(projects[numberProject]);
     project.appendChild(view.illustrationOfProject);
     project.appendChild(view.titlOfProject);
     (0, _timers.setTimeout)(function () {
+      (0, _renderNavProject.renderNavProject)(project);
       project.classList.remove('back');
       project.classList.add('come');
       (0, _timers.setTimeout)(function () {
@@ -774,7 +812,7 @@ var ChangeOfProjectView = function ChangeOfProjectView(project) {
   view.render();
   return view;
 };
-},{"timers":"../node_modules/timers-browserify/main.js","../assets/MontreConnecter.svg":"assets/MontreConnecter.svg","../assets/logoSocomptoir.svg":"assets/logoSocomptoir.svg","../assets/alien.svg":"assets/alien.svg"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"timers":"../node_modules/timers-browserify/main.js","./renderNavProject":"app/renderNavProject.js","../assets/MontreConnecter.svg":"assets/MontreConnecter.svg","../assets/logoSocomptoir.svg":"assets/logoSocomptoir.svg","../assets/alien.svg":"assets/alien.svg"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
