@@ -583,6 +583,7 @@ module.exports = "/armani__home__page.e4a52146.png";
 
 var _timers = require("timers");
 
+///______________________________________________scroll
 var scrollBarre = document.querySelector('.sroll__barre');
 var delta = -100;
 var memo = 0;
@@ -597,6 +598,10 @@ document.addEventListener("mousewheel", function (event) {
     if (delta > 0) {
       delta = 0;
       changeOfProject();
+    }
+
+    if (delta < -100) {
+      delta = -100;
     }
 
     scrollBarre.style.transform = "translateX( ".concat(delta, "vw)");
@@ -625,6 +630,39 @@ function resizeBarre() {
   }
 }
 
+document.addEventListener('touchstart', function (evnt) {
+  var startClientX = evnt.changedTouches[0].clientX;
+  document.addEventListener('touchmove', function (event) {
+    numberResizing++; //console.log(event.changedTouches[0].clientX , delta )
+
+    if (delta < 0) {
+      delta = delta + (event.changedTouches[0].clientX - startClientX) / 150;
+      console.log(event.changedTouches[0].clientX - startClientX);
+
+      if (delta > 0) {
+        delta = 0; //changeOfProject()
+      }
+
+      if (delta < -100) {
+        delta = -100;
+      }
+
+      scrollBarre.style.transform = "translateX( ".concat(delta, "vw)");
+      clearInterval(resizeBarreIterval);
+    }
+
+    (0, _timers.setTimeout)(function () {
+      memo++;
+
+      if (numberResizing <= memo) {
+        console.log(numberResizing, memo);
+        resizeBarreIterval = setInterval(function () {
+          resizeBarre();
+        }, 10);
+      }
+    }, 2000);
+  });
+});
 var numberProject = 0;
 var projects = {
   Armani: {
@@ -644,10 +682,10 @@ var projects = {
     description: "R\xE9aliser un redesign pour un site \n    E-commer de vente de salade en ligne.</br>\n    Pour ce projet nous \xE9tions une \xE9quipe de 4 dans la quelle j\u2019\xE9tais Chef de projet ",
     skills: ['xd', 'illustrator'],
     assets: [require('../assets/armani__home__page.png')]
-  }
-};
+  } // function changeOfProject (){
+  // }
 
-function changeOfProject() {}
+};
 },{"timers":"../node_modules/timers-browserify/main.js","../assets/armani__home__page.png":"assets/armani__home__page.png"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -676,7 +714,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58840" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52800" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

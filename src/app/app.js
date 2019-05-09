@@ -1,5 +1,6 @@
 import { setTimeout } from "timers";
 
+///______________________________________________scroll
 var scrollBarre = document.querySelector('.sroll__barre');
 var delta = -100 ;
 var memo = 0 ;
@@ -13,6 +14,8 @@ document.addEventListener("mousewheel",  function(event){
     if (delta > 0 ) {
       delta = 0 ;
       changeOfProject()
+    }if (delta < -100 ) {
+      delta = -100
     }
     scrollBarre.style.transform = `translateX( ${delta}vw)`
     clearInterval(resizeBarreIterval);
@@ -41,6 +44,42 @@ function resizeBarre() {
   }
 }
 
+
+document.addEventListener('touchstart' , function(evnt){
+let startClientX = evnt.changedTouches[0].clientX ;
+
+document.addEventListener('touchmove' , function(event){
+  numberResizing++;
+  //console.log(event.changedTouches[0].clientX , delta )
+  if( delta < 0 ){
+    delta = delta + (  ( event.changedTouches[0].clientX - startClientX ) / 150  ) ;
+    console.log(( event.changedTouches[0].clientX - startClientX ))
+    if (delta > 0 ) {
+      delta = 0 ;
+      //changeOfProject()
+    }if (delta < -100 ) {
+      delta = -100
+    }
+    scrollBarre.style.transform = `translateX( ${delta}vw)`
+    clearInterval(resizeBarreIterval);
+  }
+
+  setTimeout(( ) => {
+    memo++;
+    if (  numberResizing <= memo ) {
+      console.log( numberResizing , memo )
+      resizeBarreIterval =  setInterval( () =>{
+        resizeBarre()
+      }  , 10 )
+    }
+  } , 2000 )
+})
+});
+
+
+
+
+
 var numberProject = 0 ;
 var projects = {
   Armani : {
@@ -66,6 +105,6 @@ var projects = {
   }
 }
 
-function changeOfProject (){
+// function changeOfProject (){
 
-}
+// }

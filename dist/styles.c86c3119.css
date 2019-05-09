@@ -153,8 +153,9 @@ body {
   width: 100vw;
   background-color: white;
   height: 10px;
-  position: absolute;
+  position: relative;
   transition-duration: 100ms;
+  bottom: -10px;
 }
 
 /*# sourceMappingURL=/styles.c86c3119.css.map */
