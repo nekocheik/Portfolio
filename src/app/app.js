@@ -48,17 +48,19 @@ document.addEventListener('touchstart' , function(evnt){
   startClientX = evnt.changedTouches[0].clientX ;
   document.addEventListener('touchmove' , function(event){
     numberResizing++;
-    let touchDelta = ( event.changedTouches[0].clientX - startClientX ) / 10 ;
+    let touchDelta = ( event.changedTouches[0].clientX - startClientX ) / 7 ;
     if (touchDelta > -1 ) {
       touchDelta = touchDelta.toString();
       touchDelta = '-' + touchDelta ;
       touchDelta = Number(touchDelta);
       }else{
         touchDelta = touchDelta.toString();
+        console.log(touchDelta)
         touchDelta = touchDelta.replace(/-/, ' ')
         touchDelta = Number(touchDelta);
         console.log(touchDelta)
       }
+      startClientX = startClientX + touchDelta;
 
 
 

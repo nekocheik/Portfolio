@@ -635,7 +635,7 @@ document.addEventListener('touchstart', function (evnt) {
   startClientX = evnt.changedTouches[0].clientX;
   document.addEventListener('touchmove', function (event) {
     numberResizing++;
-    var touchDelta = (event.changedTouches[0].clientX - startClientX) / 10;
+    var touchDelta = (event.changedTouches[0].clientX - startClientX) / 7;
 
     if (touchDelta > -1) {
       touchDelta = touchDelta.toString();
@@ -643,10 +643,13 @@ document.addEventListener('touchstart', function (evnt) {
       touchDelta = Number(touchDelta);
     } else {
       touchDelta = touchDelta.toString();
+      console.log(touchDelta);
       touchDelta = touchDelta.replace(/-/, ' ');
       touchDelta = Number(touchDelta);
       console.log(touchDelta);
     }
+
+    startClientX = startClientX + touchDelta;
 
     if (delta < 0) {
       delta = delta + touchDelta;
