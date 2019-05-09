@@ -659,23 +659,18 @@ document.addEventListener('touchstart', function (evnt) {
   startClientX = evnt.changedTouches[0].clientX;
   document.addEventListener('touchmove', function (event) {
     numberResizing++;
-    var touchDelta = (event.changedTouches[0].clientX - startClientX) / 2;
+    var touchDelta = event.changedTouches[0].clientX - startClientX; //console.log(touchDelta)
 
-    if (touchDelta > -1) {
+    if (touchDelta < -1) {
       touchDelta = touchDelta.toString();
-      touchDelta = '-' + touchDelta;
-      touchDelta = Number(touchDelta);
-    } else {
-      touchDelta = touchDelta.toString();
-      console.log(touchDelta);
       touchDelta = touchDelta.replace(/-/, ' ');
-      touchDelta = Number(touchDelta);
-      console.log(touchDelta);
+      touchDelta = Number(touchDelta) / 100;
+    } else {
+      return;
     }
 
-    startClientX = startClientX + touchDelta;
-
     if (delta < 0) {
+      console.log(touchDelta);
       delta = delta + touchDelta;
 
       if (delta > 0) {
@@ -722,7 +717,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63010" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52206" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

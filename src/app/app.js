@@ -71,7 +71,7 @@ var projects = {
 }
 
 function changeOfProject (){
-
+  
 }
 
 let startClientX  ;
@@ -79,24 +79,19 @@ document.addEventListener('touchstart' , function(evnt){
   startClientX = evnt.changedTouches[0].clientX ;
   document.addEventListener('touchmove' , function(event){
     numberResizing++;
-    let touchDelta = ( event.changedTouches[0].clientX - startClientX ) / 2 ;
-    if (touchDelta > -1 ) {
+    let touchDelta = ( event.changedTouches[0].clientX - startClientX );
+    //console.log(touchDelta)
+    if (touchDelta < -1 ) {
       touchDelta = touchDelta.toString();
-      touchDelta = '-' + touchDelta ;
-      touchDelta = Number(touchDelta);
-      }else{
-        touchDelta = touchDelta.toString();
-        console.log(touchDelta)
-        touchDelta = touchDelta.replace(/-/, ' ')
-        touchDelta = Number(touchDelta);
-        console.log(touchDelta)
-      }
-      startClientX = startClientX + touchDelta;
-
-
-
+      touchDelta = touchDelta.replace(/-/, ' ')
+      touchDelta = Number(touchDelta) / 100 ;
+    }else{
+      return
+    }
+    
     if( delta < 0 ){
-      delta = delta + touchDelta   ;
+      console.log(touchDelta)
+      delta = delta + touchDelta ;
       if (delta > 0 ) {
         delta = 0 ;
       }if (delta < -100 ) {
@@ -105,7 +100,7 @@ document.addEventListener('touchstart' , function(evnt){
       scrollBarre.style.transform = `translateX( ${delta}vw)`
       clearInterval(resizeBarreIterval);
     }
-
+    
   })
   document.addEventListener('touchend' , function(e){
     startClientX = e.changedTouches[0].clientX
