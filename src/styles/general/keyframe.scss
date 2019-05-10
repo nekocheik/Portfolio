@@ -39,3 +39,34 @@
     -webkit-text-stroke-color: rgb(0, 0, 0);
   }
 }
+
+@keyframes circleGoCenter {
+  from{
+    top: -150px;
+  }
+  to {
+    top: 200px;
+  }
+}
+
+@keyframes enterLeft {
+  from{
+    opacity: 0.5;
+    transform: translateX(-350px)
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px)
+  }
+}
+
+@keyframes enterRight  {
+  from{
+    opacity: 0.5;
+    transform: translateX(350px)
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px)
+  }
+}

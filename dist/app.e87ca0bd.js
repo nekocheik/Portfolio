@@ -576,164 +576,19 @@ require("setimmediate"); // On some exotic environments, it's not clear which ob
 
 exports.setImmediate = typeof self !== "undefined" && self.setImmediate || typeof global !== "undefined" && global.setImmediate || this && this.setImmediate;
 exports.clearImmediate = typeof self !== "undefined" && self.clearImmediate || typeof global !== "undefined" && global.clearImmediate || this && this.clearImmediate;
-},{"setimmediate":"../node_modules/setimmediate/setImmediate.js"}],"app/renderNavProject.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.renderNavProject = void 0;
-
-var _app = require("./app");
-
-var renderNavProject = function renderNavProject(project) {
-  var nav = document.querySelector('.nav__project p');
-  console.log(nav);
-  nav.classList.add('trasition__back');
-  setTimeout(function () {
-    nav.innerHTML = "";
-    nav.className = "trasition__come";
-    setTimeout(function () {
-      nav.innerHTML = _app.numberProject + 1;
-      nav.className = "";
-    }, 200);
-  }, 400);
-};
-
-exports.renderNavProject = renderNavProject;
-},{"./app":"app/app.js"}],"assets/MontreConnecter.svg":[function(require,module,exports) {
+},{"setimmediate":"../node_modules/setimmediate/setImmediate.js"}],"assets/MontreConnecter.svg":[function(require,module,exports) {
 module.exports = "/MontreConnecter.d1308733.svg";
 },{}],"assets/logoSocomptoir.svg":[function(require,module,exports) {
 module.exports = "/logoSocomptoir.905e08d9.svg";
 },{}],"assets/alien.svg":[function(require,module,exports) {
 module.exports = "/alien.06625d74.svg";
-},{}],"app/app.js":[function(require,module,exports) {
+},{}],"app/project.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.renderChangeOfProject = renderChangeOfProject;
-exports.numberProject = exports.projects = void 0;
-
-var _timers = require("timers");
-
-var _renderNavProject = require("./renderNavProject");
-
-var nav = document.querySelector('nav');
-nav.addEventListener('click', function () {
-  var p = nav.querySelectorAll('p');
-
-  if (p[0].classList.value[0] !== 'active') {
-    for (var i = 0; i < p.length; i++) {
-      p[i].classList.add('active');
-    }
-
-    nav.querySelector('.croi').classList.add('active');
-  }
-}, true);
-nav.querySelector('.croi').addEventListener('click', function () {
-  var p = nav.querySelectorAll('p');
-
-  for (var i = 0; i < p.length; i++) {
-    p[i].classList.remove('active');
-  }
-
-  nav.querySelector('.croi').classList.remove('active');
-}, true);
-window.addEventListener('scroll', function (event) {
-  var p = nav.querySelector('p');
-
-  if (p.className === 'active') {
-    nav.classList.add('move');
-  }
-
-  window.clearTimeout(isScrolling);
-  var isScrolling = (0, _timers.setTimeout)(function () {
-    nav.classList.remove('move');
-  }, 1000);
-}, false); ///______________________________________________scroll
-
-var scrollBarre = document.querySelector('.sroll__barre');
-var delta = -100;
-var memo = 0;
-var numberResizing = 0;
-scrollBarre.style.transform = "translateX( ".concat(delta, "vw)");
-document.addEventListener("mousewheel", function (event) {
-  numberResizing++;
-
-  if (delta < 0) {
-    delta = delta + event.deltaY / 3;
-
-    if (delta >= 0) {
-      delta = 0;
-      changeOfProject();
-    }
-
-    if (delta < -100) {
-      delta = -100;
-    }
-
-    scrollBarre.style.transform = "translateX( ".concat(delta, "vw)");
-    clearInterval(resizeBarreIterval);
-  }
-
-  (0, _timers.setTimeout)(function () {
-    memo++;
-
-    if (numberResizing <= memo) {
-      resizeBarreIterval = setInterval(function () {
-        resizeBarre();
-      }, 10);
-    }
-  }, 400);
-});
-var resizeBarreIterval = setInterval(function () {
-  resizeBarre();
-}, 100);
-
-function resizeBarre() {
-  if (delta > -100) {
-    delta = delta - 2;
-    scrollBarre.style.transform = "translateX( ".concat(delta, "vw)");
-  }
-}
-
-var startClientX;
-document.addEventListener('touchstart', function (evnt) {
-  startClientX = evnt.changedTouches[0].clientX;
-  document.addEventListener('touchmove', function (event) {
-    var touchDelta = event.changedTouches[0].clientX - startClientX;
-
-    if (touchDelta < -1) {
-      touchDelta = touchDelta.toString();
-      touchDelta = touchDelta.replace(/-/, ' ');
-      touchDelta = Number(touchDelta) / 100;
-    } else {
-      return;
-    }
-
-    if (delta < 0) {
-      delta = delta + touchDelta;
-
-      if (delta > 0) {
-        delta = 0;
-        changeOfProject();
-      }
-
-      if (delta < -100) {
-        delta = -100;
-      }
-
-      scrollBarre.style.transform = "translateX( ".concat(delta, "vw)");
-    }
-  });
-  document.addEventListener('touchend', function (e) {
-    startClientX = e.changedTouches[0].clientX;
-  });
-});
-var numberProject = 0;
-exports.numberProject = numberProject;
+exports.projects = void 0;
 var projects = [{
   title: 'ARMANI',
   type: 'Projet personnel',
@@ -769,6 +624,21 @@ var projects = [{
   modifier: 'space_invaders'
 }];
 exports.projects = projects;
+},{"../assets/MontreConnecter.svg":"assets/MontreConnecter.svg","../assets/logoSocomptoir.svg":"assets/logoSocomptoir.svg","../assets/alien.svg":"assets/alien.svg"}],"app/changeOfProject.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.changeOfProject = changeOfProject;
+exports.numberProject = void 0;
+
+var _project = require("./project");
+
+var _renderNavProject = require("./renderNavProject");
+
+var numberProject = 0;
+exports.numberProject = numberProject;
 
 function changeOfProject() {
   renderChangeOfProject();
@@ -777,22 +647,23 @@ function changeOfProject() {
 function renderChangeOfProject() {
   var project = document.querySelector('.project');
   project.classList.add('back');
-  (0, _timers.setTimeout)(function () {
+  setTimeout(function () {
     project.innerHTML = "";
+    console.log(numberProject);
     exports.numberProject = numberProject = numberProject + 1;
 
-    if (numberProject > projects.length - 1) {
+    if (numberProject > _project.projects.length - 1) {
       exports.numberProject = numberProject = 0;
     }
 
-    var view = ChangeOfProjectView(projects[numberProject]);
+    var view = ChangeOfProjectView(_project.projects[numberProject]);
     project.appendChild(view.illustrationOfProject);
     project.appendChild(view.titlOfProject);
-    (0, _timers.setTimeout)(function () {
+    setTimeout(function () {
       (0, _renderNavProject.renderNavProject)(project);
       project.classList.remove('back');
       project.classList.add('come');
-      (0, _timers.setTimeout)(function () {
+      setTimeout(function () {
         project.classList.remove('come');
       }, 40);
     }, 500);
@@ -815,7 +686,244 @@ var ChangeOfProjectView = function ChangeOfProjectView(project) {
   view.render();
   return view;
 };
-},{"timers":"../node_modules/timers-browserify/main.js","./renderNavProject":"app/renderNavProject.js","../assets/MontreConnecter.svg":"assets/MontreConnecter.svg","../assets/logoSocomptoir.svg":"assets/logoSocomptoir.svg","../assets/alien.svg":"assets/alien.svg"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./project":"app/project.js","./renderNavProject":"app/renderNavProject.js"}],"app/renderNavProject.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.renderNavProject = void 0;
+
+var _project = require("./project");
+
+var _changeOfProject = require("./changeOfProject");
+
+var renderNavProject = function renderNavProject(project) {
+  var nav = document.querySelector('.nav__project p');
+  console.log(_changeOfProject.numberProject);
+  nav.classList.add('trasition__back');
+  setTimeout(function () {
+    nav.innerHTML = "";
+    nav.className = "trasition__come";
+    setTimeout(function () {
+      nav.innerHTML = _changeOfProject.numberProject + 1;
+      nav.className = "";
+    }, 200);
+  }, 400);
+};
+
+exports.renderNavProject = renderNavProject;
+},{"./project":"app/project.js","./changeOfProject":"app/changeOfProject.js"}],"app/viewPort.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.viewPort = void 0;
+
+var viewPort = function viewPort(element, touch, callback, callbackinvers) {
+  window.addEventListener('scroll', function (event) {
+    var positionScreenBottom = window.pageYOffset + window.innerHeight;
+    var positionScreenTop = window.pageYOffset;
+    var top = element.clientHeight + window.innerHeight;
+    console.log(positionScreenBottom >= top, positionScreenBottom, top);
+
+    if (touch === 'top') {
+      if (positionScreenBottom <= top) {
+        callback(true);
+      } else {
+        callback(false);
+      }
+    } else {
+      if (positionScreenBottom >= top) {
+        callback(true);
+      } else {
+        callback(false);
+      }
+    }
+  });
+};
+
+exports.viewPort = viewPort;
+},{}],"app/scroll.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.scrollCK = scrollCK;
+
+var _changeOfProject = require("./changeOfProject");
+
+var _viewPort = require("./viewPort");
+
+function scrollCK() {
+  var element = document.querySelector('.type__of__projet');
+  (0, _viewPort.viewPort)(element, 'bottom', function (start) {
+    if (start) {
+      var resizeBarre = function resizeBarre() {
+        if (delta > -100) {
+          delta = delta - 2;
+          scrollBarre.style.transform = "translateX( ".concat(delta, "vw)");
+        }
+      };
+
+      ///______________________________________________scroll
+      var scrollBarre = document.querySelector('.sroll__barre');
+      var delta = -100;
+      var memo = 0;
+      var numberResizing = 0;
+      scrollBarre.style.transform = "translateX( ".concat(delta, "vw)");
+      document.addEventListener("mousewheel", function (event) {
+        numberResizing++;
+
+        if (delta < 0) {
+          delta = delta + event.deltaY / 3;
+
+          if (delta >= 0) {
+            delta = 0;
+            (0, _changeOfProject.changeOfProject)();
+          }
+
+          if (delta < -100) {
+            delta = -100;
+          }
+
+          scrollBarre.style.transform = "translateX( ".concat(delta, "vw)");
+          clearInterval(resizeBarreIterval);
+        }
+
+        setTimeout(function () {
+          memo++;
+
+          if (numberResizing <= memo) {
+            resizeBarreIterval = setInterval(function () {
+              resizeBarre();
+            }, 10);
+          }
+        }, 400);
+      });
+      var resizeBarreIterval = setInterval(function () {
+        resizeBarre();
+      }, 100);
+      var startClientX;
+      document.addEventListener('touchstart', function (evnt) {
+        startClientX = evnt.changedTouches[0].clientX;
+        document.addEventListener('touchmove', function (event) {
+          var touchDelta = event.changedTouches[0].clientX - startClientX;
+
+          if (touchDelta < -1) {
+            touchDelta = touchDelta.toString();
+            touchDelta = touchDelta.replace(/-/, ' ');
+            touchDelta = Number(touchDelta) / 100;
+          } else {
+            return;
+          }
+
+          if (delta < 0) {
+            delta = delta + touchDelta;
+
+            if (delta > 0) {
+              delta = 0;
+              (0, _changeOfProject.changeOfProject)();
+            }
+
+            if (delta < -100) {
+              delta = -100;
+            }
+
+            scrollBarre.style.transform = "translateX( ".concat(delta, "vw)");
+          }
+        });
+        document.addEventListener('touchend', function (e) {
+          startClientX = e.changedTouches[0].clientX;
+        });
+      });
+    }
+  });
+}
+},{"./changeOfProject":"app/changeOfProject.js","./viewPort":"app/viewPort.js"}],"app/animation.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.animation = void 0;
+
+var _viewPort = require("./viewPort");
+
+var animation = function animation(params) {
+  var titleProjet = document.querySelector('.projects h2');
+  (0, _viewPort.viewPort)(titleProjet, 'top', function (respons) {
+    titleProjet.classList.add('transtision');
+  }, function () {
+    titleProjet.classList.remove('transtision');
+  });
+};
+
+exports.animation = animation;
+},{"./viewPort":"app/viewPort.js"}],"app/MenuBurger.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.menuBurge = void 0;
+
+var menuBurge = function menuBurge() {
+  var nav = document.querySelector('nav');
+  nav.addEventListener('click', function () {
+    var p = nav.querySelectorAll('p');
+
+    if (p[0].classList.value[0] !== 'active') {
+      for (var i = 0; i < p.length; i++) {
+        p[i].classList.add('active');
+      }
+
+      nav.querySelector('.croi').classList.add('active');
+    }
+  }, true);
+  nav.querySelector('.croi').addEventListener('click', function () {
+    var p = nav.querySelectorAll('p');
+
+    for (var i = 0; i < p.length; i++) {
+      p[i].classList.remove('active');
+    }
+
+    nav.querySelector('.croi').classList.remove('active');
+  }, true);
+  window.addEventListener('scroll', function (event) {
+    var p = nav.querySelector('p');
+
+    if (p.className === 'active') {
+      nav.classList.add('move');
+    }
+
+    window.clearTimeout(isScrolling);
+    var isScrolling = setTimeout(function () {
+      nav.classList.remove('move');
+    }, 1000);
+  }, false);
+};
+
+exports.menuBurge = menuBurge;
+},{}],"app/app.js":[function(require,module,exports) {
+"use strict";
+
+var _timers = require("timers");
+
+var _renderNavProject = require("./renderNavProject");
+
+var _scroll = require("./scroll");
+
+var _animation = require("./animation");
+
+var _MenuBurger = require("./MenuBurger");
+
+console.log(_scroll.scrollCK);
+(0, _scroll.scrollCK)();
+(0, _animation.animation)();
+},{"timers":"../node_modules/timers-browserify/main.js","./renderNavProject":"app/renderNavProject.js","./scroll":"app/scroll.js","./animation":"app/animation.js","./MenuBurger":"app/MenuBurger.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -843,7 +951,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49517" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56536" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

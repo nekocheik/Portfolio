@@ -3,7 +3,6 @@ body{
   color: white;
   font-family: Avenir ;
   overscroll-behavior: none;
-  height: 100%;
   nav{
     position: fixed;
     bottom: 10px;
@@ -52,10 +51,10 @@ body{
   
   .circle {
     position: sticky;
+    position: -webkit-sticky ;
     top: 200px;
     z-index: -1;
     margin: -190px auto auto auto;
-    //top: -1050px;
     left: calc(50% - 150px);
     width: 200px;
     height: 200px;
@@ -70,7 +69,7 @@ body{
     -10px 0 80px #f0f,
     10px 0 80px #0ff;
     -webkit-animation: rotation 4s infinite linear;
-    
+    animation: circleGoCenter 10s;
   }
   
   @-webkit-keyframes rotation {

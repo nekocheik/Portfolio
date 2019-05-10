@@ -1,3 +1,10 @@
+#home__page{
+  overflow : hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  height:100%;
+}
+
 .name__and__profession{
   color: white;
   font-size: 40px;
@@ -9,20 +16,37 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-family: 'Lemon/Milk'
+  font-family: 'Lemon/Milk';
+  h1{
+    animation: enterLeft 1.5s ;
+  }h2{
+    animation: enterRight 1.5s ;
+  }
 }
 .projects{
-  height: 60vh;
+  height: 100vh;
+  overflow: hidden;
+  .Projet__title{
+    width: 100vw;
+    overflow: hidden;
+    margin-top: 50px;
+  }
   h2{
     font-family: 'Lemon/Milk' ;
     font-size: 62px;
     letter-spacing: 13px;
     padding-left: 15%;
-    padding-bottom: 50px;
-    
+    padding-bottom: 0px;
+    opacity: 0.5;
+    transform: translateX(350px);
+    transition: transform 1s , opacity 1s ;
+    &.transtision{
+      opacity: 1;
+      transform: translateX(0px);
+    }
     
   }.container__of__project{
-    height: 100%;
+    height: 60%;
     width: 100vw ;
     perspective: 2000px;
   }
@@ -31,6 +55,7 @@
     display: block;  
     transition: transform 0.5s;
     transform : translate3d( 0px , 0px , 0px);
+    margin-top: 40px;
     &.back{
       opacity: 0;
       transition: transform 0.5s , opacity 0.7s;
@@ -79,8 +104,7 @@
   margin: auto;
   width: max-content;
   font-size: 40px;
-  height: 20%;
-  justify-content: flex-end;
+  //justify-content: flex-end;
   
   section{
     position: relative;
@@ -112,9 +136,9 @@
   width: 100vw;
   background-color: white;
   height: 10px;
-  position: relative;
+  position: fixed;
   transition-duration: 100ms;
-  bottom: -10px;
+  bottom: 0px;
   //transform: translateX(-90vw)
 }
 

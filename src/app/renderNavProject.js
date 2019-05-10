@@ -1,8 +1,8 @@
-import {renderChangeOfProject , projects ,  numberProject } from './app';
-
+import { projects } from './project'; 
+import { changeOfProject , numberProject }from './changeOfProject'; 
 var renderNavProject = function (project){
   let nav = document.querySelector('.nav__project p');
-  console.log(nav)
+  console.log(numberProject)
   nav.classList.add('trasition__back');
   setTimeout(()=>{
     nav.innerHTML = "" ;
@@ -18,4 +18,4 @@ var renderNavProject = function (project){
 
 
 
-export{renderNavProject}
+export{ renderNavProject }

@@ -51,7 +51,6 @@ body {
   color: white;
   font-family: Avenir;
   overscroll-behavior: none;
-  height: 100%;
 }
 body nav {
   position: fixed;
@@ -101,6 +100,7 @@ body nav p.active {
 }
 body .circle {
   position: sticky;
+  position: -webkit-sticky;
   top: 200px;
   z-index: -1;
   margin: -190px auto auto auto;
@@ -110,6 +110,7 @@ body .circle {
   border-radius: 50%;
   box-shadow: inset 0 0 50px #fff, inset 20px 0 80px #f0f, inset -20px 0 80px #0ff, inset 20px 0 300px #f0f, inset -20px 0 300px #0ff, 0 0 50px #fff, -10px 0 80px #f0f, 10px 0 80px #0ff;
   -webkit-animation: rotation 4s infinite linear;
+  animation: circleGoCenter 10s;
 }
 @-webkit-keyframes rotation {
   from {
@@ -162,6 +163,34 @@ body .logo img {
     -webkit-text-stroke-color: black;
   }
 }
+@keyframes circleGoCenter {
+  from {
+    top: -150px;
+  }
+  to {
+    top: 200px;
+  }
+}
+@keyframes enterLeft {
+  from {
+    opacity: 0.5;
+    transform: translateX(-350px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes enterRight {
+  from {
+    opacity: 0.5;
+    transform: translateX(350px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
 body {
   background-color: black;
 }
@@ -202,6 +231,13 @@ body {
   font-weight: 300;
   font-style: italic;
 }
+#home__page {
+  overflow: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  height: 100%;
+}
+
 .name__and__profession {
   color: white;
   font-size: 40px;
@@ -215,19 +251,38 @@ body {
   justify-content: space-between;
   font-family: "Lemon/Milk";
 }
+.name__and__profession h1 {
+  animation: enterLeft 1.5s;
+}
+.name__and__profession h2 {
+  animation: enterRight 1.5s;
+}
 
 .projects {
-  height: 60vh;
+  height: 100vh;
+  overflow: hidden;
+}
+.projects .Projet__title {
+  width: 100vw;
+  overflow: hidden;
+  margin-top: 50px;
 }
 .projects h2 {
   font-family: "Lemon/Milk";
   font-size: 62px;
   letter-spacing: 13px;
   padding-left: 15%;
-  padding-bottom: 50px;
+  padding-bottom: 0px;
+  opacity: 0.5;
+  transform: translateX(350px);
+  transition: transform 1s, opacity 1s;
+}
+.projects h2.transtision {
+  opacity: 1;
+  transform: translateX(0px);
 }
 .projects .container__of__project {
-  height: 100%;
+  height: 60%;
   width: 100vw;
   perspective: 2000px;
 }
@@ -236,6 +291,7 @@ body {
   display: block;
   transition: transform 0.5s;
   transform: translate3d(0px, 0px, 0px);
+  margin-top: 40px;
 }
 .projects .project.back {
   opacity: 0;
@@ -285,8 +341,6 @@ body {
   margin: auto;
   width: max-content;
   font-size: 40px;
-  height: 20%;
-  justify-content: flex-end;
 }
 .nav__project section {
   position: relative;
@@ -316,9 +370,9 @@ body {
   width: 100vw;
   background-color: white;
   height: 10px;
-  position: relative;
+  position: fixed;
   transition-duration: 100ms;
-  bottom: -10px;
+  bottom: 0px;
 }
 
 /*# sourceMappingURL=/styles.c86c3119.css.map */
