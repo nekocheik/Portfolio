@@ -920,9 +920,9 @@ var _animation = require("./animation");
 
 var _MenuBurger = require("./MenuBurger");
 
-console.log(_scroll.scrollCK);
 (0, _scroll.scrollCK)();
 (0, _animation.animation)();
+(0, _MenuBurger.menuBurge)();
 },{"timers":"../node_modules/timers-browserify/main.js","./renderNavProject":"app/renderNavProject.js","./scroll":"app/scroll.js","./animation":"app/animation.js","./MenuBurger":"app/MenuBurger.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

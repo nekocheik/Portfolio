@@ -72,13 +72,14 @@ body nav .croi {
   z-index: -2;
   fill: black;
   opacity: 0;
+  transition: opacity 0.6s, transform 1s;
 }
 body nav .croi.active {
   transform: initial;
   opacity: initial;
 }
 body nav p {
-  transition: font-size 0.5s 0.5s, width 0.5s;
+  transition: font-size 0.5s 0.5s, width 1s;
   z-index: 2;
   font-size: 1px;
   color: black;
