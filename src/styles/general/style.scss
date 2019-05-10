@@ -28,7 +28,7 @@ body{
       }
     }
     p{
-      transition: font-size 0.5s 0.5s , width 1s  ;
+      transition: font-size 0.3s , width 0.7s 0.4s  ;
       z-index: 2;
       font-size: 1px;
       color: black;
@@ -36,9 +36,10 @@ body{
       margin: 2px;
       padding-left: 45px;
       padding-top: 6px;
-      background-color: black;
+      background-color: rgba(0, 0, 0, 0.589);
       width: 0vw;
       &.active{
+        transition: all 0.5s 0.4s ,font-size 0.5s 0.3s , width 0.5s  ;
         font-size: initial;
         color: white;
         border: 1px solid white;
@@ -70,7 +71,6 @@ body{
     -10px 0 80px #f0f,
     10px 0 80px #0ff;
     -webkit-animation: rotation 4s infinite linear;
-    animation: circleGoCenter 10s;
   }
   
   @-webkit-keyframes rotation {

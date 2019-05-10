@@ -806,16 +806,16 @@ function scrollCK() {
       var resizeBarreIterval = setInterval(function () {
         resizeBarre();
       }, 100);
-      var startClientX;
+      var startClientY;
       document.addEventListener('touchstart', function (evnt) {
-        startClientX = evnt.changedTouches[0].clientX;
+        startClientY = evnt.changedTouches[0].clientY;
         document.addEventListener('touchmove', function (event) {
-          var touchDelta = event.changedTouches[0].clientX - startClientX;
+          var touchDelta = event.changedTouches[0].clientY - startClientY;
 
           if (touchDelta < -1) {
             touchDelta = touchDelta.toString();
             touchDelta = touchDelta.replace(/-/, ' ');
-            touchDelta = Number(touchDelta) / 100;
+            touchDelta = Number(touchDelta) / 100 * 30;
           } else {
             return;
           }
@@ -951,7 +951,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56536" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60394" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

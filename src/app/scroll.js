@@ -49,15 +49,15 @@ function scrollCK() {
       }
       
       
-      let startClientX  ;
+      let startClientY  ;
       document.addEventListener('touchstart' , function(evnt){
-        startClientX = evnt.changedTouches[0].clientX ;
+        startClientY = evnt.changedTouches[0].clientY ;
         document.addEventListener('touchmove' , function(event){
-          let touchDelta = ( event.changedTouches[0].clientX - startClientX );
+          let touchDelta = ( event.changedTouches[0].clientY - startClientY );
           if (touchDelta < -1 ) {
             touchDelta = touchDelta.toString();
             touchDelta = touchDelta.replace(/-/, ' ')
-            touchDelta = Number(touchDelta) / 100 ;
+            touchDelta = ( Number(touchDelta) / 100 ) * 30;
           }else{
             return
           }

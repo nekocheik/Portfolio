@@ -1,0 +1,60 @@
+#page__project{
+  .circle {
+    // position: sticky;
+    // position: -webkit-sticky ;
+    top: -150px;
+  }
+  .project{
+    .title__of__project{
+      display: block;
+      padding-left: 15%;
+      margin-top: 15vh;;
+      animation: enterLeft 1.5s ;
+      h1{
+        font-size: 38px;
+        font-family: 'Lemon/Milk';
+        animation:  3.5s blinkArmani infinite alternate 2s ;
+      }h2{
+        font-size: 20px;
+        font-family: 'Avenir LT Std'
+      }
+      .description{
+        display: flex;
+        padding-top: 20%;
+        animation: enterRight 1.5s ;
+        max-width: 499px;
+        flex-wrap: wrap;
+        p{
+          font-size: 20px;
+        }
+        .button{
+          display: flex;
+          margin: auto;
+          justify-content: center;
+          p{
+            border: solid white 1px;
+            padding: 5px;
+            margin-top: 50px;
+            display: inline-block;
+          }
+        }
+        .description__skills ul{
+          display: flex;
+          justify-content: space-between;
+          width: 90%;
+          max-width: 499px;
+          li{
+            font-weight: 900;
+            margin: 40px 0px 0px 0px;
+          }
+        }
+        .image{
+          padding-top: 20%;
+          img{
+            width: 80vw;
+          }
+        }
+      }
+    }
+  }
+}  

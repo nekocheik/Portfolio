@@ -79,7 +79,7 @@ body nav .croi.active {
   opacity: initial;
 }
 body nav p {
-  transition: font-size 0.5s 0.5s, width 1s;
+  transition: font-size 0.3s, width 0.7s 0.4s;
   z-index: 2;
   font-size: 1px;
   color: black;
@@ -87,10 +87,11 @@ body nav p {
   margin: 2px;
   padding-left: 45px;
   padding-top: 6px;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.589);
   width: 0vw;
 }
 body nav p.active {
+  transition: all 0.5s 0.4s, font-size 0.5s 0.3s, width 0.5s;
   font-size: initial;
   color: white;
   border: 1px solid white;
@@ -111,7 +112,6 @@ body .circle {
   border-radius: 50%;
   box-shadow: inset 0 0 50px #fff, inset 20px 0 80px #f0f, inset -20px 0 80px #0ff, inset 20px 0 300px #f0f, inset -20px 0 300px #0ff, 0 0 50px #fff, -10px 0 80px #f0f, 10px 0 80px #0ff;
   -webkit-animation: rotation 4s infinite linear;
-  animation: circleGoCenter 10s;
 }
 @-webkit-keyframes rotation {
   from {
@@ -232,14 +232,70 @@ body {
   font-weight: 300;
   font-style: italic;
 }
+@font-face {
+  font-family: "Avenir LT Std";
+  src: url("/AvenirLTStd-BookOblique.a648c0c6.woff2") format("woff2"), url("/AvenirLTStd-BookOblique.8334bb98.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Avenir LT Std";
+  src: url("/AvenirLTStd-BlackOblique.9643446d.woff2") format("woff2"), url("/AvenirLTStd-BlackOblique.84ae0632.woff") format("woff");
+  font-weight: 900;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Avenir LT Std";
+  src: url("/AvenirLTStd-Book.1b5eb43f.woff2") format("woff2"), url("/AvenirLTStd-Book.61585e7e.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Avenir LT Std";
+  src: url("/AvenirLTStd-LightOblique.107497c0.woff2") format("woff2"), url("/AvenirLTStd-LightOblique.293b4571.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Avenir LT Std";
+  src: url("/AvenirLTStd-Heavy.2555d31f.woff2") format("woff2"), url("/AvenirLTStd-Heavy.35fca5ec.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Avenir LT Std";
+  src: url("/AvenirLTStd-Light.896410f7.woff2") format("woff2"), url("/AvenirLTStd-Light.ef3a8111.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Avenir LT Std";
+  src: url("/AvenirLTStd-Black.69faa10e.woff2") format("woff2"), url("/AvenirLTStd-Black.f915a826.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Avenir LT Std";
+  src: url("/AvenirLTStd-Oblique.de55e0ca.woff2") format("woff2"), url("/AvenirLTStd-Oblique.2e9e0329.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Avenir LT Std";
+  src: url("/AvenirLTStd-HeavyOblique.b2709e10.woff2") format("woff2"), url("/AvenirLTStd-HeavyOblique.118f76ac.woff") format("woff");
+  font-weight: 900;
+  font-style: italic;
+}
 #home__page {
   overflow: hidden;
   overflow-y: scroll;
   scrollbar-width: none;
   height: 100%;
 }
-
-.name__and__profession {
+#home__page .circle {
+  animation: circleGoCenter 10s;
+}
+#home__page .name__and__profession {
   color: white;
   font-size: 40px;
   width: 70%;
@@ -252,23 +308,22 @@ body {
   justify-content: space-between;
   font-family: "Lemon/Milk";
 }
-.name__and__profession h1 {
+#home__page .name__and__profession h1 {
   animation: enterLeft 1.5s;
 }
-.name__and__profession h2 {
+#home__page .name__and__profession h2 {
   animation: enterRight 1.5s;
 }
-
-.projects {
+#home__page .projects {
   height: 100vh;
   overflow: hidden;
 }
-.projects .Projet__title {
+#home__page .projects .Projet__title {
   width: 100vw;
   overflow: hidden;
   margin-top: 50px;
 }
-.projects h2 {
+#home__page .projects h2 {
   font-family: "Lemon/Milk";
   font-size: 62px;
   letter-spacing: 13px;
@@ -278,102 +333,155 @@ body {
   transform: translateX(350px);
   transition: transform 1s, opacity 1s;
 }
-.projects h2.transtision {
+#home__page .projects h2.transtision {
   opacity: 1;
   transform: translateX(0px);
 }
-.projects .container__of__project {
+#home__page .projects .container__of__project {
   height: 60%;
   width: 100vw;
   perspective: 2000px;
 }
-.projects .project {
+#home__page .projects .project {
   font-family: "Lemon/Milk";
   display: block;
   transition: transform 0.5s;
   transform: translate3d(0px, 0px, 0px);
   margin-top: 40px;
 }
-.projects .project.back {
+#home__page .projects .project.back {
   opacity: 0;
   transition: transform 0.5s, opacity 0.7s;
   transform: translate3d(0px, -550px, -7000px);
 }
-.projects .project.come {
+#home__page .projects .project.come {
   transition: transform 0s;
   transform: translate3d(0px, 0px, 2024px);
 }
-.projects .project .illustration__of__project {
+#home__page .projects .project .illustration__of__project {
   height: 256px;
 }
-.projects .project .illustration__of__project img {
+#home__page .projects .project .illustration__of__project img {
   padding-top: 30px;
   width: 206px;
   margin: auto;
   display: block;
 }
-
-.title__of__project {
+#home__page .title__of__project {
   display: block;
   padding-left: 15%;
 }
-.title__of__project h3 {
+#home__page .title__of__project h3 {
   font-size: 38px;
 }
-.title__of__project h3.armani {
+#home__page .title__of__project h3.armani {
   color: #0757AA;
   animation: blinkArmani 3.5s infinite alternate;
 }
-.title__of__project h3.so_comptoir {
+#home__page .title__of__project h3.so_comptoir {
   color: #F4CB65;
   animation: blinkso_comptoir 3.5s infinite alternate;
 }
-.title__of__project h3.space_invaders {
+#home__page .title__of__project h3.space_invaders {
   animation: blinkInvaders 3.5s infinite alternate;
 }
-.title__of__project .type__of__projet {
+#home__page .title__of__project .type__of__projet {
   font-size: 19px;
   letter-spacing: 4px;
 }
-
-.nav__project {
+#home__page .nav__project {
   display: flex;
   flex-direction: column;
   margin: auto;
   width: max-content;
   font-size: 40px;
 }
-.nav__project section {
+#home__page .nav__project section {
   position: relative;
   display: flex;
   bottom: 0;
   overflow: hidden;
 }
-.nav__project section p {
+#home__page .nav__project section p {
   display: inline-block;
   z-index: -1;
   transition-duration: 400ms;
   width: 30px;
 }
-.nav__project section p.trasition__back {
+#home__page .nav__project section p.trasition__back {
   transform: translateX(30px);
 }
-.nav__project section p.trasition__come {
+#home__page .nav__project section p.trasition__come {
   transition-duration: 0ms;
   transform: translateX(-30px);
 }
-.nav__project section span {
+#home__page .nav__project section span {
   background-color: black;
   z-index: 1;
 }
-
-.sroll__barre {
+#home__page .sroll__barre {
   width: 100vw;
   background-color: white;
   height: 10px;
   position: fixed;
   transition-duration: 100ms;
   bottom: 0px;
+}
+
+#page__project .circle {
+  top: -150px;
+}
+#page__project .project .title__of__project {
+  display: block;
+  padding-left: 15%;
+  margin-top: 15vh;
+  animation: enterLeft 1.5s;
+}
+#page__project .project .title__of__project h1 {
+  font-size: 38px;
+  font-family: "Lemon/Milk";
+  animation: 3.5s blinkArmani infinite alternate 2s;
+}
+#page__project .project .title__of__project h2 {
+  font-size: 20px;
+  font-family: "Avenir LT Std";
+}
+#page__project .project .title__of__project .description {
+  display: flex;
+  padding-top: 20%;
+  animation: enterRight 1.5s;
+  max-width: 499px;
+  flex-wrap: wrap;
+}
+#page__project .project .title__of__project .description p {
+  font-size: 20px;
+}
+#page__project .project .title__of__project .description .button {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
+#page__project .project .title__of__project .description .button p {
+  border: solid white 1px;
+  padding: 5px;
+  margin-top: 50px;
+  display: inline-block;
+}
+#page__project .project .title__of__project .description .description__skills ul {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 499px;
+}
+#page__project .project .title__of__project .description .description__skills ul li {
+  font-weight: 900;
+  margin: 40px 0px 0px 0px;
+}
+#page__project .project .title__of__project .description .image {
+  padding-top: 20%;
+}
+#page__project .project .title__of__project .description .image img {
+  width: 80vw;
 }
 
 /*# sourceMappingURL=/styles.c86c3119.css.map */

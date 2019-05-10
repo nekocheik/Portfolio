@@ -3,142 +3,144 @@
   overflow-y: scroll;
   scrollbar-width: none;
   height:100%;
-}
-
-.name__and__profession{
-  color: white;
-  font-size: 40px;
-  width: 70%;
-  height: 200px;
-  margin: auto;
-  padding-top: 100px;
-  padding-bottom: 50vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-family: 'Lemon/Milk';
-  h1{
-    animation: enterLeft 1.5s ;
-  }h2{
-    animation: enterRight 1.5s ;
+  .circle{
+    animation: circleGoCenter 10s;
   }
-}
-.projects{
-  height: 100vh;
-  overflow: hidden;
-  .Projet__title{
-    width: 100vw;
-    overflow: hidden;
-    margin-top: 50px;
-  }
-  h2{
-    font-family: 'Lemon/Milk' ;
-    font-size: 62px;
-    letter-spacing: 13px;
-    padding-left: 15%;
-    padding-bottom: 0px;
-    opacity: 0.5;
-    transform: translateX(350px);
-    transition: transform 1s , opacity 1s ;
-    &.transtision{
-      opacity: 1;
-      transform: translateX(0px);
-    }
-    
-  }.container__of__project{
-    height: 60%;
-    width: 100vw ;
-    perspective: 2000px;
-  }
-  .project{
-    font-family: 'Lemon/Milk';
-    display: block;  
-    transition: transform 0.5s;
-    transform : translate3d( 0px , 0px , 0px);
-    margin-top: 40px;
-    &.back{
-      opacity: 0;
-      transition: transform 0.5s , opacity 0.7s;
-      transform : translate3d(-0px, -550px, -7000px);
-    }&.come{
-      transition: transform 0s;
-      transform : translate3d(0px, 0px, 2024px)
-    }
-    .illustration__of__project{
-      height: 256px;;
-      img{
-        padding-top: 30px;
-        width: 206px;
-        margin: auto;
-        display: block;
-      }
-    }
-    
-  }
-}
-
-.title__of__project{
-  display: block;
-  padding-left: 15%;
-  h3{
-    font-size: 38px;
-    &.armani{
-      color: $blueArmani;
-      animation: blinkArmani 3.5s infinite alternate;
-    }&.so_comptoir{
-      color: $jauneComptoir;
-      animation: blinkso_comptoir 3.5s infinite alternate;
-    }&.space_invaders{
-      animation: blinkInvaders 3.5s infinite alternate;
-    }
-  }
-  .type__of__projet{
-    font-size: 19px;
-    letter-spacing: 4px;
-  }
-}
-
-.nav__project{
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  width: max-content;
-  font-size: 40px;
-  //justify-content: flex-end;
   
-  section{
-    position: relative;
+  .name__and__profession{
+    color: white;
+    font-size: 40px;
+    width: 70%;
+    height: 200px;
+    margin: auto;
+    padding-top: 100px;
+    padding-bottom: 50vh;
     display: flex;
-    bottom: 0;
-    overflow: hidden;
-    p{
-      display: inline-block;
-      z-index: -1;
-      transition-duration: 400ms ;
-      // transform: translateX(-4px);
-      // transition: transform 0.5s;
-      width: 30px;
-      &.trasition__back{
-        transform: translateX(30px)
-      }&.trasition__come{
-        transition-duration: 0ms ;
-        transform: translateX(-30px)
-      }
-    }
-    span{
-      background-color: black;
-      z-index: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Lemon/Milk';
+    h1{
+      animation: enterLeft 1.5s ;
+    }h2{
+      animation: enterRight 1.5s ;
     }
   }
+  .projects{
+    height: 100vh;
+    overflow: hidden;
+    .Projet__title{
+      width: 100vw;
+      overflow: hidden;
+      margin-top: 50px;
+    }
+    h2{
+      font-family: 'Lemon/Milk' ;
+      font-size: 62px;
+      letter-spacing: 13px;
+      padding-left: 15%;
+      padding-bottom: 0px;
+      opacity: 0.5;
+      transform: translateX(350px);
+      transition: transform 1s , opacity 1s ;
+      &.transtision{
+        opacity: 1;
+        transform: translateX(0px);
+      }
+      
+    }.container__of__project{
+      height: 60%;
+      width: 100vw ;
+      perspective: 2000px;
+    }
+    .project{
+      font-family: 'Lemon/Milk';
+      display: block;  
+      transition: transform 0.5s;
+      transform : translate3d( 0px , 0px , 0px);
+      margin-top: 40px;
+      &.back{
+        opacity: 0;
+        transition: transform 0.5s , opacity 0.7s;
+        transform : translate3d(-0px, -550px, -7000px);
+      }&.come{
+        transition: transform 0s;
+        transform : translate3d(0px, 0px, 2024px)
+      }
+      .illustration__of__project{
+        height: 256px;;
+        img{
+          padding-top: 30px;
+          width: 206px;
+          margin: auto;
+          display: block;
+        }
+      }
+      
+    }
+  }
+  
+  .title__of__project{
+    display: block;
+    padding-left: 15%;
+    h3{
+      font-size: 38px;
+      &.armani{
+        color: $blueArmani;
+        animation: blinkArmani 3.5s infinite alternate;
+      }&.so_comptoir{
+        color: $jauneComptoir;
+        animation: blinkso_comptoir 3.5s infinite alternate;
+      }&.space_invaders{
+        animation: blinkInvaders 3.5s infinite alternate;
+      }
+    }
+    .type__of__projet{
+      font-size: 19px;
+      letter-spacing: 4px;
+    }
+  }
+  
+  .nav__project{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: max-content;
+    font-size: 40px;
+    //justify-content: flex-end;
+    
+    section{
+      position: relative;
+      display: flex;
+      bottom: 0;
+      overflow: hidden;
+      p{
+        display: inline-block;
+        z-index: -1;
+        transition-duration: 400ms ;
+        // transform: translateX(-4px);
+        // transition: transform 0.5s;
+        width: 30px;
+        &.trasition__back{
+          transform: translateX(30px)
+        }&.trasition__come{
+          transition-duration: 0ms ;
+          transform: translateX(-30px)
+        }
+      }
+      span{
+        background-color: black;
+        z-index: 1;
+      }
+    }
+  }
+  
+  .sroll__barre{
+    width: 100vw;
+    background-color: white;
+    height: 10px;
+    position: fixed;
+    transition-duration: 100ms;
+    bottom: 0px;
+    //transform: translateX(-90vw)
+  }
 }
-
-.sroll__barre{
-  width: 100vw;
-  background-color: white;
-  height: 10px;
-  position: fixed;
-  transition-duration: 100ms;
-  bottom: 0px;
-  //transform: translateX(-90vw)
-}
-

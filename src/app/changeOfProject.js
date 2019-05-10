@@ -13,7 +13,7 @@ function renderChangeOfProject() {
   setTimeout(() => {
     project.innerHTML = "";
     console.log(numberProject);
-    numberProject = numberProject + 1;
+    numberProject++;
     
     if ( numberProject > projects.length - 1) {
       numberProject = 0
