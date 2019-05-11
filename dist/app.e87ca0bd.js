@@ -664,7 +664,7 @@ function renderChangeOfProject() {
       project.classList.add('come');
       setTimeout(function () {
         project.classList.remove('come');
-      }, 40);
+      }, 60);
     }, 500);
   }, 500);
 }
@@ -712,7 +712,125 @@ var renderNavProject = function renderNavProject(project) {
 };
 
 exports.renderNavProject = renderNavProject;
-},{"./project":"app/project.js","./changeOfProject":"app/changeOfProject.js"}],"app/scroll.js":[function(require,module,exports) {
+},{"./project":"app/project.js","./changeOfProject":"app/changeOfProject.js"}],"app/viewPort.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ViewPort = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var ViewPort =
+/*#__PURE__*/
+function () {
+  function ViewPort(element) {
+    var elementPartTouch = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'top';
+    var bodyPartTouch = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'bottom';
+
+    _classCallCheck(this, ViewPort);
+
+    this.element = element;
+    this.body = {
+      bottom: element.getBoundingClientRect().bottom,
+      left: element.getBoundingClientRect().left,
+      right: element.getBoundingClientRect().right,
+      top: element.getBoundingClientRect().top
+    };
+    this.screen = {
+      positionScreenBottom: null,
+      positionScreenTop: null
+    };
+    this.elementPartTouch = elementPartTouch;
+    this.screenPartTouch = bodyPartTouch;
+    this.topNegatif();
+  }
+
+  _createClass(ViewPort, [{
+    key: "detectViewport",
+    value: function detectViewport(callback) {
+      var _this = this;
+
+      window.addEventListener('scroll', function (event) {
+        _this.screen.positionScreenBottom = window.pageYOffset + window.innerHeight;
+        _this.screen.positionScreenTop = window.pageYOffset;
+
+        if (_this.elementPartTouch === 'top') {
+          if (_this.screenPartTouch === 'bottom') {
+            if (_this.body.top <= _this.screen.positionScreenBottom) {
+              return callback(true);
+            } else {
+              return callback(false);
+            }
+          } else {
+            if (_this.body.top >= _this.screen.positionScreenBottom) {
+              return callback(true);
+            } else {
+              return callback(false);
+            }
+          }
+        } else {
+          if (_this.screenPartTouch === 'bottom') {
+            console.log(_this.body.bottom <= _this.screen.positionScreenBottom, _this.body.bottom, _this.screen.positionScreenBottom);
+
+            if (_this.body.bottom <= _this.screen.positionScreenBottom) {
+              return callback(true);
+            } else {
+              return callback(false);
+            }
+          } else {
+            if (_this.body.bottom <= _this.screen.positionScreenTop) {
+              return callback(true);
+            } else {
+              return callback(false);
+            }
+          }
+        }
+      });
+    }
+  }, {
+    key: "topNegatif",
+    value: function topNegatif() {
+      if (this.body.top < 0) {
+        this.body.top = String(this.body.top);
+        this.body.top = this.body.top.substr(1);
+        this.body.top = Number(this.body.top);
+        this.body.bottom = this.body.bottom + this.body.top - 5;
+      }
+    }
+  }]);
+
+  return ViewPort;
+}(); // var viewPort = function(element , touch , callback , callbackinvers ){
+//   window.addEventListener('scroll', function(event){
+//     let positionScreenBottom  =  window.pageYOffset + window.innerHeight ;
+//     let positionScreenTop =  window.pageYOffset ;
+//     let top = element.clientHeight + window.innerHeight;
+//     // console.log(positionScreenBottom  >= top  , positionScreenBottom  , top  )
+//     if (touch === 'top') {
+//       if (  positionScreenBottom  <= top ) {
+//         callback(true)
+//       }else{
+//         callback(false)
+//       }
+//     }else{
+//       if (  positionScreenBottom  >= top ) {
+//         callback(true)
+//       }else{
+//           callback(false)
+//       }
+//     }
+//   })
+// }
+
+
+exports.ViewPort = ViewPort;
+},{}],"app/scroll.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -721,6 +839,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.SrollPosition = void 0;
 
 var _changeOfProject = require("./changeOfProject");
+
+var _viewPort = require("./viewPort");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -739,6 +859,7 @@ function () {
     this.numberMove = 0;
     this.memoNumberMove = this.numberMove;
     this.inversion = false;
+    this.waitTime = false;
   }
 
   _createClass(SrollPosition, [{
@@ -746,20 +867,40 @@ function () {
     value: function detectScroll() {
       var _this = this;
 
+      var viewPort = new _viewPort.ViewPort(document.querySelector('body'), 'bottom', 'bottom');
+      var bottomPage = false;
       this.element.style.transform = "translateX( ".concat(this.positionX, "vw)");
       this.inversionPosition();
       this.detectSwipe();
       document.addEventListener("mousewheel", function (event) {
-        if (_this.positionX < 0) {
-          _this.positionX = _this.positionX + event.deltaY / 3;
+        viewPort.detectViewport(function (callback) {
+          if (callback) {
+            bottomPage = true;
+          }
+        });
 
-          if (_this.positionX >= 0) {
+        if (!bottomPage) {
+          return;
+        }
+
+        if (_this.positionX < 0) {
+          _this.positionX = _this.positionX + event.deltaY;
+
+          if (_this.positionX >= 0 && !_this.waitTime) {
             _this.positionX = 0;
             (0, _changeOfProject.changeOfProject)();
+            _this.waitTime = true;
+            setTimeout(function () {
+              _this.waitTime = false;
+            }, 1500);
           }
 
           if (_this.positionX < -100) {
             _this.positionX = -100;
+          }
+
+          if (_this.positionX >= 0) {
+            _this.positionX = 0;
           }
 
           _this.element.style.transform = "translateX( ".concat(_this.positionX, "vw)");
@@ -790,20 +931,32 @@ function () {
 
       document.addEventListener('touchstart', function (evnt) {
         var startClientY = evnt.changedTouches[0].clientY;
+        var viewPort = new _viewPort.ViewPort(document.querySelector('body'), 'bottom', 'bottom');
+        var bottomPage = false;
         document.addEventListener('touchmove', function (event) {
+          viewPort.detectViewport(function (callback) {
+            if (callback) {
+              bottomPage = true;
+            }
+          });
+
+          if (!bottomPage) {
+            return;
+          }
+
           _this3.inversion = false;
           var touchDelta = event.changedTouches[0].clientY - startClientY;
 
           if (touchDelta < 0) {
             touchDelta = touchDelta.toString();
             touchDelta = touchDelta.replace(/-/, ' ');
-            touchDelta = Number(touchDelta) / 100 * 30;
+            touchDelta = Number(touchDelta) / 100 * 100;
           } else {
             return;
           }
 
           if (_this3.positionX < 0) {
-            _this3.positionX = _this3.positionX + touchDelta;
+            _this3.positionX = _this3.positionX + 5;
 
             if (_this3.positionX > 0) {
               _this3.positionX = 0;
@@ -819,6 +972,9 @@ function () {
             _this3.checkInversionPosition(_this3.positionX);
           }
         });
+        document.addEventListener('touchstart', function (event) {
+          startClientY = 0;
+        });
       });
     }
   }, {
@@ -828,8 +984,6 @@ function () {
 
       positionX = positionX;
       setTimeout(function () {
-        console.log(positionX, _this4.positionX);
-
         if (positionX = _this4.position || _this4.positionX === 0) {
           _this4.inversion = true;
         }
@@ -842,38 +996,7 @@ function () {
 
 exports.SrollPosition = SrollPosition;
 ;
-},{"./changeOfProject":"app/changeOfProject.js"}],"app/viewPort.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.viewPort = void 0;
-
-var viewPort = function viewPort(element, touch, callback, callbackinvers) {
-  window.addEventListener('scroll', function (event) {
-    var positionScreenBottom = window.pageYOffset + window.innerHeight;
-    var positionScreenTop = window.pageYOffset;
-    var top = element.clientHeight + window.innerHeight; // console.log(positionScreenBottom  >= top  , positionScreenBottom  , top  )
-
-    if (touch === 'top') {
-      if (positionScreenBottom <= top) {
-        callback(true);
-      } else {
-        callback(false);
-      }
-    } else {
-      if (positionScreenBottom >= top) {
-        callback(true);
-      } else {
-        callback(false);
-      }
-    }
-  });
-};
-
-exports.viewPort = viewPort;
-},{}],"app/animation.js":[function(require,module,exports) {
+},{"./changeOfProject":"app/changeOfProject.js","./viewPort":"app/viewPort.js"}],"app/animation.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -883,13 +1006,15 @@ exports.animation = void 0;
 
 var _viewPort = require("./viewPort");
 
-var animation = function animation(params) {
-  var titleProjet = document.querySelector('.projects h2');
-  (0, _viewPort.viewPort)(titleProjet, 'top', function (respons) {
-    titleProjet.classList.add('transtision');
-  }, function () {
-    titleProjet.classList.remove('transtision');
-  });
+var animation = function animation(params) {// let  titleProjet = document.querySelector('.projects h2')
+  // let viewPort = new ViewPort(titleProjet) ;
+  // viewPort.detectViewport( function(callback){
+  //   if( callback ){
+  //     titleProjet.classList.add('transtision')
+  //   }else{
+  //     titleProjet.classList.remove('transtision')
+  //   }
+  // })
 };
 
 exports.animation = animation;
@@ -954,20 +1079,19 @@ var _MenuBurger = require("./MenuBurger");
 (0, _animation.animation)();
 (0, _MenuBurger.menuBurge)();
 var srollPosition = new _scroll.SrollPosition(document.querySelector('.sroll__barre'));
-srollPosition.detectScroll();
-console.log(srollPosition);
-document.addEventListener('mousemove', function (event) {
-  var x = event.pageX;
-  var y = event.pageY;
-  var target = document.querySelector('.projects');
-  var targetCoords = target.getBoundingClientRect();
-  var targetX = targetCoords.left + target.offsetWidth / 2;
-  var targetY = targetCoords.top + target.offsetHeight / 2;
-  console.log(targetCoords);
-  var angleX = (targetY - y) / 105;
-  var angleY = (targetX - x) / 105;
-  target.style.transform = "rotateX(" + angleX + "deg) rotateY(" + angleY + "deg)";
-});
+srollPosition.detectScroll(); // console.log( srollPosition  )
+// document.addEventListener('mousemove', function(event){
+//   const x = event.pageX;
+//   const y = event.pageY;
+//   const target = document.querySelector('.projects')
+//   const targetCoords = target.getBoundingClientRect()
+//   const targetX = targetCoords.left + ( target.offsetWidth / 2);
+//   const targetY = targetCoords.top + ( target.offsetHeight / 2);
+//   console.log(targetCoords)
+//   const angleX = ( targetY - y ) / 105 ;
+//   const angleY = ( targetX - x ) / 105 ;
+//   target.style.transform = "rotateX("+ angleX +"deg) rotateY("+ angleY +"deg)"
+// })
 },{"timers":"../node_modules/timers-browserify/main.js","./renderNavProject":"app/renderNavProject.js","./scroll":"app/scroll.js","./animation":"app/animation.js","./MenuBurger":"app/MenuBurger.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -996,7 +1120,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53051" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60362" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

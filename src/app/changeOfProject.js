@@ -28,7 +28,7 @@ function renderChangeOfProject() {
       project.classList.add('come');
       setTimeout( ()=>{
         project.classList.remove('come');
-      }, 40)
+      }, 60)
     }, 500 )
   }, 500);
 }

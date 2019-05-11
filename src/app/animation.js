@@ -1,12 +1,18 @@
-import {viewPort} from "./viewPort";
+import {ViewPort} from "./viewPort";
+
+
 
 var animation = function (params) {
-  var  titleProjet = document.querySelector('.projects h2')
-  viewPort( titleProjet , 'top' , function(respons){
-    titleProjet.classList.add('transtision')
-  }, function () {
-    titleProjet.classList.remove('transtision')
-  })
+  // let  titleProjet = document.querySelector('.projects h2')
+  // let viewPort = new ViewPort(titleProjet) ;
+  // viewPort.detectViewport( function(callback){
+  //   if( callback ){
+  //     titleProjet.classList.add('transtision')
+  //   }else{
+  //     titleProjet.classList.remove('transtision')
+  //   }
+  // })
+
 }
 
 export{animation}

@@ -54,8 +54,8 @@ body {
 }
 body nav {
   position: fixed;
-  bottom: 10px;
-  right: 10px;
+  bottom: 30px;
+  right: 30px;
   z-index: 3;
   transition-duration: 400ms;
   display: flex;
@@ -320,6 +320,12 @@ body {
 #home__page .name__and__profession h2 {
   animation: enterRight 1.5s;
 }
+@media screen and (min-width: 800px) {
+  #home__page .name__and__profession {
+    letter-spacing: 5px;
+    margin-top: 15%;
+  }
+}
 #home__page .projects {
   height: 100vh;
   overflow: hidden;
@@ -343,6 +349,12 @@ body {
   opacity: 1;
   transform: translateX(0px);
 }
+@media screen and (min-width: 800px) {
+  #home__page .projects h2 {
+    font-size: 94px;
+    letter-spacing: 5px;
+  }
+}
 #home__page .projects .container__of__project {
   height: 60%;
   width: 100vw;
@@ -351,7 +363,7 @@ body {
 #home__page .projects .project {
   font-family: "Lemon/Milk";
   display: block;
-  transition: transform 0.5s;
+  transition: transform 0.5s 0.5s;
   transform: translate3d(0px, 0px, 0px);
   margin-top: 40px;
 }
@@ -372,6 +384,18 @@ body {
   width: 206px;
   margin: auto;
   display: block;
+}
+@media screen and (min-width: 800px) {
+  #home__page .projects .project .illustration__of__project {
+    height: 256px;
+  }
+  #home__page .projects .project .illustration__of__project img {
+    padding-top: initial;
+    width: 45vh;
+    max-height: 258px;
+    margin: auto;
+    display: block;
+  }
 }
 #home__page .title__of__project {
   display: block;
@@ -394,6 +418,30 @@ body {
 #home__page .title__of__project .type__of__projet {
   font-size: 19px;
   letter-spacing: 4px;
+}
+@media screen and (min-width: 800px) {
+  #home__page .title__of__project {
+    padding-left: 25%;
+    margin-top: 5%;
+  }
+  #home__page .title__of__project h3 {
+    font-size: 90px;
+  }
+  #home__page .title__of__project h3.armani {
+    color: #0757AA;
+    animation: blinkArmani 3.5s infinite alternate;
+  }
+  #home__page .title__of__project h3.so_comptoir {
+    color: #F4CB65;
+    animation: blinkso_comptoir 3.5s infinite alternate;
+  }
+  #home__page .title__of__project h3.space_invaders {
+    animation: blinkInvaders 3.5s infinite alternate;
+  }
+  #home__page .title__of__project .type__of__projet {
+    font-size: 19px;
+    letter-spacing: 4px;
+  }
 }
 #home__page .nav__project {
   display: flex;

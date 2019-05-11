@@ -30,6 +30,13 @@
     }h2{
       animation: enterRight 1.5s ;
     }
+    ///////////////////////////////////
+    ////// title for desktop /////////
+    /////////////////////////////////
+    @media screen and ( min-width : 800px) {
+      letter-spacing: 5px;
+      margin-top: 15%;
+    }
   }
   .projects{
     height: 100vh;
@@ -52,6 +59,13 @@
         opacity: 1;
         transform: translateX(0px);
       }
+      ///////////////////////////////////////////
+      ////// title project for desktop /////////
+      //////////////////////////////////////////
+      @media screen and ( min-width : 800px) {
+        font-size: 94px;
+        letter-spacing: 5px;
+      }
       
     }.container__of__project{
       height: 60%;
@@ -61,7 +75,7 @@
     .project{
       font-family: 'Lemon/Milk';
       display: block;  
-      transition: transform 0.5s;
+      transition: transform 0.5s 0.5s;
       transform : translate3d( 0px , 0px , 0px);
       margin-top: 40px;
       &.back{
@@ -81,7 +95,21 @@
           display: block;
         }
       }
-      
+      ///////////////////////////////////////////
+      //////////// Project for desktop /////////
+      //////////////////////////////////////////
+      @media screen and ( min-width : 800px) {
+        .illustration__of__project{
+          height: 256px;;
+          img{
+            padding-top: initial;
+            width: 45vh;
+            max-height: 258px;
+            margin: auto;
+            display: block;
+          }
+        }
+      }
     }
   }
   
@@ -103,6 +131,30 @@
     .type__of__projet{
       font-size: 19px;
       letter-spacing: 4px;
+    }
+    
+    ///////////////////////////////////////////
+    ////// project project for desktop /////////
+    //////////////////////////////////////////
+    @media screen and ( min-width : 800px) {
+      padding-left: 25%;
+      margin-top: 5%;
+        h3{
+          font-size: 90px;
+          &.armani{
+            color: $blueArmani;
+            animation: blinkArmani 3.5s infinite alternate;
+          }&.so_comptoir{
+            color: $jauneComptoir;
+            animation: blinkso_comptoir 3.5s infinite alternate;
+          }&.space_invaders{
+            animation: blinkInvaders 3.5s infinite alternate;
+          }
+        }
+        .type__of__projet{
+          font-size: 19px;
+          letter-spacing: 4px;
+      }
     }
   }
   
@@ -147,6 +199,5 @@
     position: fixed;
     transition-duration: 100ms;
     bottom: 0px;
-    //transform: translateX(-90vw)
   }
 }
