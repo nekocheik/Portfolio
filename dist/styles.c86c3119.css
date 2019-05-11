@@ -128,7 +128,7 @@ body .logo img {
   height: 65px;
 }
 
-#circlesWhite {
+.circlesWhite {
   position: fixed;
   margin-left: auto;
   margin-right: auto;
@@ -142,7 +142,7 @@ body .logo img {
   animation-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
 }
 @media screen and (min-width: 800px) {
-  #circlesWhite {
+  .circlesWhite {
     top: -45%;
     height: 170vh;
     width: 140vw;
