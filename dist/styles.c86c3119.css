@@ -143,9 +143,10 @@ body .logo img {
 }
 @media screen and (min-width: 800px) {
   .circlesWhite {
-    top: -45%;
-    height: 170vh;
-    width: 140vw;
+    left: 0vw;
+    top: -32%;
+    height: 140vh;
+    width: 100vw;
   }
 }
 

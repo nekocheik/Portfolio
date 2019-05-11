@@ -1,6 +1,8 @@
 
 import { projects  } from './project'; 
-import { renderNavProject } from './renderNavProject';  
+import { renderNavProject } from './renderNavProject';
+import { Theproject } from './theproject.js';
+
 var numberProject = 0 ;
 
 function changeOfProject() {
@@ -44,8 +46,15 @@ var ChangeOfProjectView = function(project) {
       this.titlOfProject.innerHTML = `<h3 class='${project.modifier}'>${project.title}</h3> <h4 class="type__of__projet" >${project.subTitle}</h4>`;
     },
   }
+
   
   view.illustrationOfProject.className = 'illustration__of__project';
+
+  view.illustrationOfProject.addEventListener('click', function(){
+    console.log('ok')
+    Theproject( numberProject )
+  })
+
   view.titlOfProject.className = 'title__of__project';
   view.render();
   return view

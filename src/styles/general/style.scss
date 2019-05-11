@@ -104,9 +104,10 @@ body{
   animation-timing-function: cubic-bezier(.17,.67,.83,.67) ;
   
   @media screen and ( min-width : 800px ){
-    top: -45%;
-    height: 170vh;
-    width: 140vw;
+    left: 0vw;
+    top: -32%;
+    height: 140vh;
+    width: 100vw;
   }
 }
 

@@ -599,6 +599,7 @@ var projects = [{
   assets: {
     pesentation: require('../assets/MontreConnecter.svg')
   },
+  button: 'VISITER LE SITE',
   modifier: 'armani'
 }, {
   title: 'SO’COMPTOIR',
@@ -610,6 +611,7 @@ var projects = [{
   assets: {
     pesentation: require('../assets/logoSocomptoir.svg')
   },
+  button: 'REGARDER LES MAQUETTES',
   modifier: 'so_comptoir'
 }, {
   title: 'SPACE-INVADERS',
@@ -621,10 +623,68 @@ var projects = [{
   assets: {
     pesentation: require('../assets/alien.svg')
   },
+  button: 'JOUER AU JEU',
   modifier: 'space_invaders'
 }];
 exports.projects = projects;
-},{"../assets/MontreConnecter.svg":"assets/MontreConnecter.svg","../assets/logoSocomptoir.svg":"assets/logoSocomptoir.svg","../assets/alien.svg":"assets/alien.svg"}],"app/changeOfProject.js":[function(require,module,exports) {
+},{"../assets/MontreConnecter.svg":"assets/MontreConnecter.svg","../assets/logoSocomptoir.svg":"assets/logoSocomptoir.svg","../assets/alien.svg":"assets/alien.svg"}],"app/theproject.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Theproject = void 0;
+
+var _project = require("./project");
+
+var Theproject = function Theproject(numberProject) {
+  var main = document.querySelector('main');
+  document.querySelector('body').id = "page__project";
+  main.innerHTML = '';
+  var view = viewPoject(numberProject);
+  main.appendChild(view.project);
+};
+
+exports.Theproject = Theproject;
+
+function viewPoject(numberProject) {
+  var view = {
+    project: document.createElement('div'),
+    titlOfProject: document.createElement('div'),
+    description: document.createElement('section'),
+    descriptionText: document.createElement('section'),
+    descriptionSkills: document.createElement('div'),
+    ul: document.createElement('ul'),
+    button: document.createElement('section'),
+    illustrationOfProject: document.createElement('div'),
+    render: function render() {
+      var _this = this;
+
+      this.titlOfProject.innerHTML = "<h1 class=\"".concat(_project.projects[numberProject].modifier, "\">").concat(_project.projects[numberProject].title, "</h1><h2 class=\"type__of__projet\" >").concat(_project.projects[numberProject].subTitle, "</h2>");
+      this.descriptionText.innerHTML = "<p>".concat(_project.projects[numberProject].description, "</p>");
+
+      _project.projects[numberProject].skills.forEach(function (element) {
+        _this.ul.innerHTML += "<li>".concat(element, "</li>");
+      });
+
+      this.button.innerHTML = "<a><p>".concat(_project.projects[numberProject].button, "</p></a>");
+    }
+  };
+  view.project.className = "project";
+  view.titlOfProject.className = "title__of__project";
+  view.descriptionSkills.className = "description__skills";
+  view.descriptionSkills.appendChild(view.ul);
+  view.descriptionText.appendChild(view.descriptionSkills);
+  view.descriptionText.className = "description__text"; // view.button.className = "button"
+
+  view.description.className = "description";
+  view.description.appendChild(view.descriptionText);
+  view.project.appendChild(view.titlOfProject);
+  view.project.appendChild(view.description);
+  view.render();
+  return view;
+}
+},{"./project":"app/project.js"}],"app/changeOfProject.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -636,6 +696,8 @@ exports.numberProject = void 0;
 var _project = require("./project");
 
 var _renderNavProject = require("./renderNavProject");
+
+var _theproject = require("./theproject.js");
 
 var numberProject = 0;
 exports.numberProject = numberProject;
@@ -681,11 +743,15 @@ var ChangeOfProjectView = function ChangeOfProjectView(project) {
     }
   };
   view.illustrationOfProject.className = 'illustration__of__project';
+  view.illustrationOfProject.addEventListener('click', function () {
+    console.log('ok');
+    (0, _theproject.Theproject)(numberProject);
+  });
   view.titlOfProject.className = 'title__of__project';
   view.render();
   return view;
 };
-},{"./project":"app/project.js","./renderNavProject":"app/renderNavProject.js"}],"app/renderNavProject.js":[function(require,module,exports) {
+},{"./project":"app/project.js","./renderNavProject":"app/renderNavProject.js","./theproject.js":"app/theproject.js"}],"app/renderNavProject.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

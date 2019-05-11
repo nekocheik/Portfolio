@@ -11,6 +11,7 @@ var projects = [
     assets : {
       pesentation : require('../assets/MontreConnecter.svg')
     },
+    button : 'VISITER LE SITE' ,
     modifier : 'armani'
   },
   {
@@ -25,6 +26,7 @@ var projects = [
     assets : {
       pesentation : require('../assets/logoSocomptoir.svg') ,
     },
+    button : 'REGARDER LES MAQUETTES' ,
     modifier : 'so_comptoir'
   },{
     title : 'SPACE-INVADERS',
@@ -38,6 +40,7 @@ var projects = [
     assets : {
       pesentation : require('../assets/alien.svg') ,
     },
+    button : 'JOUER AU JEU' ,
     modifier : 'space_invaders'
   }
 ]
