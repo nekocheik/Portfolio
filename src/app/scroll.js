@@ -1,10 +1,8 @@
 import {  changeOfProject  } from './changeOfProject';
 
 
-
-
-
 class SrollPosition  {
+  
   constructor( element ){
     this.element = element ;
     this.positionX = -100;
@@ -36,7 +34,7 @@ class SrollPosition  {
       setInterval(() => {
         if (this.inversion) {
           if (this.positionX > -100 ) {
-            this.positionX = this.positionX - 0.1;
+            this.positionX = this.positionX - 0.3;
             this.element.style.transform = `translateX( ${this.positionX}vw)`
           }else{
             this.inversion = false;
@@ -50,6 +48,7 @@ class SrollPosition  {
       document.addEventListener('touchstart' , (evnt)=>{
         let startClientY = evnt.changedTouches[0].clientY ;
         document.addEventListener('touchmove' , (event)=>{
+          this.inversion = false;
           let touchDelta = ( event.changedTouches[0].clientY - startClientY );
           if (touchDelta < 0 ) {
             touchDelta = touchDelta.toString();
@@ -67,63 +66,40 @@ class SrollPosition  {
               this.positionX = -100
             }
             this.element.style.transform = `translateX( ${this.positionX}vw)`
-            this.inversion = true;
+            this.checkInversionPosition(this.positionX)
           }
         });
       })
+    }
+    
+    checkInversionPosition(positionX){
+      positionX = positionX ;
+      setTimeout(()=>{
+        console.log(positionX , this.positionX)
+        if (positionX = this.position || this.positionX === 0 ) {
+          this.inversion = true;
+        }
+      }, 1500)
     }
     
   };
   
   
   
+  export{ SrollPosition  };
   
-//   document.addEventListener('touchstart' , function(evnt){
-//     startClientY = evnt.changedTouches[0].clientY ;
-//     document.addEventListener('touchmove' , function(event){
-//       let touchDelta = ( event.changedTouches[0].clientY - startClientY );
-//       if (touchDelta < -1 ) {
-//         touchDelta = touchDelta.toString();
-//         touchDelta = touchDelta.replace(/-/, ' ')
-//         touchDelta = ( Number(touchDelta) / 100 ) * 30;
-//       }else{
-//         return
-//       }
-//       if( delta < 0 ){
-//         delta = delta + touchDelta ;
-//         if (delta > 0 ) {
-//           delta = 0 ;
-//           changeOfProject();
-//         }if (delta < -100 ) {
-//           delta = -100
-//         }
-//         scrollBarre.style.transform = `translateX( ${delta}vw)`
-//       }
-//     })
-//     document.addEventListener('touchend' , function(e){
-//       startClientX = e.changedTouches[0].clientX
-//     })
-//   });
-// }
-// }) 
-// }
-
-
-
-
-export{ SrollPosition  };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

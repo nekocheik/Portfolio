@@ -775,7 +775,7 @@ function () {
       setInterval(function () {
         if (_this2.inversion) {
           if (_this2.positionX > -100) {
-            _this2.positionX = _this2.positionX - 0.1;
+            _this2.positionX = _this2.positionX - 0.3;
             _this2.element.style.transform = "translateX( ".concat(_this2.positionX, "vw)");
           } else {
             _this2.inversion = false;
@@ -791,6 +791,7 @@ function () {
       document.addEventListener('touchstart', function (evnt) {
         var startClientY = evnt.changedTouches[0].clientY;
         document.addEventListener('touchmove', function (event) {
+          _this3.inversion = false;
           var touchDelta = event.changedTouches[0].clientY - startClientY;
 
           if (touchDelta < 0) {
@@ -814,10 +815,25 @@ function () {
             }
 
             _this3.element.style.transform = "translateX( ".concat(_this3.positionX, "vw)");
-            _this3.inversion = true;
+
+            _this3.checkInversionPosition(_this3.positionX);
           }
         });
       });
+    }
+  }, {
+    key: "checkInversionPosition",
+    value: function checkInversionPosition(positionX) {
+      var _this4 = this;
+
+      positionX = positionX;
+      setTimeout(function () {
+        console.log(positionX, _this4.positionX);
+
+        if (positionX = _this4.position || _this4.positionX === 0) {
+          _this4.inversion = true;
+        }
+      }, 1500);
     }
   }]);
 
@@ -825,35 +841,7 @@ function () {
 }();
 
 exports.SrollPosition = SrollPosition;
-; //   document.addEventListener('touchstart' , function(evnt){
-//     startClientY = evnt.changedTouches[0].clientY ;
-//     document.addEventListener('touchmove' , function(event){
-//       let touchDelta = ( event.changedTouches[0].clientY - startClientY );
-//       if (touchDelta < -1 ) {
-//         touchDelta = touchDelta.toString();
-//         touchDelta = touchDelta.replace(/-/, ' ')
-//         touchDelta = ( Number(touchDelta) / 100 ) * 30;
-//       }else{
-//         return
-//       }
-//       if( delta < 0 ){
-//         delta = delta + touchDelta ;
-//         if (delta > 0 ) {
-//           delta = 0 ;
-//           changeOfProject();
-//         }if (delta < -100 ) {
-//           delta = -100
-//         }
-//         scrollBarre.style.transform = `translateX( ${delta}vw)`
-//       }
-//     })
-//     document.addEventListener('touchend' , function(e){
-//       startClientX = e.changedTouches[0].clientX
-//     })
-//   });
-// }
-// }) 
-// }
+;
 },{"./changeOfProject":"app/changeOfProject.js"}],"app/viewPort.js":[function(require,module,exports) {
 "use strict";
 
