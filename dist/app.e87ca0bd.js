@@ -1079,7 +1079,10 @@ var _MenuBurger = require("./MenuBurger");
 (0, _animation.animation)();
 (0, _MenuBurger.menuBurge)();
 var srollPosition = new _scroll.SrollPosition(document.querySelector('.sroll__barre'));
-srollPosition.detectScroll(); // console.log( srollPosition  )
+srollPosition.detectScroll(); //  animation: rotationCircle 20s infinite  ;
+
+var svg = document.querySelectorAll('#circleWhite g');
+console.log(svg); // console.log( srollPosition  )
 // document.addEventListener('mousemove', function(event){
 //   const x = event.pageX;
 //   const y = event.pageY;
@@ -1120,7 +1123,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60707" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64776" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

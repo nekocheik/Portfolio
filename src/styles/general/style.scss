@@ -98,18 +98,8 @@ body{
   height: 100vh;
   width: 140vw;
   stroke-dasharray: 100 ;
-  // animation: rotationCircle 20s infinite  ;
-
-  -webkit-animation: rotation 20s infinite linear;
-
-  @-webkit-keyframes rotation {
-    from {
-      -webkit-transform: rotate(0deg);
-    }
-    to {
-      -webkit-transform: rotate(359deg);
-    }
-  }
+  animation: rotationCircle 10s infinite;
+  transform-origin: center;
 
   animation-timing-function: cubic-bezier(.17,.67,.83,.67) ;
   
@@ -119,6 +109,8 @@ body{
     width: 140vw;
   }
 }
+
+
 
 // 
 

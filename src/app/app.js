@@ -12,8 +12,11 @@ menuBurge();
 let srollPosition = new SrollPosition( document.querySelector('.sroll__barre') );
 srollPosition.detectScroll()
 
+//  animation: rotationCircle 20s infinite  ;
 
+var svg = document.querySelectorAll('#circleWhite g')
 
+console.log(svg)
 
 // console.log( srollPosition  )
 
