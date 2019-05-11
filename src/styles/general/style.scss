@@ -98,9 +98,8 @@ body{
   height: 100vh;
   width: 140vw;
   stroke-dasharray: 100 ;
-  circle{
-    animation:  rotationCircle 20s infinite  ;
-  }
+  -webkit-animation: rotationCircle 20s infinite  ;
+
   animation-timing-function: cubic-bezier(.17,.67,.83,.67) ;
 
   @media screen and ( min-width : 800px ){
