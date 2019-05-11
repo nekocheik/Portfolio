@@ -13,23 +13,13 @@ class SrollPosition  {
     this.bottomPage = false ;
   };
   detectScroll(){
-    
-    let viewPort = new ViewPort( document.querySelector('body') , 'bottom' , 'bottom' ) ;
-    let bottomPage = false ;
-    
     this.element.style.transform = `translateX( ${this.positionX}vw)`;
     this.inversionPosition();
     this.detectSwipe()
     
     document.addEventListener("mousewheel", (event)=>{
       
-      viewPort.detectViewport( (callback)=>{
-        if( callback ){
-          bottomPage = true ;
-        }
-      })
-      
-      if (!bottomPage) {
+      if (!this.checkBottomPage()) {
         return
       }
       

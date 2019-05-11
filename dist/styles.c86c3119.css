@@ -128,6 +128,36 @@ body .logo img {
   height: 65px;
 }
 
+#circlesWhite {
+  position: fixed;
+  margin-left: auto;
+  margin-right: auto;
+  top: -8vh;
+  left: -20vw;
+  height: 100vh;
+  width: 140vw;
+  stroke-dasharray: 100;
+  animation: rotationCircle 20s infinite;
+  animation-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+@media screen and (min-width: 800px) {
+  #circlesWhite {
+    top: -45%;
+    height: 170vh;
+    width: 140vw;
+  }
+}
+
+@keyframes write {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes rotationCircle {
+  100% {
+    transform: rotate(359deg);
+  }
+}
 @keyframes blinkArmani {
   from {
     color: black;
@@ -246,6 +276,12 @@ body {
 }
 @font-face {
   font-family: "Avenir LT Std";
+  src: url("/AvenirLTStd-MediumOblique.2bea4fff.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Avenir LT Std";
   src: url("/AvenirLTStd-Book.1b5eb43f.woff2") format("woff2"), url("/AvenirLTStd-Book.61585e7e.woff") format("woff");
   font-weight: normal;
   font-style: normal;
@@ -258,8 +294,20 @@ body {
 }
 @font-face {
   font-family: "Avenir LT Std";
+  src: url("/AvenirLTStd-Roman.6e33c29a.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Avenir LT Std";
   src: url("/AvenirLTStd-Heavy.2555d31f.woff2") format("woff2"), url("/AvenirLTStd-Heavy.35fca5ec.woff") format("woff");
   font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Avenir LT Std";
+  src: url("/AvenirLTStd-Medium.74fb44d6.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 @font-face {
@@ -366,6 +414,9 @@ body {
   transition: transform 0.5s 0.5s;
   transform: translate3d(0px, 0px, 0px);
   margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 #home__page .projects .project.back {
   opacity: 0;
@@ -399,7 +450,8 @@ body {
 }
 #home__page .title__of__project {
   display: block;
-  padding-left: 15%;
+  font-family: "Avenir LT Std";
+  font-weight: 900;
 }
 #home__page .title__of__project h3 {
   font-size: 38px;
@@ -421,7 +473,6 @@ body {
 }
 @media screen and (min-width: 800px) {
   #home__page .title__of__project {
-    padding-left: 25%;
     margin-top: 5%;
   }
   #home__page .title__of__project h3 {

@@ -867,19 +867,11 @@ function () {
     value: function detectScroll() {
       var _this = this;
 
-      var viewPort = new _viewPort.ViewPort(document.querySelector('body'), 'bottom', 'bottom');
-      var bottomPage = false;
       this.element.style.transform = "translateX( ".concat(this.positionX, "vw)");
       this.inversionPosition();
       this.detectSwipe();
       document.addEventListener("mousewheel", function (event) {
-        viewPort.detectViewport(function (callback) {
-          if (callback) {
-            bottomPage = true;
-          }
-        });
-
-        if (!bottomPage) {
+        if (!_this.checkBottomPage()) {
           return;
         }
 
@@ -1128,7 +1120,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60362" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55576" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

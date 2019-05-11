@@ -78,6 +78,9 @@
       transition: transform 0.5s 0.5s;
       transform : translate3d( 0px , 0px , 0px);
       margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       &.back{
         opacity: 0;
         transition: transform 0.5s , opacity 0.7s;
@@ -115,7 +118,8 @@
   
   .title__of__project{
     display: block;
-    padding-left: 15%;
+    font-family: 'Avenir LT Std' ;
+    font-weight: 900;
     h3{
       font-size: 38px;
       &.armani{
@@ -137,23 +141,22 @@
     ////// project project for desktop /////////
     //////////////////////////////////////////
     @media screen and ( min-width : 800px) {
-      padding-left: 25%;
       margin-top: 5%;
-        h3{
-          font-size: 90px;
-          &.armani{
-            color: $blueArmani;
-            animation: blinkArmani 3.5s infinite alternate;
-          }&.so_comptoir{
-            color: $jauneComptoir;
-            animation: blinkso_comptoir 3.5s infinite alternate;
-          }&.space_invaders{
-            animation: blinkInvaders 3.5s infinite alternate;
-          }
+      h3{
+        font-size: 90px;
+        &.armani{
+          color: $blueArmani;
+          animation: blinkArmani 3.5s infinite alternate;
+        }&.so_comptoir{
+          color: $jauneComptoir;
+          animation: blinkso_comptoir 3.5s infinite alternate;
+        }&.space_invaders{
+          animation: blinkInvaders 3.5s infinite alternate;
         }
-        .type__of__projet{
-          font-size: 19px;
-          letter-spacing: 4px;
+      }
+      .type__of__projet{
+        font-size: 19px;
+        letter-spacing: 4px;
       }
     }
   }
