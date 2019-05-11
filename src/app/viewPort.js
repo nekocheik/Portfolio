@@ -3,7 +3,7 @@ var viewPort = function(element , touch , callback , callbackinvers ){
     let positionScreenBottom =  window.pageYOffset + window.innerHeight ;
     let positionScreenTop =  window.pageYOffset ;
     let top = element.clientHeight + window.innerHeight;
-    console.log(positionScreenBottom  >= top  , positionScreenBottom  , top  )
+    // console.log(positionScreenBottom  >= top  , positionScreenBottom  , top  )
     if (touch === 'top') {
       if (  positionScreenBottom  <= top ) {
         callback(true)

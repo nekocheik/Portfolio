@@ -1,4 +1,10 @@
 #home__page{
+  .body__width{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+  }
   overflow : hidden;
   overflow-y: scroll;
   scrollbar-width: none;

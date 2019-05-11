@@ -1,15 +1,35 @@
 import { setTimeout } from "timers";
 import { renderNavProject } from "./renderNavProject";
-import { scrollCK } from "./scroll";
+import {SrollPosition } from "./scroll";
 import { animation } from "./animation";
 import { menuBurge} from "./MenuBurger";
 
 
-scrollCK();
 animation();
 menuBurge();
 
 
+let srollPosition = new SrollPosition( document.querySelector('.sroll__barre') );
+srollPosition.detectScroll();
+
+console.log( srollPosition  )
 
 
+document.addEventListener('mousemove', function(event){
+  const x = event.pageX;
+  const y = event.pageY;
 
+  const target = document.querySelector('.projects')
+  const targetCoords = target.getBoundingClientRect()
+
+  const targetX = targetCoords.left + ( target.offsetWidth / 2);
+  const targetY = targetCoords.top + ( target.offsetHeight / 2);
+
+  console.log(targetCoords)
+  
+  const angleX = ( targetY - y ) / 105 ;
+  const angleY = ( targetX - x ) / 105 ;
+
+  target.style.transform = "rotateX("+ angleX +"deg) rotateY("+ angleY +"deg)"
+
+})

@@ -292,6 +292,12 @@ body {
   scrollbar-width: none;
   height: 100%;
 }
+#home__page .body__width {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+}
 #home__page .circle {
   animation: circleGoCenter 10s;
 }

@@ -649,7 +649,6 @@ function renderChangeOfProject() {
   project.classList.add('back');
   setTimeout(function () {
     project.innerHTML = "";
-    console.log(numberProject);
     exports.numberProject = numberProject = numberProject + 1;
 
     if (numberProject > _project.projects.length - 1) {
@@ -699,8 +698,8 @@ var _project = require("./project");
 var _changeOfProject = require("./changeOfProject");
 
 var renderNavProject = function renderNavProject(project) {
-  var nav = document.querySelector('.nav__project p');
-  console.log(_changeOfProject.numberProject);
+  var nav = document.querySelector('.nav__project p'); // console.log(numberProject)
+
   nav.classList.add('trasition__back');
   setTimeout(function () {
     nav.innerHTML = "";
@@ -713,7 +712,149 @@ var renderNavProject = function renderNavProject(project) {
 };
 
 exports.renderNavProject = renderNavProject;
-},{"./project":"app/project.js","./changeOfProject":"app/changeOfProject.js"}],"app/viewPort.js":[function(require,module,exports) {
+},{"./project":"app/project.js","./changeOfProject":"app/changeOfProject.js"}],"app/scroll.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SrollPosition = void 0;
+
+var _changeOfProject = require("./changeOfProject");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var SrollPosition =
+/*#__PURE__*/
+function () {
+  function SrollPosition(element) {
+    _classCallCheck(this, SrollPosition);
+
+    this.element = element;
+    this.positionX = -100;
+    this.numberMove = 0;
+    this.memoNumberMove = this.numberMove;
+    this.inversion = false;
+  }
+
+  _createClass(SrollPosition, [{
+    key: "detectScroll",
+    value: function detectScroll() {
+      var _this = this;
+
+      this.element.style.transform = "translateX( ".concat(this.positionX, "vw)");
+      this.inversionPosition();
+      this.detectSwipe();
+      document.addEventListener("mousewheel", function (event) {
+        if (_this.positionX < 0) {
+          _this.positionX = _this.positionX + event.deltaY / 3;
+
+          if (_this.positionX >= 0) {
+            _this.positionX = 0;
+            (0, _changeOfProject.changeOfProject)();
+          }
+
+          if (_this.positionX < -100) {
+            _this.positionX = -100;
+          }
+
+          _this.element.style.transform = "translateX( ".concat(_this.positionX, "vw)");
+          _this.inversion = true;
+        }
+      });
+    }
+  }, {
+    key: "inversionPosition",
+    value: function inversionPosition() {
+      var _this2 = this;
+
+      setInterval(function () {
+        if (_this2.inversion) {
+          if (_this2.positionX > -100) {
+            _this2.positionX = _this2.positionX - 0.1;
+            _this2.element.style.transform = "translateX( ".concat(_this2.positionX, "vw)");
+          } else {
+            _this2.inversion = false;
+          }
+        }
+      }, 10);
+    }
+  }, {
+    key: "detectSwipe",
+    value: function detectSwipe() {
+      var _this3 = this;
+
+      document.addEventListener('touchstart', function (evnt) {
+        var startClientY = evnt.changedTouches[0].clientY;
+        document.addEventListener('touchmove', function (event) {
+          var touchDelta = event.changedTouches[0].clientY - startClientY;
+
+          if (touchDelta < 0) {
+            touchDelta = touchDelta.toString();
+            touchDelta = touchDelta.replace(/-/, ' ');
+            touchDelta = Number(touchDelta) / 100 * 30;
+          } else {
+            return;
+          }
+
+          if (_this3.positionX < 0) {
+            _this3.positionX = _this3.positionX + touchDelta;
+
+            if (_this3.positionX > 0) {
+              _this3.positionX = 0;
+              (0, _changeOfProject.changeOfProject)();
+            }
+
+            if (_this3.positionX < -100) {
+              _this3.positionX = -100;
+            }
+
+            _this3.element.style.transform = "translateX( ".concat(_this3.positionX, "vw)");
+            _this3.inversion = true;
+          }
+        });
+      });
+    }
+  }]);
+
+  return SrollPosition;
+}();
+
+exports.SrollPosition = SrollPosition;
+; //   document.addEventListener('touchstart' , function(evnt){
+//     startClientY = evnt.changedTouches[0].clientY ;
+//     document.addEventListener('touchmove' , function(event){
+//       let touchDelta = ( event.changedTouches[0].clientY - startClientY );
+//       if (touchDelta < -1 ) {
+//         touchDelta = touchDelta.toString();
+//         touchDelta = touchDelta.replace(/-/, ' ')
+//         touchDelta = ( Number(touchDelta) / 100 ) * 30;
+//       }else{
+//         return
+//       }
+//       if( delta < 0 ){
+//         delta = delta + touchDelta ;
+//         if (delta > 0 ) {
+//           delta = 0 ;
+//           changeOfProject();
+//         }if (delta < -100 ) {
+//           delta = -100
+//         }
+//         scrollBarre.style.transform = `translateX( ${delta}vw)`
+//       }
+//     })
+//     document.addEventListener('touchend' , function(e){
+//       startClientX = e.changedTouches[0].clientX
+//     })
+//   });
+// }
+// }) 
+// }
+},{"./changeOfProject":"app/changeOfProject.js"}],"app/viewPort.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -725,8 +866,7 @@ var viewPort = function viewPort(element, touch, callback, callbackinvers) {
   window.addEventListener('scroll', function (event) {
     var positionScreenBottom = window.pageYOffset + window.innerHeight;
     var positionScreenTop = window.pageYOffset;
-    var top = element.clientHeight + window.innerHeight;
-    console.log(positionScreenBottom >= top, positionScreenBottom, top);
+    var top = element.clientHeight + window.innerHeight; // console.log(positionScreenBottom  >= top  , positionScreenBottom  , top  )
 
     if (touch === 'top') {
       if (positionScreenBottom <= top) {
@@ -745,104 +885,7 @@ var viewPort = function viewPort(element, touch, callback, callbackinvers) {
 };
 
 exports.viewPort = viewPort;
-},{}],"app/scroll.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.scrollCK = scrollCK;
-
-var _changeOfProject = require("./changeOfProject");
-
-var _viewPort = require("./viewPort");
-
-function scrollCK() {
-  var element = document.querySelector('.type__of__projet');
-  (0, _viewPort.viewPort)(element, 'bottom', function (start) {
-    if (start) {
-      var resizeBarre = function resizeBarre() {
-        if (delta > -100) {
-          delta = delta - 2;
-          scrollBarre.style.transform = "translateX( ".concat(delta, "vw)");
-        }
-      };
-
-      ///______________________________________________scroll
-      var scrollBarre = document.querySelector('.sroll__barre');
-      var delta = -100;
-      var memo = 0;
-      var numberResizing = 0;
-      scrollBarre.style.transform = "translateX( ".concat(delta, "vw)");
-      document.addEventListener("mousewheel", function (event) {
-        numberResizing++;
-
-        if (delta < 0) {
-          delta = delta + event.deltaY / 3;
-
-          if (delta >= 0) {
-            delta = 0;
-            (0, _changeOfProject.changeOfProject)();
-          }
-
-          if (delta < -100) {
-            delta = -100;
-          }
-
-          scrollBarre.style.transform = "translateX( ".concat(delta, "vw)");
-          clearInterval(resizeBarreIterval);
-        }
-
-        setTimeout(function () {
-          memo++;
-
-          if (numberResizing <= memo) {
-            resizeBarreIterval = setInterval(function () {
-              resizeBarre();
-            }, 10);
-          }
-        }, 400);
-      });
-      var resizeBarreIterval = setInterval(function () {
-        resizeBarre();
-      }, 100);
-      var startClientY;
-      document.addEventListener('touchstart', function (evnt) {
-        startClientY = evnt.changedTouches[0].clientY;
-        document.addEventListener('touchmove', function (event) {
-          var touchDelta = event.changedTouches[0].clientY - startClientY;
-
-          if (touchDelta < -1) {
-            touchDelta = touchDelta.toString();
-            touchDelta = touchDelta.replace(/-/, ' ');
-            touchDelta = Number(touchDelta) / 100 * 30;
-          } else {
-            return;
-          }
-
-          if (delta < 0) {
-            delta = delta + touchDelta;
-
-            if (delta > 0) {
-              delta = 0;
-              (0, _changeOfProject.changeOfProject)();
-            }
-
-            if (delta < -100) {
-              delta = -100;
-            }
-
-            scrollBarre.style.transform = "translateX( ".concat(delta, "vw)");
-          }
-        });
-        document.addEventListener('touchend', function (e) {
-          startClientX = e.changedTouches[0].clientX;
-        });
-      });
-    }
-  });
-}
-},{"./changeOfProject":"app/changeOfProject.js","./viewPort":"app/viewPort.js"}],"app/animation.js":[function(require,module,exports) {
+},{}],"app/animation.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -920,9 +963,23 @@ var _animation = require("./animation");
 
 var _MenuBurger = require("./MenuBurger");
 
-(0, _scroll.scrollCK)();
 (0, _animation.animation)();
 (0, _MenuBurger.menuBurge)();
+var srollPosition = new _scroll.SrollPosition(document.querySelector('.sroll__barre'));
+srollPosition.detectScroll();
+console.log(srollPosition);
+document.addEventListener('mousemove', function (event) {
+  var x = event.pageX;
+  var y = event.pageY;
+  var target = document.querySelector('.projects');
+  var targetCoords = target.getBoundingClientRect();
+  var targetX = targetCoords.left + target.offsetWidth / 2;
+  var targetY = targetCoords.top + target.offsetHeight / 2;
+  console.log(targetCoords);
+  var angleX = (targetY - y) / 105;
+  var angleY = (targetX - x) / 105;
+  target.style.transform = "rotateX(" + angleX + "deg) rotateY(" + angleY + "deg)";
+});
 },{"timers":"../node_modules/timers-browserify/main.js","./renderNavProject":"app/renderNavProject.js","./scroll":"app/scroll.js","./animation":"app/animation.js","./MenuBurger":"app/MenuBurger.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -951,7 +1008,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60394" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53051" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

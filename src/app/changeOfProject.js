@@ -12,7 +12,6 @@ function renderChangeOfProject() {
   project.classList.add('back');
   setTimeout(() => {
     project.innerHTML = "";
-    console.log(numberProject);
     numberProject++;
     
     if ( numberProject > projects.length - 1) {
