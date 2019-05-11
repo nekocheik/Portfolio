@@ -776,8 +776,7 @@ function () {
           }
         } else {
           if (_this.screenPartTouch === 'bottom') {
-            console.log(_this.body.bottom <= _this.screen.positionScreenBottom, _this.body.bottom, _this.screen.positionScreenBottom);
-
+            // console.log( this.body.bottom <= this.screen.positionScreenBottom  , this.body.bottom  , this.screen.positionScreenBottom )
             if (_this.body.bottom <= _this.screen.positionScreenBottom) {
               return callback(true);
             } else {
@@ -800,7 +799,7 @@ function () {
         this.body.top = String(this.body.top);
         this.body.top = this.body.top.substr(1);
         this.body.top = Number(this.body.top);
-        this.body.bottom = this.body.bottom + this.body.top - 5;
+        this.body.bottom = this.body.bottom + this.body.top - 20;
       }
     }
   }]);
@@ -860,6 +859,7 @@ function () {
     this.memoNumberMove = this.numberMove;
     this.inversion = false;
     this.waitTime = false;
+    this.bottomPage = false;
   }
 
   _createClass(SrollPosition, [{
@@ -931,16 +931,8 @@ function () {
 
       document.addEventListener('touchstart', function (evnt) {
         var startClientY = evnt.changedTouches[0].clientY;
-        var viewPort = new _viewPort.ViewPort(document.querySelector('body'), 'bottom', 'bottom');
-        var bottomPage = false;
         document.addEventListener('touchmove', function (event) {
-          viewPort.detectViewport(function (callback) {
-            if (callback) {
-              bottomPage = true;
-            }
-          });
-
-          if (!bottomPage) {
+          if (!_this3.checkBottomPage()) {
             return;
           }
 
@@ -982,12 +974,27 @@ function () {
     value: function checkInversionPosition(positionX) {
       var _this4 = this;
 
-      positionX = positionX;
+      var MemoPositionX = positionX;
       setTimeout(function () {
-        if (positionX = _this4.position || _this4.positionX === 0) {
+        if (MemoPositionX, _this4.positionX || _this4.positionX === 0) {
           _this4.inversion = true;
         }
       }, 1500);
+    }
+  }, {
+    key: "checkBottomPage",
+    value: function checkBottomPage() {
+      var _this5 = this;
+
+      var viewPort = new _viewPort.ViewPort(document.querySelector('body'), 'bottom', 'bottom');
+      viewPort.detectViewport(function (callback) {
+        if (callback) {
+          _this5.bottomPage = true;
+        } else {
+          _this5.bottomPage = false;
+        }
+      });
+      return this.bottomPage;
     }
   }]);
 
@@ -1006,15 +1013,16 @@ exports.animation = void 0;
 
 var _viewPort = require("./viewPort");
 
-var animation = function animation(params) {// let  titleProjet = document.querySelector('.projects h2')
-  // let viewPort = new ViewPort(titleProjet) ;
-  // viewPort.detectViewport( function(callback){
-  //   if( callback ){
-  //     titleProjet.classList.add('transtision')
-  //   }else{
-  //     titleProjet.classList.remove('transtision')
-  //   }
-  // })
+var animation = function animation(params) {
+  var titleProjet = document.querySelector('.projects h2');
+  var viewPort = new _viewPort.ViewPort(titleProjet);
+  viewPort.detectViewport(function (callback) {
+    if (callback) {
+      titleProjet.classList.add('transtision');
+    } else {
+      titleProjet.classList.remove('transtision');
+    }
+  });
 };
 
 exports.animation = animation;

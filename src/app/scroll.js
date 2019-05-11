@@ -10,6 +10,7 @@ class SrollPosition  {
     this.memoNumberMove = this.numberMove ;
     this.inversion = false;
     this.waitTime = false ;
+    this.bottomPage = false ;
   };
   detectScroll(){
     
@@ -73,19 +74,9 @@ class SrollPosition  {
       
       document.addEventListener('touchstart' , (evnt)=>{
         let startClientY = evnt.changedTouches[0].clientY ;
-        let viewPort = new ViewPort( document.querySelector('body') , 'bottom' , 'bottom' ) ;
-        let bottomPage = false ;
-        
         document.addEventListener('touchmove' , (event)=>{
-          
-   
-          viewPort.detectViewport( (callback)=>{
-            if( callback ){
-              bottomPage = true ;
-            }
-          })
-      
-          if (!bottomPage) {
+
+          if (!this.checkBottomPage()) {
             return
           }
 
@@ -119,14 +110,25 @@ class SrollPosition  {
     }
     
     checkInversionPosition(positionX){
-      positionX = positionX ;
+      let MemoPositionX = positionX ;
       setTimeout(()=>{
-        if (positionX = this.position || this.positionX === 0 ) {
+        if ( MemoPositionX , this.positionX  || this.positionX === 0 ) {
           this.inversion = true;
         }
       }, 1500)
     }
-    
+
+    checkBottomPage(){
+      let viewPort = new ViewPort( document.querySelector('body') , 'bottom' , 'bottom' ) ;
+      viewPort.detectViewport( (callback)=>{
+        if( callback ){
+          this.bottomPage = true ;
+        }else{
+          this.bottomPage = false;
+        }
+      })
+      return  this.bottomPage ;
+    }
   };
   
   
