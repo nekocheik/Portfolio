@@ -42,7 +42,7 @@ class ViewPort {
         }
       }else{
         if ( this.screenPartTouch  === 'bottom') {
-          console.log( this.body.bottom , this.screen.positionScreenBottom )
+          // console.log( this.body.bottom , this.screen.positionScreenBottom )
           if ( this.body.bottom <= this.screen.positionScreenBottom ) {
             return callback(true)
           }else{

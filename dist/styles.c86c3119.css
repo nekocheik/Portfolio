@@ -51,6 +51,7 @@ body {
   color: white;
   font-family: Avenir;
   overscroll-behavior: none;
+  scroll-behavior: smooth;
 }
 body nav {
   position: fixed;
@@ -102,11 +103,9 @@ body nav p.active {
 }
 body .circle {
   position: sticky;
-  position: -webkit-sticky;
   top: 200px;
   z-index: -1;
   margin: -190px auto auto auto;
-  left: calc(50% - 150px);
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -129,8 +128,7 @@ body .logo {
 body .logo img {
   height: 65px;
 }
-
-.circlesWhite {
+body .circlesWhite {
   position: fixed;
   margin-left: auto;
   margin-right: auto;
@@ -138,13 +136,10 @@ body .logo img {
   left: -20vw;
   height: 100vh;
   width: 140vw;
-  stroke-dasharray: 100;
-  animation: rotationCircle 10s infinite;
   transform-origin: center;
-  animation-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
 }
 @media screen and (min-width: 800px) {
-  .circlesWhite {
+  body .circlesWhite {
     left: 0vw;
     top: -32%;
     height: 140vh;
@@ -162,7 +157,7 @@ body .logo img {
   height: 15px;
 }
 .cursor.cursor__two {
-  transition: left 50ms, top 50ms;
+  transition: left 50ms, top 50ms, transform 100ms;
   height: 25px;
 }
 
@@ -227,21 +222,21 @@ body {
 @keyframes enterLeft {
   from {
     opacity: 0.5;
-    transform: translateX(-350px);
+    transform: translateX(-100vw);
   }
   to {
     opacity: 1;
-    transform: translateX(0px);
+    transform: translateX(0vw);
   }
 }
 @keyframes enterRight {
   from {
     opacity: 0.5;
-    transform: translateX(350px);
+    transform: translateX(-100vw);
   }
   to {
     opacity: 1;
-    transform: translateX(0px);
+    transform: translateX(0vw);
   }
 }
 body {
@@ -385,10 +380,10 @@ body {
   font-family: "Lemon/Milk";
 }
 #home__page .name__and__profession h1 {
-  animation: enterLeft 1.5s;
+  animation: enterLeft 3s;
 }
 #home__page .name__and__profession h2 {
-  animation: enterRight 1.5s;
+  animation: enterRight 3s;
 }
 @media screen and (min-width: 800px) {
   #home__page .name__and__profession {
@@ -412,8 +407,8 @@ body {
   padding-left: 15%;
   padding-bottom: 0px;
   opacity: 0.5;
-  transform: translateX(350px);
-  transition: transform 1s, opacity 1s;
+  transform: translateX(150vw);
+  transition: transform 3s, opacity 3s;
 }
 #home__page .projects h2.transtision {
   opacity: 1;
@@ -528,10 +523,11 @@ body {
   display: flex;
   bottom: 0;
   overflow: hidden;
+  z-index: -3;
 }
 #home__page .nav__project section p {
   display: inline-block;
-  z-index: -1;
+  z-index: -2;
   transition-duration: 400ms;
   width: 30px;
 }
@@ -544,7 +540,13 @@ body {
 }
 #home__page .nav__project section span {
   background-color: black;
-  z-index: 1;
+  z-index: -1;
+}
+@media screen and (min-width: 800px) {
+  #home__page .nav__project {
+    height: 133px;
+    margin-top: 79px;
+  }
 }
 #home__page .sroll__barre {
   width: 100vw;
@@ -554,15 +556,28 @@ body {
   transition-duration: 100ms;
   bottom: 0px;
 }
+#home__page .circlesWhite {
+  stroke-dasharray: 100;
+  animation: rotationCircle 15s infinite;
+}
 
 #page__project .circle {
-  top: -150px;
+  top: -350px;
+  width: 40vw;
+  height: 40vw;
+  position: sticky;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  animation: circleGoCenter 0s;
+  margin-bottom: -20vh;
 }
 #page__project .project .title__of__project {
   display: block;
   padding-left: 15%;
   margin-top: 15vh;
-  animation: enterLeft 1.5s;
+  animation: enterLeft 105s;
 }
 #page__project .project .title__of__project h1 {
   font-size: 38px;
@@ -571,6 +586,7 @@ body {
 }
 #page__project .project .title__of__project h2 {
   font-size: 20px;
+  padding-bottom: 25px;
   font-family: "Avenir LT Std";
 }
 #page__project .project .title__of__project .description {
@@ -604,11 +620,76 @@ body {
   font-weight: 900;
   margin: 40px 0px 0px 0px;
 }
-#page__project .project .title__of__project .description .image {
+#page__project .project .title__of__project .image {
   padding-top: 20%;
 }
-#page__project .project .title__of__project .description .image img {
+#page__project .project .title__of__project .image img {
   width: 80vw;
+  max-width: 458px;
+}
+@media screen and (min-width: 800px) {
+  #page__project .project .title__of__project {
+    padding-left: 15%;
+    margin-top: 15vh;
+    animation: enterLeft 4s;
+  }
+  #page__project .project .title__of__project h1 {
+    font-size: 90px;
+    font-family: "Avenir LT Std";
+    font-weight: 900;
+    animation: 3.5s blinkArmani infinite alternate 2s;
+  }
+  #page__project .project .title__of__project h2 {
+    font-size: 20px;
+    font-family: "Avenir LT Std";
+    padding-bottom: 20px;
+  }
+  #page__project .project .title__of__project strong {
+    font-weight: 900;
+  }
+  #page__project .project .title__of__project .description {
+    padding-top: 2%;
+    max-width: 80vw;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  #page__project .project .title__of__project .description .description__text {
+    max-width: 504px;
+  }
+  #page__project .project .title__of__project .description p {
+    font-size: 20px;
+  }
+  #page__project .project .title__of__project .description .image {
+    padding-top: 0%;
+  }
+}
+#page__project .circlesWhite {
+  animation: rotationCircle initial initial;
+  z-index: -100;
+}
+#page__project .circlesWhite #Ellipse_14 circle {
+  stroke-dasharray: 10px;
+}
+#page__project .circlesWhite #Ellipse_13 {
+  stroke-dasharray: 3259px;
+  stroke-dashoffset: 3259px;
+  animation: write 3s forwards;
+}
+#page__project .circlesWhite #Ellipse_12 {
+  stroke-dasharray: 1991px;
+  stroke-dashoffset: 1991px;
+  animation: write 3s forwards;
+}
+#page__project .circlesWhite #Ellipse_11 {
+  stroke-dasharray: 1301px;
+  stroke-dashoffset: 1301px;
+  animation: write 3s forwards;
+}
+
+@keyframes write {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 /*# sourceMappingURL=/styles.c86c3119.css.map */

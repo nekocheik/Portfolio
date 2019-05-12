@@ -26,9 +26,9 @@
     justify-content: space-between;
     font-family: 'Lemon/Milk';
     h1{
-      animation: enterLeft 1.5s ;
+      animation: enterLeft 3s ;
     }h2{
-      animation: enterRight 1.5s ;
+      animation: enterRight 3s ;
     }
     ///////////////////////////////////
     ////// title for desktop /////////
@@ -53,8 +53,8 @@
       padding-left: 15%;
       padding-bottom: 0px;
       opacity: 0.5;
-      transform: translateX(350px);
-      transition: transform 1s , opacity 1s ;
+      transform: translateX(150vw);
+      transition: transform 3s , opacity 3s ;
       &.transtision{
         opacity: 1;
         transform: translateX(0px);
@@ -167,19 +167,17 @@
     margin: auto;
     width: max-content;
     font-size: 40px;
-    //justify-content: flex-end;
     
     section{
       position: relative;
       display: flex;
       bottom: 0;
       overflow: hidden;
+      z-index: -3;
       p{
         display: inline-block;
-        z-index: -1;
+        z-index: -2;
         transition-duration: 400ms ;
-        // transform: translateX(-4px);
-        // transition: transform 0.5s;
         width: 30px;
         &.trasition__back{
           transform: translateX(30px)
@@ -190,8 +188,15 @@
       }
       span{
         background-color: black;
-        z-index: 1;
+        z-index: -1;
       }
+    }
+    ///////////////////////////////////////////
+    ////// nav__project for desktop /////////
+    //////////////////////////////////////////
+    @media screen and ( min-width : 800px) {
+      height: 133px;
+      margin-top: 79px;
     }
   }
   
@@ -202,5 +207,10 @@
     position: fixed;
     transition-duration: 100ms;
     bottom: 0px;
+  }
+  
+  .circlesWhite{
+    stroke-dasharray: 100 ;
+    animation: rotationCircle 15s infinite , ;
   }
 }

@@ -52,21 +52,21 @@
 @keyframes enterLeft {
   from{
     opacity: 0.5;
-    transform: translateX(-350px)
+    transform: translateX(-100vw)
   }
   to {
     opacity: 1;
-    transform: translateX(0px)
+    transform: translateX(0vw)
   }
 }
 
 @keyframes enterRight  {
   from{
     opacity: 0.5;
-    transform: translateX(350px)
+    transform: translateX(-100vw)
   }
   to {
     opacity: 1;
-    transform: translateX(0px)
+    transform: translateX(0vw)
   }
 }

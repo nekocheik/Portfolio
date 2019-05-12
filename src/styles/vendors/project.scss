@@ -1,21 +1,30 @@
 #page__project{
   .circle {
-    // position: sticky;
-    // position: -webkit-sticky ;
-    top: -150px;
+    top: -350px;
+    width: 40vw;
+    height: 40vw;
+    position: sticky;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    animation : circleGoCenter 0s;
+    margin-bottom: -20vh;
+
   }
   .project{
     .title__of__project{
       display: block;
       padding-left: 15%;
       margin-top: 15vh;;
-      animation: enterLeft 1.5s ;
+      animation: enterLeft 105s ;
       h1{
         font-size: 38px;
         font-family: 'Lemon/Milk';
         animation:  3.5s blinkArmani infinite alternate 2s ;
       }h2{
         font-size: 20px;
+        padding-bottom: 25px;
         font-family: 'Avenir LT Std'
       }
       .description{
@@ -48,13 +57,79 @@
             margin: 40px 0px 0px 0px;
           }
         }
-        .image{
-          padding-top: 20%;
-          img{
-            width: 80vw;
+      }
+      .image{
+        padding-top: 20%;
+        img{
+          width: 80vw;
+          max-width: 458px;
+        }
+      }
+    }
+  }
+  //////////////////////
+  /// desktop//////////
+  ////////////////////
+  @media screen and ( min-width : 800px) {
+    .project{
+      .title__of__project{
+        padding-left: 15%;
+        margin-top: 15vh;;
+        animation: enterLeft 4s ;
+        h1{
+          font-size: 90px;
+          font-family: 'Avenir LT Std' ;
+          font-weight: 900;
+          animation:  3.5s blinkArmani infinite alternate 2s ;
+        }h2{
+          font-size: 20px;
+          font-family: 'Avenir LT Std';
+          padding-bottom: 20px;
+        }strong{
+          font-weight: 900;
+        }
+        .description{
+          padding-top: 2%;
+          max-width: 80vw;
+          flex-wrap: nowrap;
+          justify-content: space-between;
+          .description__text{
+            max-width: 504px;
+          }
+          p{
+            font-size: 20px;
+          }
+          .image{
+            padding-top: 0%;
           }
         }
       }
     }
   }
+  .circlesWhite{
+    animation: rotationCircle initial initial ;
+    z-index: -100;
+    #Ellipse_14 circle{
+      stroke-dasharray: 10px;
+    }#Ellipse_13{
+      stroke-dasharray: 3259px;
+      stroke-dashoffset: 3259px;
+      animation: write 3s forwards;
+    }#Ellipse_12{
+      stroke-dasharray: 1991px;
+      stroke-dashoffset: 1991px;
+      animation: write 3s forwards;
+    }#Ellipse_11{
+      stroke-dasharray: 1301px;
+      stroke-dashoffset: 1301px;
+      animation: write 3s forwards;
+    }
+  }
 }  
+
+
+@keyframes write {
+  to{
+    stroke-dashoffset: 0;
+  }
+}

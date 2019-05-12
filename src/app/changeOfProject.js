@@ -10,7 +10,7 @@ function changeOfProject() {
 }
 
 function renderChangeOfProject() {
-  var project = document.querySelector('.project')
+  var project = document.querySelector('#home__page .project')
   project.classList.add('back');
   setTimeout(() => {
     project.innerHTML = "";
@@ -40,9 +40,12 @@ var ChangeOfProjectView = function(project) {
     img : document.createElement('img'),
     titlOfProject : document.createElement('div'),
     illustrationOfProject : document.createElement('div'),
+    a :  document.createElement('a') ,
     render: function() {
+      this.a.href = `#hideenDiv`;
       this.img.src = project.assets.pesentation;
-      this.illustrationOfProject.appendChild(this.img);
+      view.a.appendChild(this.img);
+      this.illustrationOfProject.appendChild(this.a);
       this.titlOfProject.innerHTML = `<h3 class='${project.modifier}'>${project.title}</h3> <h4 class="type__of__projet" >${project.subTitle}</h4>`;
     },
   }
@@ -50,8 +53,8 @@ var ChangeOfProjectView = function(project) {
   
   view.illustrationOfProject.className = 'illustration__of__project';
 
+
   view.illustrationOfProject.addEventListener('click', function(){
-    console.log('ok')
     Theproject( numberProject )
   })
 

@@ -1,18 +1,142 @@
+import { cursor } from "./cursor" ;
+import {SrollPosition } from "./scroll";
+import { animation } from "./animation";
+import { menuBurge} from "./MenuBurger";
+
+
+
+menuBurge();
+cursor();
+
+
+// console.log( srollPosition  )
+
+
+// document.addEventListener('mousemove', function(event){
+//   const x = event.pageX;
+//   const y = event.pageY;
+
+//   const target = document.querySelector('.projects')
+//   const targetCoords = target.getBoundingClientRect()
+
+//   const targetX = targetCoords.left + ( target.offsetWidth / 2);
+//   const targetY = targetCoords.top + ( target.offsetHeight / 2);
+
+
+//   const angleX = ( targetY - y ) / 105 ;
+//   const angleY = ( targetX - x ) / 105 ;
+
+//   target.style.transform = "rotateX("+ angleX +"deg) rotateY("+ angleY +"deg)"
+
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 import { projects  } from './project'; 
 
 var Theproject = function ( numberProject ){
-  
   let main =  document.querySelector('main') ;
-  main.innerHTML = '';
+  let name = document.querySelector('.name__and__profession')
+
+  name.innerHTML = '';
+
+  TweenLite.to(".circlesWhite", 5, 
+  {css:{    
+    animation: 'rotationCircle initial initial' ,
+    zIndex: '-100',
+    },
+  ease:Power2.easeOut});
+//////////
+  TweenLite.to("#Ellipse_14 circle", 3, 
+  {css:{    
+    strokeDasharray: '10px' ,
+    transitionDuration: '100ms' ,
+    },
+  ease:Power2.easeOut});
+
+  TweenLite.to("#Ellipse_13", 3, 
+  {css:{    
+    strokeDasharray: '3259px',
+    strokeDashoffset: '3259px',
+    animation: 'write 3s forwards',
+    },
+  ease:Power2.easeOut});
+
+  TweenLite.to("#Ellipse_12", 3, 
+  {css:{    
+    strokeDasharray: '1991px',
+    strokeDashoffset: '1991px',
+    animation: 'write 3s forwards',
+    },
+  ease:Power2.easeOut});
+
+  TweenLite.to(".circlesWhite", 3, 
+  {css:{    
+    strokeDasharray: '1301px',
+    strokeDashoffset: '1301px',
+    animation: 'write 3s forwards',
+    },
+  ease:Power2.easeOut});
   
 
-  var view = viewPoject( numberProject );
-  main.append(view.project)
-
-  document.querySelector('body').id = "page__project";
 
 
+
+
+
+
+
+
+
+
+
+
+  TweenLite.to(".circle", 3, 
+  {css:{    
+    top: "-350px",
+    width: "40vw",
+    height: "40vw",
+    position: "sticky",
+    marginLeft: "auto",
+    marginRight: "auto",
+    left: "0",
+    right: "0" ,
+    animation : "circleGoCenter 0s" ,
+    marginBottom: '-20vh',
+    }, 
+  ease:Power2.easeOut});
+
+
+  setTimeout(() => {
+    document.querySelector('body').id = "page__project";
+    main.innerHTML = '';
+  }, 3000);
+  setTimeout(() => {
+    var view = viewPoject( numberProject );
+    main.append(view.project)
+  }, 3500 );
 }
 
 function viewPoject( numberProject ){
@@ -33,6 +157,15 @@ function viewPoject( numberProject ){
       this.ul.innerHTML += `<li>${element}</li>` ;
      });
      this.button.innerHTML = `<a><p>${projects[numberProject].button}</p></a>`
+     
+     this.descriptionSkills.append(view.ul)
+     this.descriptionText.append( view.descriptionSkills )
+   
+   
+     this.description.append( view.descriptionText )
+     
+     this.titlOfProject.append( view.description )
+     this.project.append( view.titlOfProject )
     },
   }
 
@@ -42,15 +175,6 @@ function viewPoject( numberProject ){
   view.descriptionText.className = "description__text" ;
   view.description.className = "description";
   view.descriptionSkills.className = "description__skills";
-
-  view.descriptionSkills.append(view.ul)
-  view.descriptionText.append( view.descriptionSkills )
-
-
-  view.description.append( view.descriptionText )
-  
-  view.titlOfProject.append( view.description )
-  view.project.append( view.titlOfProject )
   
   view.render();
   return view ;

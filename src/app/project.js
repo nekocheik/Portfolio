@@ -26,6 +26,7 @@ var projects = [
     assets : {
       pesentation : require('../assets/logoSocomptoir.svg') ,
     },
+    link : require('../pages/So__comptoir.html') , 
     button : 'REGARDER LES MAQUETTES' ,
     modifier : 'so_comptoir'
   },{
@@ -37,6 +38,7 @@ var projects = [
     J’ai fait Le jeu en Canvas JavaScript natif sans l’utilisation d’aucune librairie .
     Avec l’ajout d’éléments de gamplay qui ne sont pas dans le jeu original  `,
     skills : ['JavaScript' , 'Canvas' , 'Html' , 'Sass'] ,
+    link : '',
     assets : {
       pesentation : require('../assets/alien.svg') ,
     },

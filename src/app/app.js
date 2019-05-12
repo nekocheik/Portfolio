@@ -12,7 +12,7 @@ cursor();
 let srollPosition = new SrollPosition( document.querySelector('.sroll__barre') );
 srollPosition.detectScroll()
 
-// console.log( srollPosition  )
+console.log( window.location.href  )
 
 
 // document.addEventListener('mousemove', function(event){
