@@ -9,7 +9,6 @@ import { menuBurge} from "./MenuBurger";
 animation();
 menuBurge();
 cursor();
-
 let srollPosition = new SrollPosition( document.querySelector('.sroll__barre') );
 srollPosition.detectScroll()
 
