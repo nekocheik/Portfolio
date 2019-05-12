@@ -121,7 +121,7 @@ body{
   z-index: 100;
   pointer-events: none;
   &.cursor__one{
-    transition: left 100ms , top 100ms ;
+    transition: left 60ms , top 60ms ;
     height: 15px;
   }&.cursor__two{
     transition: left 50ms , top 50ms ;

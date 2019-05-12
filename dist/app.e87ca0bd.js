@@ -777,7 +777,112 @@ var renderNavProject = function renderNavProject(project) {
 };
 
 exports.renderNavProject = renderNavProject;
-},{"./project":"app/project.js","./changeOfProject":"app/changeOfProject.js"}],"app/viewPort.js":[function(require,module,exports) {
+},{"./project":"app/project.js","./changeOfProject":"app/changeOfProject.js"}],"app/cursor.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.cursor = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var cursor = function cursor() {
+  var elipse = document.querySelector('.cursor.cursor__Two');
+  var circle = document.querySelector('.cursor__one');
+  var pointerCircle = new givPotionPointer(circle);
+  var pointerEliplse = new givPotionPointer(elipse);
+};
+
+exports.cursor = cursor;
+
+var givPotionPointer =
+/*#__PURE__*/
+function () {
+  function givPotionPointer(element, child) {
+    _classCallCheck(this, givPotionPointer);
+
+    this.element = element;
+    this.x = null;
+    this.y = null;
+    this.detectMoveCursor();
+    this.child = child;
+    this.scaleX = 0;
+    this.scaleY = 0;
+    this.clearDeformatiom();
+  }
+
+  _createClass(givPotionPointer, [{
+    key: "detectMoveCursor",
+    value: function detectMoveCursor() {
+      var _this = this;
+
+      window.addEventListener('mousemove', function (event) {
+        _this.x = event.clientX - _this.element.getBoundingClientRect().width / 2;
+        _this.y = window.pageYOffset + event.clientY - _this.element.getBoundingClientRect().height / 2;
+
+        _this.giveMemoXY();
+
+        if (_this.memoX > _this.x) {
+          _this.scaleX++;
+        } else {
+          _this.scaleX--;
+        }
+
+        if (_this.memoY > _this.y) {
+          _this.scaleY++;
+        } else {
+          _this.scaleY--;
+        }
+
+        _this.element.style.left = "".concat(_this.x, "px");
+        _this.element.style.top = "".concat(_this.y, "px");
+        _this.element.style.transform = "skew(".concat(_this.scaleX / 2, "deg , ").concat(_this.scaleY / 2, "deg)");
+      });
+    }
+  }, {
+    key: "giveMemoXY",
+    value: function giveMemoXY() {
+      if (!this.x && !this.y) {
+        this.memoX = this.x;
+        this.memoY = this.y;
+      }
+    }
+  }, {
+    key: "clearDeformatiom",
+    value: function clearDeformatiom() {
+      var _this2 = this;
+
+      setInterval(function () {
+        if (_this2.scaleY < 0) {
+          _this2.scaleY++;
+        } else {
+          _this2.scaleY--;
+        }
+
+        if (_this2.scaleX < 0) {
+          _this2.scaleX++;
+        } else {
+          _this2.scaleX--;
+        }
+      }, 25);
+      setInterval(function () {
+        _this2.element.style.transform = "skew(".concat(_this2.scaleX, "deg , ").concat(_this2.scaleY, "deg)");
+      }, 10);
+      setInterval(function () {
+        _this2.memoX = _this2.x;
+        _this2.memoY = _this2.y;
+      }, 100);
+    }
+  }]);
+
+  return givPotionPointer;
+}();
+},{}],"app/viewPort.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -833,7 +938,7 @@ function () {
               return callback(false);
             }
           } else {
-            if (_this.body.top >= _this.screen.positionScreenBottom) {
+            if (_this.body.top >= _this.screen.positionScreenTop) {
               return callback(true);
             } else {
               return callback(false);
@@ -841,7 +946,7 @@ function () {
           }
         } else {
           if (_this.screenPartTouch === 'bottom') {
-            console.log(_this.body.bottom <= _this.screen.positionScreenBottom, _this.body.bottom, _this.screen.positionScreenBottom);
+            console.log(_this.body.bottom, _this.screen.positionScreenBottom);
 
             if (_this.body.bottom <= _this.screen.positionScreenBottom) {
               return callback(true);
@@ -871,28 +976,7 @@ function () {
   }]);
 
   return ViewPort;
-}(); // var viewPort = function(element , touch , callback , callbackinvers ){
-//   window.addEventListener('scroll', function(event){
-//     let positionScreenBottom  =  window.pageYOffset + window.innerHeight ;
-//     let positionScreenTop =  window.pageYOffset ;
-//     let top = element.clientHeight + window.innerHeight;
-//     // console.log(positionScreenBottom  >= top  , positionScreenBottom  , top  )
-//     if (touch === 'top') {
-//       if (  positionScreenBottom  <= top ) {
-//         callback(true)
-//       }else{
-//         callback(false)
-//       }
-//     }else{
-//       if (  positionScreenBottom  >= top ) {
-//         callback(true)
-//       }else{
-//           callback(false)
-//       }
-//     }
-//   })
-// }
-
+}();
 
 exports.ViewPort = ViewPort;
 },{}],"app/scroll.js":[function(require,module,exports) {
@@ -1136,6 +1220,8 @@ var _timers = require("timers");
 
 var _renderNavProject = require("./renderNavProject");
 
+var _cursor = require("./cursor");
+
 var _scroll = require("./scroll");
 
 var _animation = require("./animation");
@@ -1144,26 +1230,9 @@ var _MenuBurger = require("./MenuBurger");
 
 (0, _animation.animation)();
 (0, _MenuBurger.menuBurge)();
+(0, _cursor.cursor)();
 var srollPosition = new _scroll.SrollPosition(document.querySelector('.sroll__barre'));
-srollPosition.detectScroll();
-
-var mouse = function mouse() {
-  window.addEventListener('mousemove', function (event) {
-    var elipse = document.querySelector('.cursor.cursor__Two');
-    var cicle = document.querySelector('.cursor__one');
-    givPotionPointer(cicle, event);
-    givPotionPointer(elipse, event);
-  });
-};
-
-var givPotionPointer = function givPotionPointer(element, event) {
-  var x = event.clientX - element.getBoundingClientRect().width / 2;
-  var y = window.pageYOffset + event.clientY - element.getBoundingClientRect().height / 2;
-  element.style.left = "".concat(x, "px");
-  element.style.top = "".concat(y, "px");
-};
-
-mouse(); // console.log( srollPosition  )
+srollPosition.detectScroll(); // console.log( srollPosition  )
 // document.addEventListener('mousemove', function(event){
 //   const x = event.pageX;
 //   const y = event.pageY;
@@ -1176,7 +1245,7 @@ mouse(); // console.log( srollPosition  )
 //   const angleY = ( targetX - x ) / 105 ;
 //   target.style.transform = "rotateX("+ angleX +"deg) rotateY("+ angleY +"deg)"
 // })
-},{"timers":"../node_modules/timers-browserify/main.js","./renderNavProject":"app/renderNavProject.js","./scroll":"app/scroll.js","./animation":"app/animation.js","./MenuBurger":"app/MenuBurger.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"timers":"../node_modules/timers-browserify/main.js","./renderNavProject":"app/renderNavProject.js","./cursor":"app/cursor.js","./scroll":"app/scroll.js","./animation":"app/animation.js","./MenuBurger":"app/MenuBurger.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1204,7 +1273,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64695" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65353" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

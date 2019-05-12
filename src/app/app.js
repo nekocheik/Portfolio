@@ -1,6 +1,6 @@
 import { setTimeout } from "timers";
 import { renderNavProject } from "./renderNavProject";
-
+import { cursor } from "./cursor" ;
 import {SrollPosition } from "./scroll";
 import { animation } from "./animation";
 import { menuBurge} from "./MenuBurger";
@@ -8,32 +8,10 @@ import { menuBurge} from "./MenuBurger";
 
 animation();
 menuBurge();
+cursor();
 
 let srollPosition = new SrollPosition( document.querySelector('.sroll__barre') );
 srollPosition.detectScroll()
-
-
-var mouse = function(){
-  window.addEventListener('mousemove', (event)=>{
-    let elipse = document.querySelector('.cursor.cursor__Two') ;
-    let cicle = document.querySelector('.cursor__one') ;
-
-    givPotionPointer( cicle , event )
-    givPotionPointer( elipse , event )
-
-  }) 
-}
-
-let givPotionPointer = function ( element , event ){
-  let x =  event.clientX  - ( element.getBoundingClientRect().width / 2 ) ;
-  let y =  window.pageYOffset + event.clientY  - ( element.getBoundingClientRect().height / 2 )
-  
-  element.style.left = `${x}px`
-  element.style.top = `${y}px`
-}
-
-
-mouse();
 
 // console.log( srollPosition  )
 

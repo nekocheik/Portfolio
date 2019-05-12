@@ -7,6 +7,7 @@ class ViewPort {
       right: element.getBoundingClientRect().right ,
       top: element.getBoundingClientRect().top ,
     }
+
     
     this.screen = {
       positionScreenBottom : null ,
@@ -22,7 +23,6 @@ class ViewPort {
   
   detectViewport( callback ){
     window.addEventListener('scroll', (event)=>{
-
       this.screen.positionScreenBottom =  window.pageYOffset + window.innerHeight ;
       this.screen.positionScreenTop  =  window.pageYOffset ;
       
@@ -34,7 +34,7 @@ class ViewPort {
             return callback(false)
           }
         }else{
-          if ( this.body.top >= this.screen.positionScreenBottom ) {
+          if ( this.body.top >= this.screen.positionScreenTop ) {
             return callback(true)
           }else{
             return callback(false)
@@ -42,7 +42,7 @@ class ViewPort {
         }
       }else{
         if ( this.screenPartTouch  === 'bottom') {
-          console.log( this.body.bottom <= this.screen.positionScreenBottom  ,  this.body.bottom , this.screen.positionScreenBottom)
+          console.log( this.body.bottom , this.screen.positionScreenBottom )
           if ( this.body.bottom <= this.screen.positionScreenBottom ) {
             return callback(true)
           }else{
@@ -68,39 +68,6 @@ class ViewPort {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-// var viewPort = function(element , touch , callback , callbackinvers ){
-//   window.addEventListener('scroll', function(event){
-//     let positionScreenBottom  =  window.pageYOffset + window.innerHeight ;
-//     let positionScreenTop =  window.pageYOffset ;
-//     let top = element.clientHeight + window.innerHeight;
-//     // console.log(positionScreenBottom  >= top  , positionScreenBottom  , top  )
-//     if (touch === 'top') {
-//       if (  positionScreenBottom  <= top ) {
-//         callback(true)
-//       }else{
-//         callback(false)
-//       }
-//     }else{
-//       if (  positionScreenBottom  >= top ) {
-//         callback(true)
-//       }else{
-//           callback(false)
-//       }
-//     }
-//   })
-// }
 
 
 export{ViewPort}
