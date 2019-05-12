@@ -6,7 +6,7 @@ import { menuBurge} from "./MenuBurger";
 
 
 menuBurge();
-cursor();
+
 
 
 // console.log( srollPosition  )
@@ -59,76 +59,76 @@ import { projects  } from './project';
 var Theproject = function ( numberProject ){
   let main =  document.querySelector('main') ;
   let name = document.querySelector('.name__and__profession')
-
+  
   name.innerHTML = '';
-
+  
   TweenLite.to(".circlesWhite", 5, 
   {css:{    
     animation: 'rotationCircle initial initial' ,
     zIndex: '-100',
-    },
+  },
   ease:Power2.easeOut});
-//////////
+  //////////
   TweenLite.to("#Ellipse_14 circle", 3, 
   {css:{    
     strokeDasharray: '10px' ,
     transitionDuration: '100ms' ,
-    },
+  },
   ease:Power2.easeOut});
-
+  
   TweenLite.to("#Ellipse_13", 3, 
   {css:{    
     strokeDasharray: '3259px',
     strokeDashoffset: '3259px',
     animation: 'write 3s forwards',
-    },
+  },
   ease:Power2.easeOut});
-
+  
   TweenLite.to("#Ellipse_12", 3, 
   {css:{    
     strokeDasharray: '1991px',
     strokeDashoffset: '1991px',
     animation: 'write 3s forwards',
-    },
+  },
   ease:Power2.easeOut});
-
-  TweenLite.to(".circlesWhite", 3, 
+  
+  TweenLite.to("#Ellipse_11", 3, 
   {css:{    
     strokeDasharray: '1301px',
     strokeDashoffset: '1301px',
     animation: 'write 3s forwards',
-    },
+  },
   ease:Power2.easeOut});
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-  TweenLite.to(".circle", 3, 
-  {css:{    
-    top: "-350px",
-    width: "40vw",
-    height: "40vw",
-    position: "sticky",
-    marginLeft: "auto",
-    marginRight: "auto",
-    left: "0",
-    right: "0" ,
-    animation : "circleGoCenter 0s" ,
-    marginBottom: '-20vh',
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+if ( window.innerWidth < 800  ) {
+    TweenLite.to(".circle", 3, 
+    {css:{    
+      top: "-100px",
+      animation : "circleGoCenter 0s" ,
     }, 
-  ease:Power2.easeOut});
-
-
+    ease:Power2.easeOut});
+  }else{
+    TweenLite.to(".circle", 3, 
+    {css:{    
+      top: "-300px",
+      width: "40vw",
+      height: "40vw",
+      animation : "circleGoCenter 0s" ,
+    }, 
+    ease:Power2.easeOut});
+}
+  
+  
   setTimeout(() => {
     document.querySelector('body').id = "page__project";
     main.innerHTML = '';
@@ -137,10 +137,11 @@ var Theproject = function ( numberProject ){
     var view = viewPoject( numberProject );
     main.append(view.project)
   }, 3500 );
+
 }
 
 function viewPoject( numberProject ){
-
+  
   var view = {
     project : document.createElement('div'),
     titlOfProject : document.createElement('div'),
@@ -151,25 +152,25 @@ function viewPoject( numberProject ){
     button :  document.createElement('section'), 
     illustrationOfProject : document.createElement('div'),
     render: function() {
-     this.titlOfProject.innerHTML = `<h1 class="${projects[numberProject].modifier}">${projects[numberProject].title}</h1><h2 class="type__of__projet" >${projects[numberProject].subTitle}</h2>`;
-     this.descriptionText.innerHTML = `<p>${projects[numberProject].description}</p>`;
-     projects[numberProject].skills.forEach(element => {
-      this.ul.innerHTML += `<li>${element}</li>` ;
-     });
-     this.button.innerHTML = `<a><p>${projects[numberProject].button}</p></a>`
-     
-     this.descriptionSkills.append(view.ul)
-     this.descriptionText.append( view.descriptionSkills )
-   
-   
-     this.description.append( view.descriptionText )
-     
-     this.titlOfProject.append( view.description )
-     this.project.append( view.titlOfProject )
+      this.titlOfProject.innerHTML = `<h1 class="${projects[numberProject].modifier}">${projects[numberProject].title}</h1><h2 class="type__of__projet" >${projects[numberProject].subTitle}</h2>`;
+      this.descriptionText.innerHTML = `<p>${projects[numberProject].description}</p>`;
+      projects[numberProject].skills.forEach(element => {
+        this.ul.innerHTML += `<li>${element}</li>` ;
+      });
+      this.button.innerHTML = `<a><p>${projects[numberProject].button}</p></a>`
+      
+      this.descriptionSkills.append(view.ul)
+      this.descriptionText.append( view.descriptionSkills )
+      
+      
+      this.description.append( view.descriptionText )
+      
+      this.titlOfProject.append( view.description )
+      this.project.append( view.titlOfProject )
     },
   }
-
-
+  
+  
   view.project.className = "project" ;
   view.titlOfProject.className = "title__of__project";
   view.descriptionText.className = "description__text" ;

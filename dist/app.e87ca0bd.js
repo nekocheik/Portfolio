@@ -1082,8 +1082,7 @@ var _MenuBurger = require("./MenuBurger");
 
 var _project = require("./project");
 
-(0, _MenuBurger.menuBurge)();
-(0, _cursor.cursor)(); // console.log( srollPosition  )
+(0, _MenuBurger.menuBurge)(); // console.log( srollPosition  )
 // document.addEventListener('mousemove', function(event){
 //   const x = event.pageX;
 //   const y = event.pageY;
@@ -1131,7 +1130,7 @@ var Theproject = function Theproject(numberProject) {
     },
     ease: Power2.easeOut
   });
-  TweenLite.to(".circlesWhite", 3, {
+  TweenLite.to("#Ellipse_11", 3, {
     css: {
       strokeDasharray: '1301px',
       strokeDashoffset: '1301px',
@@ -1139,21 +1138,27 @@ var Theproject = function Theproject(numberProject) {
     },
     ease: Power2.easeOut
   });
-  TweenLite.to(".circle", 3, {
-    css: {
-      top: "-350px",
-      width: "40vw",
-      height: "40vw",
-      position: "sticky",
-      marginLeft: "auto",
-      marginRight: "auto",
-      left: "0",
-      right: "0",
-      animation: "circleGoCenter 0s",
-      marginBottom: '-20vh'
-    },
-    ease: Power2.easeOut
-  });
+
+  if (window.innerWidth < 800) {
+    TweenLite.to(".circle", 3, {
+      css: {
+        top: "-100px",
+        animation: "circleGoCenter 0s"
+      },
+      ease: Power2.easeOut
+    });
+  } else {
+    TweenLite.to(".circle", 3, {
+      css: {
+        top: "-300px",
+        width: "40vw",
+        height: "40vw",
+        animation: "circleGoCenter 0s"
+      },
+      ease: Power2.easeOut
+    });
+  }
+
   setTimeout(function () {
     document.querySelector('body').id = "page__project";
     main.innerHTML = '';
@@ -1315,7 +1320,12 @@ var _MenuBurger = require("./MenuBurger");
 
 (0, _animation.animation)();
 (0, _MenuBurger.menuBurge)();
-(0, _cursor.cursor)();
+
+if (window.innerWidth > 800) {
+  console.log(window.innerWidth);
+  (0, _cursor.cursor)();
+}
+
 var srollPosition = new _scroll.SrollPosition(document.querySelector('.sroll__barre'));
 srollPosition.detectScroll();
 console.log(window.location.href); // document.addEventListener('mousemove', function(event){
@@ -1358,7 +1368,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52936" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56245" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

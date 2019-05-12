@@ -1,23 +1,14 @@
 #page__project{
   .circle {
-    top: -350px;
-    width: 40vw;
-    height: 40vw;
-    position: sticky;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
+    top: -100px;
     animation : circleGoCenter 0s;
-    margin-bottom: -20vh;
-
   }
   .project{
     .title__of__project{
       display: block;
       padding-left: 15%;
       margin-top: 15vh;;
-      animation: enterLeft 105s ;
+      animation: enterLeft 5s ;
       h1{
         font-size: 38px;
         font-family: 'Lemon/Milk';
@@ -74,7 +65,7 @@
     .project{
       .title__of__project{
         padding-left: 15%;
-        margin-top: 15vh;;
+        margin-top: -10vh;;
         animation: enterLeft 4s ;
         h1{
           font-size: 90px;
@@ -126,7 +117,10 @@
     }
   }
 }  
+.circle {
+  margin-bottom: -20vh;
 
+}
 
 @keyframes write {
   to{

@@ -8,7 +8,12 @@ import { menuBurge} from "./MenuBurger";
 
 animation();
 menuBurge();
-cursor();
+if ( window.innerWidth > 800 ) {
+  console.log(window.innerWidth)
+  cursor();
+}
+
+
 let srollPosition = new SrollPosition( document.querySelector('.sroll__barre') );
 srollPosition.detectScroll()
 
