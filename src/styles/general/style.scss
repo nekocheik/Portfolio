@@ -82,7 +82,9 @@ body{
     }
   }
   .logo{
-    padding-top: 15px;
+    position: fixed;
+    top : 10px;
+    left: -20px;
     img{
       height: 65px;;
     } 
@@ -100,7 +102,7 @@ body{
   stroke-dasharray: 100 ;
   animation: rotationCircle 10s infinite;
   transform-origin: center;
-
+  
   animation-timing-function: cubic-bezier(.17,.67,.83,.67) ;
   
   @media screen and ( min-width : 800px ){
@@ -113,7 +115,24 @@ body{
 
 
 
-// 
+
+.cursor{
+  position: absolute;
+  z-index: 100;
+  pointer-events: none;
+  &.cursor__one{
+    transition: left 100ms , top 100ms ;
+    height: 20px;
+  }&.cursor__two{
+    transition: left 50ms , top 50ms ;
+    height: 25px;
+  }
+}
+
+
+body{
+  cursor: none ;
+}
 
 @keyframes write {
   to{

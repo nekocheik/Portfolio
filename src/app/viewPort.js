@@ -22,6 +22,7 @@ class ViewPort {
   
   detectViewport( callback ){
     window.addEventListener('scroll', (event)=>{
+
       this.screen.positionScreenBottom =  window.pageYOffset + window.innerHeight ;
       this.screen.positionScreenTop  =  window.pageYOffset ;
       
@@ -41,7 +42,7 @@ class ViewPort {
         }
       }else{
         if ( this.screenPartTouch  === 'bottom') {
-          // console.log( this.body.bottom <= this.screen.positionScreenBottom  , this.body.bottom  , this.screen.positionScreenBottom )
+          console.log( this.body.bottom <= this.screen.positionScreenBottom  ,  this.body.bottom , this.screen.positionScreenBottom)
           if ( this.body.bottom <= this.screen.positionScreenBottom ) {
             return callback(true)
           }else{
@@ -63,7 +64,7 @@ class ViewPort {
       this.body.top =  String(this.body.top) ;
       this.body.top = this.body.top.substr(1);
       this.body.top = Number( this.body.top )
-      this.body.bottom = this.body.bottom + this.body.top - 20  ;
+      this.body.bottom = this.body.bottom + this.body.top  ;
     }
   }
 }

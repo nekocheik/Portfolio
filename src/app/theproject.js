@@ -4,12 +4,13 @@ import { projects  } from './project';
 var Theproject = function ( numberProject ){
   
   let main =  document.querySelector('main') ;
-  document.querySelector('body').id = "page__project"
   main.innerHTML = '';
   
 
   var view = viewPoject( numberProject );
-  main.appendChild(view.project)
+  main.append(view.project)
+
+  document.querySelector('body').id = "page__project";
 
 
 }
@@ -37,23 +38,19 @@ function viewPoject( numberProject ){
 
 
   view.project.className = "project" ;
-
   view.titlOfProject.className = "title__of__project";
-
-  view.descriptionSkills.className = "description__skills";
-  view.descriptionSkills.appendChild(view.ul)
-  view.descriptionText.appendChild( view.descriptionSkills )
-
   view.descriptionText.className = "description__text" ;
-
-  // view.button.className = "button"
-
   view.description.className = "description";
-  view.description.appendChild( view.descriptionText )
-  
+  view.descriptionSkills.className = "description__skills";
 
-  view.project.appendChild( view.titlOfProject )
-  view.project.appendChild( view.description )
+  view.descriptionSkills.append(view.ul)
+  view.descriptionText.append( view.descriptionSkills )
+
+
+  view.description.append( view.descriptionText )
+  
+  view.titlOfProject.append( view.description )
+  view.project.append( view.titlOfProject )
   
   view.render();
   return view ;

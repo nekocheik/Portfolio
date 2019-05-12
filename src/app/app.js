@@ -18,6 +18,30 @@ var svg = document.querySelectorAll('#circleWhite g')
 
 console.log(svg)
 
+
+
+var mouse = function(){
+  window.addEventListener('mousemove', (event)=>{
+    let elipse = document.querySelector('.cursor.cursor__Two') ;
+    let cicle = document.querySelector('.cursor__one') ;
+
+    givPotionPointer( cicle , event )
+    givPotionPointer( elipse , event )
+
+  }) 
+}
+
+let givPotionPointer = function ( element , event ){
+  let x =  event.clientX  - ( element.getBoundingClientRect().width / 2 ) ;
+  let y =  window.pageYOffset + event.clientY  - ( element.getBoundingClientRect().height / 2 )
+  
+  element.style.left = `${x}px`
+  element.style.top = `${y}px`
+}
+
+
+mouse();
+
 // console.log( srollPosition  )
 
 
@@ -32,7 +56,7 @@ console.log(svg)
 //   const targetY = targetCoords.top + ( target.offsetHeight / 2);
 
 //   console.log(targetCoords)
-  
+
 //   const angleX = ( targetY - y ) / 105 ;
 //   const angleY = ( targetX - x ) / 105 ;
 

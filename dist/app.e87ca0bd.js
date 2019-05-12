@@ -639,10 +639,10 @@ var _project = require("./project");
 
 var Theproject = function Theproject(numberProject) {
   var main = document.querySelector('main');
-  document.querySelector('body').id = "page__project";
   main.innerHTML = '';
   var view = viewPoject(numberProject);
-  main.appendChild(view.project);
+  main.append(view.project);
+  document.querySelector('body').id = "page__project";
 };
 
 exports.Theproject = Theproject;
@@ -672,15 +672,14 @@ function viewPoject(numberProject) {
   };
   view.project.className = "project";
   view.titlOfProject.className = "title__of__project";
-  view.descriptionSkills.className = "description__skills";
-  view.descriptionSkills.appendChild(view.ul);
-  view.descriptionText.appendChild(view.descriptionSkills);
-  view.descriptionText.className = "description__text"; // view.button.className = "button"
-
+  view.descriptionText.className = "description__text";
   view.description.className = "description";
-  view.description.appendChild(view.descriptionText);
-  view.project.appendChild(view.titlOfProject);
-  view.project.appendChild(view.description);
+  view.descriptionSkills.className = "description__skills";
+  view.descriptionSkills.append(view.ul);
+  view.descriptionText.append(view.descriptionSkills);
+  view.description.append(view.descriptionText);
+  view.titlOfProject.append(view.description);
+  view.project.append(view.titlOfProject);
   view.render();
   return view;
 }
@@ -842,7 +841,8 @@ function () {
           }
         } else {
           if (_this.screenPartTouch === 'bottom') {
-            // console.log( this.body.bottom <= this.screen.positionScreenBottom  , this.body.bottom  , this.screen.positionScreenBottom )
+            console.log(_this.body.bottom <= _this.screen.positionScreenBottom, _this.body.bottom, _this.screen.positionScreenBottom);
+
             if (_this.body.bottom <= _this.screen.positionScreenBottom) {
               return callback(true);
             } else {
@@ -865,7 +865,7 @@ function () {
         this.body.top = String(this.body.top);
         this.body.top = this.body.top.substr(1);
         this.body.top = Number(this.body.top);
-        this.body.bottom = this.body.bottom + this.body.top - 20;
+        this.body.bottom = this.body.bottom + this.body.top;
       }
     }
   }]);
@@ -1044,7 +1044,7 @@ function () {
     value: function checkBottomPage() {
       var _this5 = this;
 
-      var viewPort = new _viewPort.ViewPort(document.querySelector('body'), 'bottom', 'bottom');
+      var viewPort = new _viewPort.ViewPort(document.querySelector('main'), 'bottom', 'bottom');
       viewPort.detectViewport(function (callback) {
         if (callback) {
           _this5.bottomPage = true;
@@ -1148,7 +1148,25 @@ var srollPosition = new _scroll.SrollPosition(document.querySelector('.sroll__ba
 srollPosition.detectScroll(); //  animation: rotationCircle 20s infinite  ;
 
 var svg = document.querySelectorAll('#circleWhite g');
-console.log(svg); // console.log( srollPosition  )
+console.log(svg);
+
+var mouse = function mouse() {
+  window.addEventListener('mousemove', function (event) {
+    var elipse = document.querySelector('.cursor.cursor__Two');
+    var cicle = document.querySelector('.cursor__one');
+    givPotionPointer(cicle, event);
+    givPotionPointer(elipse, event);
+  });
+};
+
+var givPotionPointer = function givPotionPointer(element, event) {
+  var x = event.clientX - element.getBoundingClientRect().width / 2;
+  var y = window.pageYOffset + event.clientY - element.getBoundingClientRect().height / 2;
+  element.style.left = "".concat(x, "px");
+  element.style.top = "".concat(y, "px");
+};
+
+mouse(); // console.log( srollPosition  )
 // document.addEventListener('mousemove', function(event){
 //   const x = event.pageX;
 //   const y = event.pageY;
@@ -1189,7 +1207,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64776" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64695" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -122,7 +122,9 @@ body .circle {
   }
 }
 body .logo {
-  padding-top: 15px;
+  position: fixed;
+  top: 10px;
+  left: -20px;
 }
 body .logo img {
   height: 65px;
@@ -148,6 +150,24 @@ body .logo img {
     height: 140vh;
     width: 100vw;
   }
+}
+
+.cursor {
+  position: absolute;
+  z-index: 100;
+  pointer-events: none;
+}
+.cursor.cursor__one {
+  transition: left 100ms, top 100ms;
+  height: 20px;
+}
+.cursor.cursor__two {
+  transition: left 50ms, top 50ms;
+  height: 25px;
+}
+
+body {
+  cursor: none;
 }
 
 @keyframes write {
