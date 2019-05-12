@@ -1145,10 +1145,7 @@ var _MenuBurger = require("./MenuBurger");
 (0, _animation.animation)();
 (0, _MenuBurger.menuBurge)();
 var srollPosition = new _scroll.SrollPosition(document.querySelector('.sroll__barre'));
-srollPosition.detectScroll(); //  animation: rotationCircle 20s infinite  ;
-
-var svg = document.querySelectorAll('#circleWhite g');
-console.log(svg);
+srollPosition.detectScroll();
 
 var mouse = function mouse() {
   window.addEventListener('mousemove', function (event) {

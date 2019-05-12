@@ -159,7 +159,7 @@ body .logo img {
 }
 .cursor.cursor__one {
   transition: left 100ms, top 100ms;
-  height: 20px;
+  height: 15px;
 }
 .cursor.cursor__two {
   transition: left 50ms, top 50ms;
