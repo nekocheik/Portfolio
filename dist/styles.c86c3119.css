@@ -749,6 +749,8 @@ body {
 }
 #about main {
   display: flex;
+  height: 100vh;
+  overflow: hidden;
 }
 #about .part__about {
   margin-top: 20%;
@@ -806,11 +808,14 @@ body {
     margin-top: -400px;
   }
   #about .circlesWhite {
+    transform: scale(1, 1);
     margin-left: initial;
     margin-right: initial;
-    left: 30%;
-    bottom: -100px;
-    top: -200px;
+    height: initial;
+    width: initial;
+    top: 0px;
+    left: 10%;
+    z-index: -1;
   }
   #about .circle {
     right: 4%;

@@ -112,7 +112,7 @@ class SrollPosition  {
       document.addEventListener('touchstart' , (evnt)=>{
         let startClientY = evnt.changedTouches[0].clientY ;
         document.addEventListener('touchmove' , (event)=>{
-          
+          console.log(event)
           if (!this.checkBottomPage()) {
             return
           }
@@ -128,10 +128,10 @@ class SrollPosition  {
             return
           }
           if( this.positionX < 0 ){
-            this.positionX = this.positionX + 5;
+            this.positionX = this.positionX + ( touchDelta / 10 );
             if (this.positionX > 0 ) {
               this.positionX = 0 ;
-              // changeOfProject();
+              changeOfProject();
             }if ( this.positionX < -100 ) {
               this.positionX = -100
             }

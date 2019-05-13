@@ -45,7 +45,7 @@ class givPotionPointer {
       this.element.style.left = `${this.x}px`;
       this.element.style.top = `${this.y}px`;
 
-      this.element.style.transform = `skew(${this.scaleX / 2 }deg , ${this.scaleY / 2}deg)`
+      this.element.style.transform = `skew(${this.scaleX * 1.5 }deg , ${this.scaleY * 1.5 }deg)`
     }) 
   }
   

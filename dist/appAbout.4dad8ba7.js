@@ -181,7 +181,7 @@ function () {
 
         _this.element.style.left = "".concat(_this.x, "px");
         _this.element.style.top = "".concat(_this.y, "px");
-        _this.element.style.transform = "skew(".concat(_this.scaleX / 2, "deg , ").concat(_this.scaleY / 2, "deg)");
+        _this.element.style.transform = "skew(".concat(_this.scaleX * 1.5, "deg , ").concat(_this.scaleY * 1.5, "deg)");
       });
     }
   }, {
