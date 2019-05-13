@@ -11,28 +11,30 @@ function changeOfProject() {
 
 function renderChangeOfProject() {
   var project = document.querySelector('#home__page .project')
-  project.classList.add('back');
+  project.innerHTML = "";
+  numberProject++;
+  
+  if ( numberProject > projects.length - 1) {
+    numberProject = 0
+  }
+  
+  var tween = TweenLite.to(".circlesWhite", 15, 
+  {css:{    
+    animation: 'rotationCircle 15s infinite , retractation 4s forwards',
+
+  }});  
   setTimeout(() => {
-    project.innerHTML = "";
-    numberProject++;
-    
-    if ( numberProject > projects.length - 1) {
-      numberProject = 0
-    }
-    
-    var view = ChangeOfProjectView(projects[numberProject]);
-    project.appendChild(view.illustrationOfProject)
-    project.appendChild(view.titlOfProject);
-    setTimeout( ()=>{
-      renderNavProject(project)
-      
-      project.classList.remove('back');
-      project.classList.add('come');
-      setTimeout( ()=>{
-        project.classList.remove('come');
-      }, 60)
-    }, 500 )
-  }, 500);
+    var tween = TweenLite.to(".circlesWhite", 15, 
+    {css:{    
+      animation: 'rotationCircle 15s infinite',
+    }});  
+  }, 2900);
+
+  
+  var view = ChangeOfProjectView(projects[numberProject]);
+  project.appendChild(view.illustrationOfProject)
+  project.appendChild(view.titlOfProject);
+  renderNavProject(project)
 }
 
 var ChangeOfProjectView = function(project) {
@@ -49,15 +51,15 @@ var ChangeOfProjectView = function(project) {
       this.titlOfProject.innerHTML = `<h3 class='${project.modifier}'>${project.title}</h3> <h4 class="type__of__projet" >${project.subTitle}</h4>`;
     },
   }
-
+  
   
   view.illustrationOfProject.className = 'illustration__of__project';
-
-
+  
+  
   view.illustrationOfProject.addEventListener('click', function(){
     Theproject( numberProject )
   })
-
+  
   view.titlOfProject.className = 'title__of__project';
   view.render();
   return view

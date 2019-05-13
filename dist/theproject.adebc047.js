@@ -326,27 +326,29 @@ function changeOfProject() {
 
 function renderChangeOfProject() {
   var project = document.querySelector('#home__page .project');
-  project.classList.add('back');
-  setTimeout(function () {
-    project.innerHTML = "";
-    exports.numberProject = numberProject = numberProject + 1;
+  project.innerHTML = "";
+  exports.numberProject = numberProject = numberProject + 1;
 
-    if (numberProject > _project.projects.length - 1) {
-      exports.numberProject = numberProject = 0;
+  if (numberProject > _project.projects.length - 1) {
+    exports.numberProject = numberProject = 0;
+  }
+
+  var tween = TweenLite.to(".circlesWhite", 15, {
+    css: {
+      animation: 'rotationCircle 15s infinite , retractation 4s forwards'
     }
-
-    var view = ChangeOfProjectView(_project.projects[numberProject]);
-    project.appendChild(view.illustrationOfProject);
-    project.appendChild(view.titlOfProject);
-    setTimeout(function () {
-      (0, _renderNavProject.renderNavProject)(project);
-      project.classList.remove('back');
-      project.classList.add('come');
-      setTimeout(function () {
-        project.classList.remove('come');
-      }, 60);
-    }, 500);
-  }, 500);
+  });
+  setTimeout(function () {
+    var tween = TweenLite.to(".circlesWhite", 15, {
+      css: {
+        animation: 'rotationCircle 15s infinite'
+      }
+    });
+  }, 2900);
+  var view = ChangeOfProjectView(_project.projects[numberProject]);
+  project.appendChild(view.illustrationOfProject);
+  project.appendChild(view.titlOfProject);
+  (0, _renderNavProject.renderNavProject)(project);
 }
 
 var ChangeOfProjectView = function ChangeOfProjectView(project) {
@@ -436,8 +438,7 @@ function () {
           }
         } else {
           if (_this.screenPartTouch === 'bottom') {
-            console.log(_this.body.bottom, _this.screen.positionScreenBottom);
-
+            // console.log( this.body.bottom , this.screen.positionScreenBottom )
             if (_this.body.bottom <= _this.screen.positionScreenBottom) {
               return callback(true);
             } else {
@@ -481,6 +482,8 @@ var _changeOfProject = require("./changeOfProject");
 
 var _viewPort = require("./viewPort");
 
+var _project = require("./project");
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -500,6 +503,8 @@ function () {
     this.inversion = false;
     this.waitTime = false;
     this.bottomPage = false;
+    this.translateZ = 0;
+    this.onTransition = false;
   }
 
   _createClass(SrollPosition, [{
@@ -511,47 +516,93 @@ function () {
       this.inversionPosition();
       this.detectSwipe();
       document.addEventListener("mousewheel", function (event) {
-        if (!_this.checkBottomPage()) {
+        if (!_this.checkBottomPage() || _this.onTransition) {
           return;
         }
 
         if (_this.positionX < 0) {
-          _this.positionX = _this.positionX + event.deltaY;
+          _this.positionX = _this.positionX + event.deltaY / 2.5;
+          _this.translateZ = _this.translateZ + event.deltaY / 2.5 * 15;
 
           if (_this.positionX >= 0 && !_this.waitTime) {
             _this.positionX = 0;
-            (0, _changeOfProject.changeOfProject)();
+            _this.translateZ = 2024;
+            _this.onTransition = true;
             _this.waitTime = true;
             setTimeout(function () {
               _this.waitTime = false;
             }, 1500);
+
+            _this.transitionSetTimeout();
+
+            (0, _changeOfProject.changeOfProject)();
+            TweenLite.to(".project", 0, {
+              css: {
+                transform: "translate3d( 0px , 0px , ".concat(_this.translateZ, "px)")
+              }
+            });
+            _this.translateZ = 0;
+            console.log(_this.translateZ);
           }
 
           if (_this.positionX < -100) {
             _this.positionX = -100;
+            _this.translateZ = 0;
           }
 
           if (_this.positionX >= 0) {
             _this.positionX = 0;
+            _this.translateZ = 100;
           }
 
           _this.element.style.transform = "translateX( ".concat(_this.positionX, "vw)");
+
+          _this.projecTransform3d();
+
           _this.inversion = true;
         }
       });
     }
   }, {
-    key: "inversionPosition",
-    value: function inversionPosition() {
+    key: "transitionSetTimeout",
+    value: function transitionSetTimeout() {
       var _this2 = this;
 
+      setTimeout(function () {
+        _this2.onTransition = false;
+      }, 1500);
+    }
+  }, {
+    key: "projecTransform3d",
+    value: function projecTransform3d() {
+      TweenLite.to(".project", 3, {
+        css: {
+          transform: "translate3d( 0px , 0px , -".concat(this.translateZ, "px)")
+        },
+        ease: Power2.easeOut
+      });
+    }
+  }, {
+    key: "inversionPosition",
+    value: function inversionPosition() {
+      var _this3 = this;
+
       setInterval(function () {
-        if (_this2.inversion) {
-          if (_this2.positionX > -100) {
-            _this2.positionX = _this2.positionX - 0.3;
-            _this2.element.style.transform = "translateX( ".concat(_this2.positionX, "vw)");
+        if (_this3.inversion) {
+          if (_this3.positionX > -100 || !_this3.onTransition) {
+            if (_this3.positionX > -100) {
+              _this3.positionX = _this3.positionX - 0.3;
+            }
+
+            if (!_this3.onTransition) {
+              _this3.translateZ = _this3.translateZ - 0.3;
+
+              _this3.projecTransform3d();
+
+              _this3.element.style.transform = "translateX( ".concat(_this3.positionX, "vw)");
+            }
           } else {
-            _this2.inversion = false;
+            _this3.inversion = false;
           }
         }
       }, 10);
@@ -559,16 +610,16 @@ function () {
   }, {
     key: "detectSwipe",
     value: function detectSwipe() {
-      var _this3 = this;
+      var _this4 = this;
 
       document.addEventListener('touchstart', function (evnt) {
         var startClientY = evnt.changedTouches[0].clientY;
         document.addEventListener('touchmove', function (event) {
-          if (!_this3.checkBottomPage()) {
+          if (!_this4.checkBottomPage()) {
             return;
           }
 
-          _this3.inversion = false;
+          _this4.inversion = false;
           var touchDelta = event.changedTouches[0].clientY - startClientY;
 
           if (touchDelta < 0) {
@@ -579,21 +630,20 @@ function () {
             return;
           }
 
-          if (_this3.positionX < 0) {
-            _this3.positionX = _this3.positionX + 5;
+          if (_this4.positionX < 0) {
+            _this4.positionX = _this4.positionX + 5;
 
-            if (_this3.positionX > 0) {
-              _this3.positionX = 0;
-              (0, _changeOfProject.changeOfProject)();
+            if (_this4.positionX > 0) {
+              _this4.positionX = 0; // changeOfProject();
             }
 
-            if (_this3.positionX < -100) {
-              _this3.positionX = -100;
+            if (_this4.positionX < -100) {
+              _this4.positionX = -100;
             }
 
-            _this3.element.style.transform = "translateX( ".concat(_this3.positionX, "vw)");
+            _this4.element.style.transform = "translateX( ".concat(_this4.positionX, "vw)");
 
-            _this3.checkInversionPosition(_this3.positionX);
+            _this4.checkInversionPosition(_this4.positionX);
           }
         });
         document.addEventListener('touchstart', function (event) {
@@ -604,26 +654,26 @@ function () {
   }, {
     key: "checkInversionPosition",
     value: function checkInversionPosition(positionX) {
-      var _this4 = this;
+      var _this5 = this;
 
       var MemoPositionX = positionX;
       setTimeout(function () {
-        if (MemoPositionX, _this4.positionX || _this4.positionX === 0) {
-          _this4.inversion = true;
+        if (MemoPositionX, _this5.positionX || _this5.positionX === 0) {
+          _this5.inversion = true;
         }
       }, 1500);
     }
   }, {
     key: "checkBottomPage",
     value: function checkBottomPage() {
-      var _this5 = this;
+      var _this6 = this;
 
       var viewPort = new _viewPort.ViewPort(document.querySelector('main'), 'bottom', 'bottom', document.body.clientHeight * (40 / 100));
       viewPort.detectViewport(function (callback) {
         if (callback) {
-          _this5.bottomPage = true;
+          _this6.bottomPage = true;
         } else {
-          _this5.bottomPage = false;
+          _this6.bottomPage = false;
         }
       });
       return this.bottomPage;
@@ -635,7 +685,7 @@ function () {
 
 exports.SrollPosition = SrollPosition;
 ;
-},{"./changeOfProject":"app/changeOfProject.js","./viewPort":"app/viewPort.js"}],"app/animation.js":[function(require,module,exports) {
+},{"./changeOfProject":"app/changeOfProject.js","./viewPort":"app/viewPort.js","./project":"app/project.js"}],"app/animation.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

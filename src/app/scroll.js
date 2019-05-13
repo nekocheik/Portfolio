@@ -1,5 +1,6 @@
 import {  changeOfProject  } from './changeOfProject';
 import { ViewPort } from "./viewPort";
+import { projects } from './project';
 
 class SrollPosition  {
   
@@ -11,6 +12,8 @@ class SrollPosition  {
     this.inversion = false;
     this.waitTime = false ;
     this.bottomPage = false ;
+    this.translateZ = 0 ;
+    this.onTransition = false ; 
   };
   detectScroll(){
     this.element.style.transform = `translateX( ${this.positionX}vw)`;
@@ -18,40 +21,84 @@ class SrollPosition  {
     this.detectSwipe()
     
     document.addEventListener("mousewheel", (event)=>{
-      
-      if (!this.checkBottomPage()) {
+      if ( !this.checkBottomPage() || this.onTransition  ) {
         return
       }
       
       
       if( this.positionX < 0 ){
-        this.positionX = this.positionX + ( event.deltaY );
+        this.positionX = this.positionX + ( event.deltaY / 2.5 );
+        this.translateZ = this.translateZ + ( event.deltaY / 2.5) * 15;
         
         if (this.positionX >= 0 &&  !this.waitTime  ) {
           this.positionX = 0 ;
-          changeOfProject()
+          this.translateZ = 2024;
           
+          
+          this.onTransition = true ;
           this.waitTime = true
+          
+          
           setTimeout(()=>{
             this.waitTime = false ; 
           }, 1500)
+          this.transitionSetTimeout();
           
+          changeOfProject();
+          
+          
+          TweenLite.to(".project", 0, 
+          {css:{    
+            transform : `translate3d( 0px , 0px , ${ this.translateZ }px)`,
+          },});
+
+          this.translateZ = 0 ;
+          console.log(  this.translateZ )
+
         }if (this.positionX < -100 ) {
           this.positionX = -100
+          this.translateZ = 0;
         }if ( this.positionX >= 0 ) {
           this.positionX = 0 ;
+          this.translateZ = 100;
         }
-        this.element.style.transform = `translateX( ${this.positionX}vw)`
+        this.element.style.transform = `translateX( ${this.positionX}vw)`;
+        this.projecTransform3d();
         this.inversion = true;
       }
     })};
     
+    transitionSetTimeout(){
+      setTimeout(() => {
+        this.onTransition = false ;
+      }, 1500);
+    }
+    
+    projecTransform3d() {
+      TweenLite.to(".project", 3, 
+      {css:{    
+        transform : `translate3d( 0px , 0px , -${ this.translateZ }px)`,
+      },
+      ease:Power2.easeOut});  
+    }
+
+    
+    
     inversionPosition(){
       setInterval(() => {
         if (this.inversion) {
-          if (this.positionX > -100 ) {
-            this.positionX = this.positionX - 0.3;
-            this.element.style.transform = `translateX( ${this.positionX}vw)`
+          if (this.positionX > -100 || !this.onTransition ) {
+            
+            if (this.positionX > -100) {
+              this.positionX = this.positionX - 0.3;
+            }
+            
+            if (!this.onTransition) {
+              this.translateZ = this.translateZ - 0.3;
+              this.projecTransform3d();
+              this.element.style.transform = `translateX( ${this.positionX}vw)`
+            }
+            
           }else{
             this.inversion = false;
           }
@@ -65,11 +112,11 @@ class SrollPosition  {
       document.addEventListener('touchstart' , (evnt)=>{
         let startClientY = evnt.changedTouches[0].clientY ;
         document.addEventListener('touchmove' , (event)=>{
-
+          
           if (!this.checkBottomPage()) {
             return
           }
-
+          
           this.inversion = false;
           let touchDelta = event.changedTouches[0].clientY  - startClientY ;
           
@@ -84,7 +131,7 @@ class SrollPosition  {
             this.positionX = this.positionX + 5;
             if (this.positionX > 0 ) {
               this.positionX = 0 ;
-              changeOfProject();
+              // changeOfProject();
             }if ( this.positionX < -100 ) {
               this.positionX = -100
             }
@@ -107,7 +154,6 @@ class SrollPosition  {
         }
       }, 1500)
     }
-
     
     checkBottomPage(){
       let viewPort = new ViewPort( document.querySelector('main') , 'bottom' , 'bottom' , ( document.body.clientHeight * ( 40 / 100 ) ) ) ;
@@ -121,6 +167,7 @@ class SrollPosition  {
       return  this.bottomPage ;
     }
   };
+  
   
   
   

@@ -484,21 +484,11 @@ body {
 #home__page .projects .project {
   font-family: "Lemon/Milk";
   display: block;
-  transition: transform 0.5s 0.5s;
   transform: translate3d(0px, 0px, 0px);
   margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-#home__page .projects .project.back {
-  opacity: 0;
-  transition: transform 0.5s, opacity 0.7s;
-  transform: translate3d(0px, -550px, -7000px);
-}
-#home__page .projects .project.come {
-  transition: transform 0s;
-  transform: translate3d(0px, 0px, 2024px);
 }
 #home__page .projects .project .illustration__of__project {
   height: 256px;
@@ -620,6 +610,20 @@ body {
   animation: rotationCircle 15s infinite;
 }
 
+@keyframes retractation {
+  0% {
+    transform: scale(1, 1) rotate(0turn);
+  }
+  50% {
+    transform: scale(0.5, 0.5) rotate(0.5turn);
+  }
+  70% {
+    transform: scale(1, 1) rotate(1turn);
+  }
+  100% {
+    transform: scale(1, 1) rotate(1turn);
+  }
+}
 #page__project .circle {
   top: -100px;
   animation: rotation 4s infinite linear, circleGoCenter 10s forwards;
