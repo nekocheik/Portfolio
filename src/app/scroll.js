@@ -108,8 +108,9 @@ class SrollPosition  {
       }, 1500)
     }
 
+    
     checkBottomPage(){
-      let viewPort = new ViewPort( document.querySelector('main') , 'bottom' , 'bottom' ) ;
+      let viewPort = new ViewPort( document.querySelector('main') , 'bottom' , 'bottom' , ( document.body.clientHeight * ( 45 / 100 ) ) ) ;
       viewPort.detectViewport( (callback)=>{
         if( callback ){
           this.bottomPage = true ;

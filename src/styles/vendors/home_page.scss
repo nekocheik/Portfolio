@@ -10,7 +10,8 @@
   scrollbar-width: none;
   height:100%;
   .circle{
-    animation: circleGoCenter 10s;
+    animation: rotation 4s infinite linear , circleGoCenter 10s forwards;
+    top: 0px;
   }
   
   .name__and__profession{
@@ -49,7 +50,7 @@
     h2{
       font-family: 'Lemon/Milk' ;
       font-size: 62px;
-      letter-spacing: 13px;
+      letter-spacing: 7px;
       padding-left: 15%;
       padding-bottom: 0px;
       opacity: 0.5;
@@ -102,6 +103,9 @@
       //////////// Project for desktop /////////
       //////////////////////////////////////////
       @media screen and ( min-width : 800px) {
+        h2{
+          letter-spacing: 13px;
+        }
         .illustration__of__project{
           height: 256px;;
           img{

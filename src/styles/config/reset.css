@@ -1,3 +1,10 @@
+html{
+	scroll-behavior: smooth;
+}
+
+a:any-link {
+	text-decoration: none ;
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -17,4 +24,63 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	text-decoration: none;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+button:hover,
+button:focus {
+	background: #0053ba;
+}
+
+button:focus {
+	outline: none;
+	outline-offset: -4px;
+	text-decoration: none;
+}
+
+button:active {
+	text-decoration: none;
+	
+}
+
+a{
+	display: block;
+	color: white;
+}
+a:-webkit-any-link {
+	text-decoration: none;
+}
+a:visited{
+	text-decoration: none;
+}
+a:active{
+	
+}
+a:link {
+	color: #E17A04; 
+	text-decoration: none;
 }

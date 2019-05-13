@@ -1,7 +1,9 @@
 #page__project{
   .circle {
     top: -100px;
-    animation : circleGoCenter 0s;
+    animation: rotation 4s infinite linear , circleGoCenter 10s forwards;
+    position: sticky;
+    // margin-bottom: -20vh;
   }
   .project{
     .title__of__project{
@@ -117,10 +119,7 @@
     }
   }
 }  
-.circle {
-  margin-bottom: -20vh;
 
-}
 
 @keyframes write {
   to{

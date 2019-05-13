@@ -59,7 +59,7 @@ import { projects  } from './project';
 var Theproject = function ( numberProject ){
   let main =  document.querySelector('main') ;
   let name = document.querySelector('.name__and__profession')
-  
+
   name.innerHTML = '';
   
   TweenLite.to(".circlesWhite", 5, 
@@ -107,14 +107,12 @@ var Theproject = function ( numberProject ){
   
   
   
-  
-  
-  
 if ( window.innerWidth < 800  ) {
     TweenLite.to(".circle", 3, 
     {css:{    
       top: "-100px",
       animation : "circleGoCenter 0s" ,
+      position: 'sticky',
     }, 
     ease:Power2.easeOut});
   }else{
@@ -128,12 +126,12 @@ if ( window.innerWidth < 800  ) {
     ease:Power2.easeOut});
 }
   
-  
   setTimeout(() => {
     document.querySelector('body').id = "page__project";
     main.innerHTML = '';
   }, 3000);
   setTimeout(() => {
+    
     var view = viewPoject( numberProject );
     main.append(view.project)
   }, 3500 );

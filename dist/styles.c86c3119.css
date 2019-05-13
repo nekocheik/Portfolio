@@ -56,7 +56,7 @@ body {
 body nav {
   position: fixed;
   bottom: 10px;
-  right: 10px;
+  right: 2vw;
   z-index: 3;
   transition-duration: 400ms;
   display: flex;
@@ -97,13 +97,48 @@ body nav p.active {
   color: white;
   border: 1px solid white;
   margin: 5px;
-  width: 93vw;
+  width: 92vw;
   text-align: center;
   padding: 5px;
 }
+@media screen and (min-width: 800px) {
+  body nav {
+    bottom: initial;
+    top: 28px;
+    flex-direction: row;
+    right: 5vw;
+    justify-content: space-between;
+    width: 357px;
+  }
+  body nav p {
+    font-size: 18px;
+    font-family: Avenir;
+    color: white;
+    border: none;
+    background-color: initial;
+    width: initial;
+    padding: initial;
+  }
+  body nav p.active {
+    font-size: 18px;
+    border: none;
+    margin: initial;
+    width: initial;
+    text-align: initial;
+    padding: initial;
+  }
+  body nav .croi {
+    display: none;
+  }
+  body nav .croi.active {
+    display: none;
+  }
+  body nav.move {
+    opacity: initial;
+  }
+}
 body .circle {
   position: sticky;
-  top: 140px;
   z-index: -1;
   margin: -190px auto auto auto;
   width: 200px;
@@ -175,6 +210,26 @@ body {
     transform: rotate(1turn);
   }
 }
+button {
+  font-family: "Avenir LT Std";
+  color: black;
+  font-size: 16px;
+  border: none;
+  padding: 15px 35px 15px 35px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  display: flex;
+}
+button::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 0;
+  top: 0;
+  left: 0;
+  background: black;
+}
+
 @keyframes blinkArmani {
   from {
     color: black;
@@ -364,7 +419,8 @@ body {
   background-color: black;
 }
 #home__page .circle {
-  animation: circleGoCenter 10s;
+  animation: rotation 4s infinite linear, circleGoCenter 10s forwards;
+  top: 0px;
 }
 #home__page .name__and__profession {
   color: white;
@@ -403,7 +459,7 @@ body {
 #home__page .projects h2 {
   font-family: "Lemon/Milk";
   font-size: 62px;
-  letter-spacing: 13px;
+  letter-spacing: 7px;
   padding-left: 15%;
   padding-bottom: 0px;
   opacity: 0.5;
@@ -454,6 +510,9 @@ body {
   display: block;
 }
 @media screen and (min-width: 800px) {
+  #home__page .projects .project h2 {
+    letter-spacing: 13px;
+  }
   #home__page .projects .project .illustration__of__project {
     height: 256px;
   }
@@ -563,7 +622,8 @@ body {
 
 #page__project .circle {
   top: -100px;
-  animation: circleGoCenter 0s;
+  animation: rotation 4s infinite linear, circleGoCenter 10s forwards;
+  position: sticky;
 }
 #page__project .project .title__of__project {
   display: block;
@@ -678,13 +738,82 @@ body {
   animation: write 3s forwards;
 }
 
-.circle {
-  margin-bottom: -20vh;
-}
-
 @keyframes write {
   to {
     stroke-dashoffset: 0;
+  }
+}
+#about main {
+  display: flex;
+}
+#about .part__about {
+  margin-top: 20%;
+  margin-left: 10%;
+}
+#about h1 {
+  font-family: "Lemon/Milk";
+  font-size: 42px;
+}
+#about h2 {
+  font-family: "Avenir LT Std";
+  margin-top: 5vh;
+  font-size: 32px;
+  font-weight: 900;
+}
+#about .about__text {
+  max-width: 564px;
+  margin-top: 5vh;
+  font-family: "Avenir LT Std";
+  font-size: 18px;
+  line-height: 45px;
+}
+#about .link {
+  margin-top: 20px;
+  width: 188px;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Lemon/Milk";
+  font-size: 34px;
+  align-items: center;
+  margin: auto;
+}
+#about .portrait {
+  display: none;
+}
+#about button {
+  margin: 30px auto auto auto;
+  display: block;
+}
+@media screen and (min-width: 800px) {
+  #about .part__about {
+    margin-top: 10%;
+    margin-left: 10%;
+  }
+  #about h1 {
+    font-size: 94px;
+    letter-spacing: 20px;
+  }
+  #about .portrait {
+    display: inline;
+    position: relative;
+    bottom: -50vh;
+    left: 10%;
+    margin-left: -300px;
+    margin-top: -400px;
+  }
+  #about .circlesWhite {
+    margin-left: initial;
+    margin-right: initial;
+    left: 30%;
+    bottom: -100px;
+    top: -200px;
+  }
+  #about .circle {
+    right: 4%;
+    width: 450px;
+    height: 450px;
+    top: 40%;
+    position: absolute;
   }
 }
 

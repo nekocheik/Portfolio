@@ -1,11 +1,11 @@
 class ViewPort {
-  constructor( element , elementPartTouch = 'top' , bodyPartTouch  = 'bottom' ){
+  constructor( element , elementPartTouch = 'top' , bodyPartTouch  = 'bottom' , add = 0 ){
     this.element = element ;
     this.body = {
-      bottom: element.getBoundingClientRect().bottom,
-      left: element.getBoundingClientRect().left ,
-      right: element.getBoundingClientRect().right ,
-      top: element.getBoundingClientRect().top ,
+      bottom: element.getBoundingClientRect().bottom + add,
+      left: element.getBoundingClientRect().left + add,
+      right: element.getBoundingClientRect().right + add,
+      top: element.getBoundingClientRect().top + add ,
     }
 
     
@@ -42,7 +42,7 @@ class ViewPort {
         }
       }else{
         if ( this.screenPartTouch  === 'bottom') {
-          // console.log( this.body.bottom , this.screen.positionScreenBottom )
+          console.log( this.body.bottom , this.screen.positionScreenBottom )
           if ( this.body.bottom <= this.screen.positionScreenBottom ) {
             return callback(true)
           }else{

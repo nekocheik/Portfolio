@@ -391,15 +391,16 @@ function () {
   function ViewPort(element) {
     var elementPartTouch = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'top';
     var bodyPartTouch = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'bottom';
+    var add = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
 
     _classCallCheck(this, ViewPort);
 
     this.element = element;
     this.body = {
-      bottom: element.getBoundingClientRect().bottom,
-      left: element.getBoundingClientRect().left,
-      right: element.getBoundingClientRect().right,
-      top: element.getBoundingClientRect().top
+      bottom: element.getBoundingClientRect().bottom + add,
+      left: element.getBoundingClientRect().left + add,
+      right: element.getBoundingClientRect().right + add,
+      top: element.getBoundingClientRect().top + add
     };
     this.screen = {
       positionScreenBottom: null,
@@ -435,7 +436,8 @@ function () {
           }
         } else {
           if (_this.screenPartTouch === 'bottom') {
-            // console.log( this.body.bottom , this.screen.positionScreenBottom )
+            console.log(_this.body.bottom, _this.screen.positionScreenBottom);
+
             if (_this.body.bottom <= _this.screen.positionScreenBottom) {
               return callback(true);
             } else {
@@ -616,7 +618,7 @@ function () {
     value: function checkBottomPage() {
       var _this5 = this;
 
-      var viewPort = new _viewPort.ViewPort(document.querySelector('main'), 'bottom', 'bottom');
+      var viewPort = new _viewPort.ViewPort(document.querySelector('main'), 'bottom', 'bottom', document.body.clientHeight * (45 / 100));
       viewPort.detectViewport(function (callback) {
         if (callback) {
           _this5.bottomPage = true;
@@ -780,7 +782,8 @@ var Theproject = function Theproject(numberProject) {
     TweenLite.to(".circle", 3, {
       css: {
         top: "-100px",
-        animation: "circleGoCenter 0s"
+        animation: "circleGoCenter 0s",
+        position: 'sticky'
       },
       ease: Power2.easeOut
     });
@@ -872,7 +875,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56245" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62820" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
