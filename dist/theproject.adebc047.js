@@ -618,7 +618,7 @@ function () {
     value: function checkBottomPage() {
       var _this5 = this;
 
-      var viewPort = new _viewPort.ViewPort(document.querySelector('main'), 'bottom', 'bottom', document.body.clientHeight * (45 / 100));
+      var viewPort = new _viewPort.ViewPort(document.querySelector('main'), 'bottom', 'bottom', document.body.clientHeight * (40 / 100));
       viewPort.detectViewport(function (callback) {
         if (callback) {
           _this5.bottomPage = true;
