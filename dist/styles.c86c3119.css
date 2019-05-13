@@ -157,8 +157,8 @@ body .circle {
 }
 body .logo {
   position: fixed;
-  top: 10px;
-  left: -20px;
+  top: 15px;
+  left: 0px;
 }
 body .logo img {
   height: 65px;
@@ -814,6 +814,10 @@ body {
     height: 450px;
     top: 40%;
     position: absolute;
+  }
+  #about .contact {
+    margin-top: 10vh;
+    max-width: 564px;
   }
 }
 
