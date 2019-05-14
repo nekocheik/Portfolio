@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "coffee-script": "^1.12.7",
+    "postcss-pxtorem": "^4.0.1",
     "sass": "^1.19.0"
   }
 }

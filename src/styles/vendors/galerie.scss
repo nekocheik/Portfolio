@@ -1,0 +1,22 @@
+#galerie{
+  h1{
+    font-family: 'Lemon/Milk';
+    font-size: 42px;
+    margin-top: 20%;
+    margin-left: 5%;
+  }
+  .galerie__images{
+    display: flex;
+    flex-direction: column;
+  }
+  .images{
+    img{
+      width: 90vw;
+      height: 80vh;
+      background-color: white;
+      display: block;
+      margin: auto;
+      border: solid red 1px;
+    }
+  }
+}

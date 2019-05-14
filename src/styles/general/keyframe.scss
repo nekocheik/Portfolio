@@ -70,3 +70,17 @@
     transform: translateX(0vw)
   }
 }
+
+
+
+@keyframes write {
+  to{
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes rotationCircle {
+  100% {
+    transform: rotate( 1turn );
+  }
+}

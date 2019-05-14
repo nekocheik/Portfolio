@@ -267,20 +267,176 @@ var menuBurge = function menuBurge() {
 };
 
 exports.menuBurge = menuBurge;
-},{}],"app/appAbout.js":[function(require,module,exports) {
+},{}],"app/viewPort.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ViewPort = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var ViewPort =
+/*#__PURE__*/
+function () {
+  function ViewPort(element) {
+    var elementPartTouch = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'top';
+    var bodyPartTouch = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'bottom';
+    var add = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+
+    _classCallCheck(this, ViewPort);
+
+    this.element = element;
+    this.body = {
+      bottom: element.getBoundingClientRect().bottom + add,
+      left: element.getBoundingClientRect().left + add,
+      right: element.getBoundingClientRect().right + add,
+      top: element.getBoundingClientRect().top + add
+    };
+    this.screen = {
+      positionScreenBottom: null,
+      positionScreenTop: null
+    };
+    this.elementPartTouch = elementPartTouch;
+    this.screenPartTouch = bodyPartTouch;
+    this.topNegatif();
+  }
+
+  _createClass(ViewPort, [{
+    key: "detectViewport",
+    value: function detectViewport(callback) {
+      var _this = this;
+
+      window.addEventListener('scroll', function (event) {
+        _this.screen.positionScreenBottom = window.pageYOffset + window.innerHeight;
+        _this.screen.positionScreenTop = window.pageYOffset; // console.log( this.body.top , this.screen.positionScreenTop  )
+
+        if (_this.elementPartTouch === 'top') {
+          if (_this.screenPartTouch === 'bottom') {
+            if (_this.body.top <= _this.screen.positionScreenBottom) {
+              return callback(true);
+            } else {
+              return callback(false);
+            }
+          } else {
+            if (_this.body.top <= 0) {
+              return callback(true);
+            } else {
+              return callback(false);
+            }
+          }
+        } else {
+          if (_this.screenPartTouch === 'bottom') {
+            // console.log( this.body.bottom , this.screen.positionScreenBottom )
+            if (_this.body.bottom <= _this.screen.positionScreenBottom) {
+              return callback(true);
+            } else {
+              return callback(false);
+            }
+          } else {
+            if (_this.body.bottom <= _this.screen.positionScreenTop) {
+              return callback(true);
+            } else {
+              return callback(false);
+            }
+          }
+        }
+      });
+    }
+  }, {
+    key: "topNegatif",
+    value: function topNegatif() {
+      if (this.body.top < 0) {// this.body.top =  String(this.body.top) ;
+        // this.body.top = this.body.top.substr(1);
+        // this.body.top = Number( this.body.top )
+        // this.body.bottom = this.body.bottom + this.body.top  ;
+      }
+    }
+  }]);
+
+  return ViewPort;
+}();
+
+exports.ViewPort = ViewPort;
+},{}],"../node_modules/parcel/src/builtins/_empty.js":[function(require,module,exports) {
+
+},{}],"app/infinitScroll.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.InfinitScroll = void 0;
+
+var _viewPort = require("./viewPort");
+
+var _cluster = require("cluster");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var InfinitScroll =
+/*#__PURE__*/
+function () {
+  function InfinitScroll() {
+    _classCallCheck(this, InfinitScroll);
+
+    this.detecteLimitScroll();
+  }
+
+  _createClass(InfinitScroll, [{
+    key: "detecteLimitScroll",
+    value: function detecteLimitScroll() {
+      window.addEventListener('scroll', function () {
+        var allImage = document.querySelectorAll('.galerie__images .images');
+        var container = document.querySelector('.galerie__images');
+        var images = allImage[0];
+        var imagesMemo = allImage[1];
+        var main = document.querySelector('main');
+        var veiwport = new _viewPort.ViewPort(imagesMemo, 'top', 'top');
+        veiwport.detectViewport(function (callback) {
+          if (callback) {
+            // let image = images ;
+            // images.remove();
+            container.appendChild(images);
+          }
+        });
+      });
+    }
+  }]);
+
+  return InfinitScroll;
+}();
+
+exports.InfinitScroll = InfinitScroll;
+},{"./viewPort":"app/viewPort.js","cluster":"../node_modules/parcel/src/builtins/_empty.js"}],"app/appAbout.js":[function(require,module,exports) {
 "use strict";
 
 var _cursor = require("./cursor");
 
 var _MenuBurger = require("./MenuBurger");
 
+var _infinitScroll = require("./infinitScroll");
+
+var _viewPort = require("./viewPort");
+
 (0, _MenuBurger.menuBurge)();
+var infinitScroll = new _infinitScroll.InfinitScroll();
+infinitScroll.detecteLimitScroll();
 
 if (window.innerWidth > 800) {
   console.log(window.innerWidth);
   (0, _cursor.cursor)();
 }
-},{"./cursor":"app/cursor.js","./MenuBurger":"app/MenuBurger.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./cursor":"app/cursor.js","./MenuBurger":"app/MenuBurger.js","./infinitScroll":"app/infinitScroll.js","./viewPort":"app/viewPort.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -308,7 +464,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62820" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62656" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

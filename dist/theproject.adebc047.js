@@ -420,7 +420,7 @@ function () {
 
       window.addEventListener('scroll', function (event) {
         _this.screen.positionScreenBottom = window.pageYOffset + window.innerHeight;
-        _this.screen.positionScreenTop = window.pageYOffset;
+        _this.screen.positionScreenTop = window.pageYOffset; // console.log( this.body.top , this.screen.positionScreenTop  )
 
         if (_this.elementPartTouch === 'top') {
           if (_this.screenPartTouch === 'bottom') {
@@ -430,7 +430,7 @@ function () {
               return callback(false);
             }
           } else {
-            if (_this.body.top >= _this.screen.positionScreenTop) {
+            if (_this.body.top <= 0) {
               return callback(true);
             } else {
               return callback(false);
@@ -457,11 +457,10 @@ function () {
   }, {
     key: "topNegatif",
     value: function topNegatif() {
-      if (this.body.top < 0) {
-        this.body.top = String(this.body.top);
-        this.body.top = this.body.top.substr(1);
-        this.body.top = Number(this.body.top);
-        this.body.bottom = this.body.bottom + this.body.top;
+      if (this.body.top < 0) {// this.body.top =  String(this.body.top) ;
+        // this.body.top = this.body.top.substr(1);
+        // this.body.top = Number( this.body.top )
+        // this.body.bottom = this.body.bottom + this.body.top  ;
       }
     }
   }]);
@@ -928,7 +927,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62820" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62656" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

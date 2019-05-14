@@ -52,10 +52,20 @@ body {
   font-family: Avenir;
   overscroll-behavior: none;
   scroll-behavior: smooth;
+  cursor: none;
+}
+body .cursor {
+  display: none;
+}
+@media screen and (min-width: 800px) {
+  body .cursor {
+    display: initial;
+  }
 }
 body nav {
   position: fixed;
   bottom: 10px;
+  bottom: 0.625rem;
   right: 2vw;
   z-index: 3;
   transition-duration: 400ms;
@@ -67,9 +77,11 @@ body nav.move {
 }
 body nav .croi {
   height: 30px;
+  height: 1.875rem;
   display: block;
   margin: auto;
   transform: translateY(50px);
+  transform: translateY(3.125rem);
   z-index: -2;
   fill: black;
   opacity: 0;
@@ -83,11 +95,16 @@ body nav p {
   transition: font-size 0.3s, width 0.7s 0.4s;
   z-index: 2;
   font-size: 1px;
+  font-size: 0.0625rem;
   color: black;
   border: 1px solid white;
+  border: 0.0625rem solid white;
   margin: 2px;
+  margin: 0.125rem;
   padding-left: 45px;
+  padding-left: 2.8125rem;
   padding-top: 6px;
+  padding-top: 0.375rem;
   background-color: rgba(0, 0, 0, 0.589);
   width: 0vw;
 }
@@ -96,22 +113,28 @@ body nav p.active {
   font-size: initial;
   color: white;
   border: 1px solid white;
+  border: 0.0625rem solid white;
   margin: 5px;
+  margin: 0.3125rem;
   width: 92vw;
   text-align: center;
   padding: 5px;
+  padding: 0.3125rem;
 }
 @media screen and (min-width: 800px) {
   body nav {
     bottom: initial;
     top: 28px;
+    top: 1.75rem;
     flex-direction: row;
     right: 5vw;
     justify-content: space-between;
     width: 357px;
+    width: 22.3125rem;
   }
   body nav p {
     font-size: 18px;
+    font-size: 1.125rem;
     font-family: Avenir;
     color: white;
     border: none;
@@ -121,6 +144,7 @@ body nav p.active {
   }
   body nav p.active {
     font-size: 18px;
+    font-size: 1.125rem;
     border: none;
     margin: initial;
     width: initial;
@@ -141,10 +165,14 @@ body .circle {
   position: sticky;
   z-index: -1;
   margin: -190px auto auto auto;
+  margin: -11.875rem auto auto auto;
   width: 200px;
+  width: 12.5rem;
   height: 200px;
+  height: 12.5rem;
   border-radius: 50%;
   box-shadow: inset 0 0 50px #fff, inset 20px 0 80px #f0f, inset -20px 0 80px #0ff, inset 20px 0 300px #f0f, inset -20px 0 300px #0ff, 0 0 50px #fff, -10px 0 80px #f0f, 10px 0 80px #0ff;
+  box-shadow: inset 0 0 3.125rem #fff, inset 1.25rem 0 5rem #f0f, inset -1.25rem 0 5rem #0ff, inset 1.25rem 0 18.75rem #f0f, inset -1.25rem 0 18.75rem #0ff, 0 0 3.125rem #fff, -0.625rem 0 5rem #f0f, 0.625rem 0 5rem #0ff;
   -webkit-animation: rotation 4s infinite linear;
 }
 @-webkit-keyframes rotation {
@@ -158,10 +186,13 @@ body .circle {
 body .logo {
   position: fixed;
   top: 15px;
+  top: 0.9375rem;
   left: 0px;
+  left: 0;
 }
 body .logo img {
   height: 65px;
+  height: 4.0625rem;
 }
 body .circlesWhite {
   position: fixed;
@@ -190,34 +221,25 @@ body .circlesWhite {
 .cursor.cursor__one {
   transition: left 60ms, top 60ms;
   height: 15px;
+  height: 0.9375rem;
 }
 .cursor.cursor__two {
   transition: left 50ms, top 50ms, transform 100ms;
   height: 25px;
+  height: 1.5625rem;
 }
 
-body {
-  cursor: none;
-}
-
-@keyframes write {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-@keyframes rotationCircle {
-  100% {
-    transform: rotate(1turn);
-  }
-}
 button {
   font-family: "Avenir LT Std";
   color: black;
   font-size: 16px;
+  font-size: 1rem;
   border: none;
   padding: 15px 35px 15px 35px;
+  padding: 0.9375rem 2.1875rem 0.9375rem 2.1875rem;
   font-weight: 600;
   letter-spacing: 2px;
+  letter-spacing: 0.125rem;
   display: flex;
 }
 button::after {
@@ -234,11 +256,13 @@ button::after {
   from {
     color: black;
     -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-width: 0.0625rem;
     -webkit-text-stroke-color: #0757AA;
   }
   to {
     color: #0757AA;
     -webkit-text-stroke-width: 0px;
+    -webkit-text-stroke-width: 0;
     -webkit-text-stroke-color: black;
   }
 }
@@ -246,11 +270,13 @@ button::after {
   from {
     color: black;
     -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-width: 0.0625rem;
     -webkit-text-stroke-color: #F4CB65;
   }
   to {
     color: #F4CB65;
     -webkit-text-stroke-width: 0px;
+    -webkit-text-stroke-width: 0;
     -webkit-text-stroke-color: black;
   }
 }
@@ -258,20 +284,24 @@ button::after {
   from {
     color: black;
     -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-width: 0.0625rem;
     -webkit-text-stroke-color: white;
   }
   to {
     color: white;
     -webkit-text-stroke-width: 0px;
+    -webkit-text-stroke-width: 0;
     -webkit-text-stroke-color: black;
   }
 }
 @keyframes circleGoCenter {
   from {
     top: -150px;
+    top: -9.375rem;
   }
   to {
     top: 200px;
+    top: 12.5rem;
   }
 }
 @keyframes enterLeft {
@@ -292,6 +322,16 @@ button::after {
   to {
     opacity: 1;
     transform: translateX(0vw);
+  }
+}
+@keyframes write {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes rotationCircle {
+  100% {
+    transform: rotate(1turn);
   }
 }
 body {
@@ -421,14 +461,18 @@ body {
 #home__page .circle {
   animation: rotation 4s infinite linear, circleGoCenter 10s forwards;
   top: 0px;
+  top: 0;
 }
 #home__page .name__and__profession {
   color: white;
   font-size: 40px;
+  font-size: 2.5rem;
   width: 70%;
   height: 200px;
+  height: 12.5rem;
   margin: auto;
   padding-top: 100px;
+  padding-top: 6.25rem;
   padding-bottom: 50vh;
   display: flex;
   flex-direction: column;
@@ -444,6 +488,7 @@ body {
 @media screen and (min-width: 800px) {
   #home__page .name__and__profession {
     letter-spacing: 5px;
+    letter-spacing: 0.3125rem;
     margin-top: 15%;
   }
 }
@@ -455,13 +500,17 @@ body {
   width: 100vw;
   overflow: hidden;
   margin-top: 50px;
+  margin-top: 3.125rem;
 }
 #home__page .projects h2 {
   font-family: "Lemon/Milk";
   font-size: 62px;
+  font-size: 3.875rem;
   letter-spacing: 7px;
+  letter-spacing: 0.4375rem;
   padding-left: 15%;
   padding-bottom: 0px;
+  padding-bottom: 0;
   opacity: 0.5;
   transform: translateX(150vw);
   transition: transform 3s, opacity 3s;
@@ -469,47 +518,59 @@ body {
 #home__page .projects h2.transtision {
   opacity: 1;
   transform: translateX(0px);
+  transform: translateX(0);
 }
 @media screen and (min-width: 800px) {
   #home__page .projects h2 {
     font-size: 94px;
+    font-size: 5.875rem;
     letter-spacing: 5px;
+    letter-spacing: 0.3125rem;
   }
 }
 #home__page .projects .container__of__project {
   height: 60%;
   width: 100vw;
   perspective: 2000px;
+  perspective: 125rem;
 }
 #home__page .projects .project {
   font-family: "Lemon/Milk";
   display: block;
   transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0, 0, 0);
   margin-top: 40px;
+  margin-top: 2.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 #home__page .projects .project .illustration__of__project {
   height: 256px;
+  height: 16rem;
 }
 #home__page .projects .project .illustration__of__project img {
   padding-top: 30px;
+  padding-top: 1.875rem;
   width: 206px;
+  width: 12.875rem;
   margin: auto;
   display: block;
 }
 @media screen and (min-width: 800px) {
   #home__page .projects .project h2 {
     letter-spacing: 13px;
+    letter-spacing: 0.8125rem;
   }
   #home__page .projects .project .illustration__of__project {
     height: 256px;
+    height: 16rem;
   }
   #home__page .projects .project .illustration__of__project img {
     padding-top: initial;
     width: 45vh;
     max-height: 258px;
+    max-height: 16.125rem;
     margin: auto;
     display: block;
   }
@@ -521,6 +582,7 @@ body {
 }
 #home__page .title__of__project h3 {
   font-size: 38px;
+  font-size: 2.375rem;
 }
 #home__page .title__of__project h3.armani {
   color: #0757AA;
@@ -535,7 +597,9 @@ body {
 }
 #home__page .title__of__project .type__of__projet {
   font-size: 19px;
+  font-size: 1.1875rem;
   letter-spacing: 4px;
+  letter-spacing: 0.25rem;
 }
 @media screen and (min-width: 800px) {
   #home__page .title__of__project {
@@ -543,6 +607,7 @@ body {
   }
   #home__page .title__of__project h3 {
     font-size: 90px;
+    font-size: 5.625rem;
   }
   #home__page .title__of__project h3.armani {
     color: #0757AA;
@@ -557,7 +622,9 @@ body {
   }
   #home__page .title__of__project .type__of__projet {
     font-size: 19px;
+    font-size: 1.1875rem;
     letter-spacing: 4px;
+    letter-spacing: 0.25rem;
   }
 }
 #home__page .nav__project {
@@ -566,6 +633,7 @@ body {
   margin: auto;
   width: max-content;
   font-size: 40px;
+  font-size: 2.5rem;
 }
 #home__page .nav__project section {
   position: relative;
@@ -579,13 +647,16 @@ body {
   z-index: -2;
   transition-duration: 400ms;
   width: 30px;
+  width: 1.875rem;
 }
 #home__page .nav__project section p.trasition__back {
   transform: translateX(30px);
+  transform: translateX(1.875rem);
 }
 #home__page .nav__project section p.trasition__come {
   transition-duration: 0ms;
   transform: translateX(-30px);
+  transform: translateX(-1.875rem);
 }
 #home__page .nav__project section span {
   background-color: black;
@@ -594,16 +665,20 @@ body {
 @media screen and (min-width: 800px) {
   #home__page .nav__project {
     height: 133px;
+    height: 8.3125rem;
     margin-top: 79px;
+    margin-top: 4.9375rem;
   }
 }
 #home__page .sroll__barre {
   width: 100vw;
   background-color: white;
   height: 10px;
+  height: 0.625rem;
   position: fixed;
   transition-duration: 100ms;
   bottom: 0px;
+  bottom: 0;
 }
 #home__page .circlesWhite {
   stroke-dasharray: 100;
@@ -626,6 +701,7 @@ body {
 }
 #page__project .circle {
   top: -100px;
+  top: -6.25rem;
   animation: rotation 4s infinite linear, circleGoCenter 10s forwards;
   position: sticky;
 }
@@ -637,12 +713,15 @@ body {
 }
 #page__project .project .title__of__project h1 {
   font-size: 38px;
+  font-size: 2.375rem;
   font-family: "Lemon/Milk";
   animation: 3.5s blinkArmani infinite alternate 2s;
 }
 #page__project .project .title__of__project h2 {
   font-size: 20px;
+  font-size: 1.25rem;
   padding-bottom: 25px;
+  padding-bottom: 1.5625rem;
   font-family: "Avenir LT Std";
 }
 #page__project .project .title__of__project .description {
@@ -650,10 +729,12 @@ body {
   padding-top: 20%;
   animation: enterRight 1.5s;
   max-width: 499px;
+  max-width: 31.1875rem;
   flex-wrap: wrap;
 }
 #page__project .project .title__of__project .description p {
   font-size: 20px;
+  font-size: 1.25rem;
 }
 #page__project .project .title__of__project .description .button {
   display: flex;
@@ -662,8 +743,11 @@ body {
 }
 #page__project .project .title__of__project .description .button p {
   border: solid white 1px;
+  border: solid white 0.0625rem;
   padding: 5px;
+  padding: 0.3125rem;
   margin-top: 50px;
+  margin-top: 3.125rem;
   display: inline-block;
 }
 #page__project .project .title__of__project .description .description__skills ul {
@@ -671,10 +755,12 @@ body {
   justify-content: space-between;
   width: 90%;
   max-width: 499px;
+  max-width: 31.1875rem;
 }
 #page__project .project .title__of__project .description .description__skills ul li {
   font-weight: 900;
   margin: 40px 0px 0px 0px;
+  margin: 2.5rem 0 0 0;
 }
 #page__project .project .title__of__project .image {
   padding-top: 20%;
@@ -682,6 +768,7 @@ body {
 #page__project .project .title__of__project .image img {
   width: 80vw;
   max-width: 458px;
+  max-width: 28.625rem;
 }
 @media screen and (min-width: 800px) {
   #page__project .project .title__of__project {
@@ -691,14 +778,17 @@ body {
   }
   #page__project .project .title__of__project h1 {
     font-size: 90px;
+    font-size: 5.625rem;
     font-family: "Avenir LT Std";
     font-weight: 900;
     animation: 3.5s blinkArmani infinite alternate 2s;
   }
   #page__project .project .title__of__project h2 {
     font-size: 20px;
+    font-size: 1.25rem;
     font-family: "Avenir LT Std";
     padding-bottom: 20px;
+    padding-bottom: 1.25rem;
   }
   #page__project .project .title__of__project strong {
     font-weight: 900;
@@ -711,9 +801,11 @@ body {
   }
   #page__project .project .title__of__project .description .description__text {
     max-width: 504px;
+    max-width: 31.5rem;
   }
   #page__project .project .title__of__project .description p {
     font-size: 20px;
+    font-size: 1.25rem;
   }
   #page__project .project .title__of__project .description .image {
     padding-top: 0%;
@@ -725,20 +817,27 @@ body {
 }
 #page__project .circlesWhite #Ellipse_14 circle {
   stroke-dasharray: 10px;
+  stroke-dasharray: 0.625rem;
 }
 #page__project .circlesWhite #Ellipse_13 {
   stroke-dasharray: 3259px;
+  stroke-dasharray: 203.6875rem;
   stroke-dashoffset: 3259px;
+  stroke-dashoffset: 203.6875rem;
   animation: write 3s forwards;
 }
 #page__project .circlesWhite #Ellipse_12 {
   stroke-dasharray: 1991px;
+  stroke-dasharray: 124.4375rem;
   stroke-dashoffset: 1991px;
+  stroke-dashoffset: 124.4375rem;
   animation: write 3s forwards;
 }
 #page__project .circlesWhite #Ellipse_11 {
   stroke-dasharray: 1301px;
+  stroke-dasharray: 81.3125rem;
   stroke-dashoffset: 1301px;
+  stroke-dashoffset: 81.3125rem;
   animation: write 3s forwards;
 }
 
@@ -759,27 +858,35 @@ body {
 #about h1 {
   font-family: "Lemon/Milk";
   font-size: 42px;
+  font-size: 2.625rem;
 }
 #about h2 {
   font-family: "Avenir LT Std";
   margin-top: 5vh;
   font-size: 32px;
+  font-size: 2rem;
   font-weight: 900;
 }
 #about .about__text {
   max-width: 564px;
+  max-width: 35.25rem;
   margin-top: 5vh;
   font-family: "Avenir LT Std";
   font-size: 18px;
+  font-size: 1.125rem;
   line-height: 45px;
+  line-height: 2.8125rem;
 }
 #about .link {
   margin-top: 20px;
+  margin-top: 1.25rem;
   width: 188px;
+  width: 11.75rem;
   display: flex;
   justify-content: space-between;
   font-family: "Lemon/Milk";
   font-size: 34px;
+  font-size: 2.125rem;
   align-items: center;
   margin: auto;
 }
@@ -788,6 +895,7 @@ body {
 }
 #about button {
   margin: 30px auto auto auto;
+  margin: 1.875rem auto auto auto;
   display: block;
 }
 @media screen and (min-width: 800px) {
@@ -797,37 +905,55 @@ body {
   }
   #about h1 {
     font-size: 94px;
+    font-size: 5.875rem;
     letter-spacing: 20px;
+    letter-spacing: 1.25rem;
   }
   #about .portrait {
     display: inline;
     position: relative;
-    bottom: -50vh;
+    bottom: -30vh;
     left: 10%;
     margin-left: -300px;
+    margin-left: -18.75rem;
     margin-top: -400px;
-  }
-  #about .circlesWhite {
-    transform: scale(1, 1);
-    margin-left: initial;
-    margin-right: initial;
-    height: initial;
-    width: initial;
-    top: 0px;
-    left: 10%;
-    z-index: -1;
+    margin-top: -25rem;
   }
   #about .circle {
-    right: 4%;
+    right: 5%;
     width: 450px;
+    width: 28.125rem;
     height: 450px;
-    top: 40%;
+    height: 28.125rem;
+    top: 50%;
     position: absolute;
   }
   #about .contact {
     margin-top: 10vh;
     max-width: 564px;
+    max-width: 35.25rem;
   }
+}
+
+#galerie h1 {
+  font-family: "Lemon/Milk";
+  font-size: 42px;
+  font-size: 2.625rem;
+  margin-top: 20%;
+  margin-left: 5%;
+}
+#galerie .galerie__images {
+  display: flex;
+  flex-direction: column;
+}
+#galerie .images img {
+  width: 90vw;
+  height: 80vh;
+  background-color: white;
+  display: block;
+  margin: auto;
+  border: solid red 1px;
+  border: solid red 0.0625rem;
 }
 
 /*# sourceMappingURL=/styles.c86c3119.css.map */

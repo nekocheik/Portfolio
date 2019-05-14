@@ -4,6 +4,14 @@ body{
   font-family: Avenir ;
   overscroll-behavior: none;
   scroll-behavior: smooth;
+  cursor: none ;
+  .cursor{
+    display: none;
+    @media screen and (min-width : 800px) {
+      display: initial;
+    }
+  }
+
   nav{
     position: fixed;
     bottom: 10px;
@@ -159,23 +167,6 @@ body{
   }&.cursor__two{
     transition: left 50ms , top 50ms , transform 100ms ;
     height: 25px;
-  }
-}
-
-
-body{
-  cursor: none ;
-}
-
-@keyframes write {
-  to{
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes rotationCircle {
-  100% {
-    transform: rotate( 1turn );
   }
 }
 
