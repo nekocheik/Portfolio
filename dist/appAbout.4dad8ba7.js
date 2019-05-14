@@ -389,27 +389,75 @@ function () {
   function InfinitScroll() {
     _classCallCheck(this, InfinitScroll);
 
-    this.detecteLimitScroll();
+    this.elements = document.querySelectorAll('.images');
+    this.scaleDeformation = 0;
+    this.container = document.querySelector('.galerie__images');
+    this.cloneImage(); // this.detecteLimitScroll();
+    // this.clearDeformation();
   }
 
   _createClass(InfinitScroll, [{
+    key: "cloneImage",
+    value: function cloneImage() {
+      var allImage = document.querySelectorAll('.galerie__images .images');
+      var cln = allImage[0].cloneNode(true);
+      var cln2 = allImage[0].cloneNode(true);
+      this.container.appendChild(cln);
+      this.container.appendChild(cln2);
+      console.log(cln);
+    }
+  }, {
     key: "detecteLimitScroll",
     value: function detecteLimitScroll() {
+      var _this = this;
+
       window.addEventListener('scroll', function () {
+        if (_this.scaleDeformation < 1) {
+          _this.scaleDeformation = 1;
+
+          _this.deformpation();
+        }
+
         var allImage = document.querySelectorAll('.galerie__images .images');
-        var container = document.querySelector('.galerie__images');
         var images = allImage[0];
-        var imagesMemo = allImage[1];
-        var main = document.querySelector('main');
-        var veiwport = new _viewPort.ViewPort(imagesMemo, 'top', 'top');
+        var imagesMemo = allImage[2];
+        var veiwport = new _viewPort.ViewPort(imagesMemo, 'bottom', 'top');
         veiwport.detectViewport(function (callback) {
           if (callback) {
-            // let image = images ;
-            // images.remove();
-            container.appendChild(images);
+            _this.container.appendChild(images);
           }
         });
       });
+    }
+  }, {
+    key: "deformpation",
+    value: function deformpation() {// TweenLite.to(".images img", 3, 
+      // {css:{    
+      //   transform : `scale( ${1} , 1.${this.scaleDeformation} )`
+      // }, 
+      // ease:Power2.easeOut});
+    }
+  }, {
+    key: "clearDeformation",
+    value: function clearDeformation() {
+      var _this2 = this;
+
+      setInterval(function () {
+        if (_this2.scaleDeformation < 0 && _this2.scaleDeformation > 1) {
+          _this2.scaleDeformation = 0;
+
+          _this2.deformpation();
+
+          return;
+        }
+
+        if (_this2.scaleDeformation > 0) {
+          console.log(_this2.scaleDeformation);
+          _this2.scaleDeformation = parseFloat(_this2.scaleDeformation - 0.2);
+
+          _this2.deformpation();
+        }
+      }, 100);
     }
   }]);
 
@@ -464,7 +512,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62656" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61667" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

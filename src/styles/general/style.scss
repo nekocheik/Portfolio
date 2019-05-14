@@ -113,7 +113,7 @@ body{
     inset -20px 0 300px #0ff,
     0 0 50px #fff,
     -10px 0 80px #f0f,
-    10px 0 80px #0ff;
+    10px 0 80px rgba(0, 255, 255, 0.438);
     -webkit-animation: rotation 4s infinite linear;
   }
   
@@ -179,7 +179,6 @@ button{
   padding: 15px 35px 15px 35px;
   font-weight: 600;
   letter-spacing: 2px;
-  display: flex;
   &::after{
     content: "" ;
     display: block;

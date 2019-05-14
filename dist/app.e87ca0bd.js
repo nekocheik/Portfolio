@@ -881,8 +881,8 @@ function () {
         }
 
         if (_this.positionX < 0) {
-          _this.positionX = _this.positionX + event.deltaY / 2.5;
-          _this.translateZ = _this.translateZ + event.deltaY / 2.5 * 15;
+          _this.positionX = _this.positionX + event.deltaY / 1.5;
+          _this.translateZ = _this.translateZ + event.deltaY / 4.5 * 35;
 
           if (_this.positionX >= 0 && !_this.waitTime) {
             _this.positionX = 0;
@@ -1196,6 +1196,7 @@ var Theproject = function Theproject(numberProject) {
       css: {
         top: "-100px",
         animation: "circleGoCenter 0s",
+        boxShadow: "inset 0 0 50px #fff, inset 20px 0 80px #FF5722, inset -20px 0 80px #F44336, inset 20px 0 300px #FF5722, inset -20px 0 300px #F44336, 0 0 50px #fff, -10px 0 80px #F44336, 10px 0 80px #F44336",
         position: 'sticky'
       },
       ease: Power2.easeOut
@@ -1423,7 +1424,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62656" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61667" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

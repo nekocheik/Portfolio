@@ -10,13 +10,41 @@
     flex-direction: column;
   }
   .images{
+    width: 90vw;
+    display: block;
+    margin: auto;
+    .image{
+      width: 324px;
+      height: 500px;
+    }
+    .image__information{
+      position: relative;
+      height: 300px;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.897);
+      transform: translateY(-300px);
+      h2{
+        font-size: 32px;
+        font-family: 'Lemon/Milk';
+        text-align: center;
+        padding-top : 20px;
+      }h3{
+        font-family: 'Avenir LT Std';
+        font-size: 16px;
+        padding: 20px 0px 0px 20px;
+      }p{
+        padding: 20px 0px 20px 20px;
+      }
+      button{
+        margin: auto;
+        display: block;
+      }
+    }
     img{
-      width: 90vw;
-      height: 80vh;
-      background-color: white;
+      width: 324px;
       display: block;
       margin: auto;
-      border: solid red 1px;
+      margin: 10% auto 10% auto;
     }
   }
 }

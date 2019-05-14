@@ -112,6 +112,7 @@ if ( window.innerWidth < 800  ) {
     {css:{    
       top: "-100px",
       animation : "circleGoCenter 0s" ,
+      boxShadow: "inset 0 0 50px #fff, inset 20px 0 80px #FF5722, inset -20px 0 80px #F44336, inset 20px 0 300px #FF5722, inset -20px 0 300px #F44336, 0 0 50px #fff, -10px 0 80px #F44336, 10px 0 80px #F44336",
       position: 'sticky',
     }, 
     ease:Power2.easeOut});

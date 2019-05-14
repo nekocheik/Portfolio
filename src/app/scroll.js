@@ -27,8 +27,8 @@ class SrollPosition  {
       
       
       if( this.positionX < 0 ){
-        this.positionX = this.positionX + ( event.deltaY / 2.5 );
-        this.translateZ = this.translateZ + ( event.deltaY / 2.5) * 15;
+        this.positionX = this.positionX + ( event.deltaY / 1.5);
+        this.translateZ = this.translateZ + ( event.deltaY / 4.5) * 35;
         
         if (this.positionX >= 0 &&  !this.waitTime  ) {
           this.positionX = 0 ;
