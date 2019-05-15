@@ -644,7 +644,106 @@ var projects = [{
   modifier: 'space_invaders'
 }];
 exports.projects = projects;
-},{"../assets/MontreConnecter.svg":"assets/MontreConnecter.svg","../assets/projets/armani/home__page.png":"assets/projets/armani/home__page.png","../assets/projets/armani/page_produits.png":"assets/projets/armani/page_produits.png","../assets/logoSocomptoir.svg":"assets/logoSocomptoir.svg","../assets/projets/so-comptoir/Page-S’inscrire.svg":"assets/projets/so-comptoir/Page-S’inscrire.svg","../assets/projets/so-comptoir/Home_page.svg":"assets/projets/so-comptoir/Home_page.svg","../assets/projets/so-comptoir/Plan de travail – 1.svg":"assets/projets/so-comptoir/Plan de travail – 1.svg","../pages/So__comptoir.html":"pages/So__comptoir.html","../assets/alien.svg":"assets/alien.svg","../assets/projets/space-invaders/portrait.svg":"assets/projets/space-invaders/portrait.svg"}],"app/cursor.js":[function(require,module,exports) {
+},{"../assets/MontreConnecter.svg":"assets/MontreConnecter.svg","../assets/projets/armani/home__page.png":"assets/projets/armani/home__page.png","../assets/projets/armani/page_produits.png":"assets/projets/armani/page_produits.png","../assets/logoSocomptoir.svg":"assets/logoSocomptoir.svg","../assets/projets/so-comptoir/Page-S’inscrire.svg":"assets/projets/so-comptoir/Page-S’inscrire.svg","../assets/projets/so-comptoir/Home_page.svg":"assets/projets/so-comptoir/Home_page.svg","../assets/projets/so-comptoir/Plan de travail – 1.svg":"assets/projets/so-comptoir/Plan de travail – 1.svg","../pages/So__comptoir.html":"pages/So__comptoir.html","../assets/alien.svg":"assets/alien.svg","../assets/projets/space-invaders/portrait.svg":"assets/projets/space-invaders/portrait.svg"}],"app/changeOfProject.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.changeOfProject = changeOfProject;
+exports.numberProject = void 0;
+
+var _project = require("./project");
+
+var _renderNavProject = require("./renderNavProject");
+
+var _theproject = require("./theproject.js");
+
+var numberProject = 0;
+exports.numberProject = numberProject;
+
+function changeOfProject() {
+  renderChangeOfProject();
+}
+
+function renderChangeOfProject() {
+  var project = document.querySelector('#home__page .project');
+  project.innerHTML = "";
+  exports.numberProject = numberProject = numberProject + 1;
+
+  if (numberProject > _project.projects.length - 1) {
+    exports.numberProject = numberProject = 0;
+  }
+
+  var tween = TweenLite.to(".circlesWhite", 15, {
+    css: {
+      animation: 'rotationCircle 15s infinite , retractation 4s forwards'
+    }
+  });
+  setTimeout(function () {
+    var tween = TweenLite.to(".circlesWhite", 15, {
+      css: {
+        animation: 'rotationCircle 15s infinite'
+      }
+    });
+  }, 2900);
+  var view = ChangeOfProjectView(_project.projects[numberProject]);
+  project.appendChild(view.illustrationOfProject);
+  project.appendChild(view.titlOfProject);
+  (0, _renderNavProject.renderNavProject)(project);
+}
+
+var ChangeOfProjectView = function ChangeOfProjectView(project) {
+  var view = {
+    img: document.createElement('img'),
+    titlOfProject: document.createElement('div'),
+    illustrationOfProject: document.createElement('div'),
+    a: document.createElement('a'),
+    button: document.createElement('button'),
+    render: function render() {
+      this.a.href = "#hideenDiv";
+      this.img.src = project.assets.pesentation;
+      view.a.appendChild(this.img);
+      this.illustrationOfProject.appendChild(this.a);
+      this.titlOfProject.innerHTML = "<h3 class='".concat(project.modifier, "'>").concat(project.title, "</h3> <h4 class=\"type__of__projet\" >").concat(project.subTitle, "</h4>");
+    }
+  };
+  view.illustrationOfProject.className = 'illustration__of__project';
+  view.illustrationOfProject.addEventListener('click', function () {
+    (0, _theproject.Theproject)(numberProject);
+  });
+  view.titlOfProject.className = 'title__of__project';
+  view.render();
+  return view;
+};
+},{"./project":"app/project.js","./renderNavProject":"app/renderNavProject.js","./theproject.js":"app/theproject.js"}],"app/renderNavProject.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.renderNavProject = void 0;
+
+var _project = require("./project");
+
+var _changeOfProject = require("./changeOfProject");
+
+var renderNavProject = function renderNavProject(project) {
+  var nav = document.querySelector('.nav__project p'); // console.log(numberProject)
+
+  nav.classList.add('trasition__back');
+  setTimeout(function () {
+    nav.innerHTML = "";
+    nav.className = "trasition__come";
+    setTimeout(function () {
+      nav.innerHTML = _changeOfProject.numberProject + 1;
+      nav.className = "";
+    }, 200);
+  }, 400);
+};
+
+exports.renderNavProject = renderNavProject;
+},{"./project":"app/project.js","./changeOfProject":"app/changeOfProject.js"}],"app/cursor.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1085,396 +1184,7 @@ var animation = function animation(params) {
 };
 
 exports.animation = animation;
-},{"./viewPort":"app/viewPort.js"}],"app/MenuBurger.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.menuBurger = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var menuBurger =
-/*#__PURE__*/
-function () {
-  function menuBurger() {
-    _classCallCheck(this, menuBurger);
-
-    this.navMenu = document.querySelector('nav');
-    this.buttonCloseMenu = document.querySelector('nav .croi');
-    this.buttons = undefined;
-    this.links = undefined;
-    this.bool = false;
-    this.quryButtonAndLink();
-    this.openMenu();
-    this.closeMenu();
-  }
-
-  _createClass(menuBurger, [{
-    key: "quryButtonAndLink",
-    value: function quryButtonAndLink() {
-      this.buttons = this.navMenu.querySelectorAll('p');
-      this.links = this.navMenu.querySelectorAll('a');
-    }
-  }, {
-    key: "openMenu",
-    value: function openMenu() {
-      var _this = this;
-
-      this.links.forEach(function (button) {
-        button.addEventListener('click', function (e) {
-          if (_this.buttonCloseMenu.className !== 'croi active') {
-            _this.links.forEach(function (link) {
-              link.classList.add('active');
-            });
-
-            _this.buttons.forEach(function (button) {
-              button.classList.add('active');
-            });
-
-            _this.buttonCloseMenu.classList.add('active');
-          }
-        }, true);
-      });
-    }
-  }, {
-    key: "closeMenu",
-    value: function closeMenu() {
-      var _this2 = this;
-
-      this.buttonCloseMenu.addEventListener('click', function () {
-        if (_this2.buttonCloseMenu.className === 'croi active') {
-          _this2.links.forEach(function (link) {
-            link.classList.remove('active');
-          });
-
-          _this2.buttons.forEach(function (button) {
-            button.classList.remove('active');
-          });
-
-          _this2.buttonCloseMenu.classList.remove('active');
-        }
-      });
-    }
-  }, {
-    key: "move",
-    value: function move() {
-      window.addEventListener('scroll', function (event) {
-        var p = nav.querySelector('p');
-
-        if (p.className === 'active') {
-          nav.classList.add('move');
-          var navLinks = document.querySelectorAll('nav a');
-          navLinks.forEach(function (link) {
-            link.classList.remove('active');
-          });
-        }
-      });
-    }
-  }]);
-
-  return menuBurger;
-}(); //  var menuBurge = function(){
-//   var nav = document.querySelector('nav');
-//   nav.addEventListener('click', function(){
-//     let p =  nav.querySelectorAll('p');
-//     if(p[0].classList.value[0] !== 'active'){
-//       for (let i = 0; i < p.length; i++) {
-//         p[i].classList.add('active')
-//       }
-//       nav.querySelector('.croi').classList.add('active')
-//       toogleLink()
-//     }
-//   } , true)
-//   nav.querySelector('.croi').addEventListener('click', function(){
-//     let p =  nav.querySelectorAll('p');
-//     for (let i = 0; i < p.length; i++) {
-//       p[i].classList.remove('active')
-//       if( p[0].classList.value[0] !== 'active' ){
-//         toogleLink();
-//       }
-//     }
-//     nav.querySelector('.croi').classList.remove('active')
-//   }, true )
-//   window.addEventListener('scroll', function ( event ) {
-//     let p = nav.querySelector('p');
-//     if ( p.className === 'active' ) {
-//       nav.classList.add('move')
-//       var navLinks = document.querySelectorAll('nav a');
-//       navLinks.forEach( link => { link.classList.remove('active') });
-//     }
-//     window.clearTimeout( isScrolling );
-//     let isScrolling = setTimeout( ()=> {
-//       nav.classList.remove('move');
-//       var navLinks = document.querySelectorAll('nav a');
-//       navLinks.forEach( link => { link.classList.remove('active') });
-//     }, 1000);
-//   }, true);
-// }
-// var toogleLink = function(){
-//   var navLinks = document.querySelectorAll('nav a');
-//   for (let index = 0; index < navLinks.length; index++) {
-//     navLinks[index].classList.toggle('active')
-//   }
-// }
-
-
-exports.menuBurger = menuBurger;
-},{}],"app/theproject.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Theproject = void 0;
-
-var _cursor = require("./cursor");
-
-var _scroll = require("./scroll");
-
-var _animation = require("./animation");
-
-var _MenuBurger = require("./MenuBurger");
-
-var _project = require("./project");
-
-new _MenuBurger.menuBurger();
-
-var Theproject = function Theproject(numberProject) {
-  var main = document.querySelector('main');
-  var name = document.querySelector('.name__and__profession');
-  name.innerHTML = '';
-  TweenLite.to(".circlesWhite", 5, {
-    css: {
-      animation: 'rotationCircle initial initial',
-      zIndex: '-100'
-    },
-    ease: Power2.easeOut
-  }); //////////
-
-  TweenLite.to("#Ellipse_14 circle", 3, {
-    css: {
-      strokeDasharray: '10px',
-      transitionDuration: '100ms'
-    },
-    ease: Power2.easeOut
-  });
-  TweenLite.to("#Ellipse_13", 3, {
-    css: {
-      strokeDasharray: '3259px',
-      strokeDashoffset: '3259px',
-      animation: 'write 3s forwards'
-    },
-    ease: Power2.easeOut
-  });
-  TweenLite.to("#Ellipse_12", 3, {
-    css: {
-      strokeDasharray: '1991px',
-      strokeDashoffset: '1991px',
-      animation: 'write 3s forwards'
-    },
-    ease: Power2.easeOut
-  });
-  TweenLite.to("#Ellipse_11", 3, {
-    css: {
-      strokeDasharray: '1301px',
-      strokeDashoffset: '1301px',
-      animation: 'write 3s forwards'
-    },
-    ease: Power2.easeOut
-  });
-
-  if (window.innerWidth < 800) {
-    TweenLite.to(".circle", 3, {
-      css: {
-        top: "-50px",
-        animation: "circleGoCenter 0s",
-        position: 'sticky'
-      },
-      ease: Power2.easeOut
-    });
-  } else {
-    TweenLite.to(".circle", 3, {
-      css: {
-        top: "-300px",
-        width: "40vw",
-        height: "40vw",
-        animation: "circleGoCenter 0s"
-      },
-      ease: Power2.easeOut
-    });
-  }
-
-  setTimeout(function () {
-    document.querySelector('body').id = "page__project";
-    main.innerHTML = '';
-  }, 3000);
-  setTimeout(function () {
-    var view = viewPoject(numberProject);
-    main.append(view.project);
-  }, 3500);
-};
-
-exports.Theproject = Theproject;
-
-function viewPoject(numberProject) {
-  var view = {
-    project: document.createElement('div'),
-    titlOfProject: document.createElement('div'),
-    description: document.createElement('section'),
-    descriptionText: document.createElement('section'),
-    descriptionSkills: document.createElement('div'),
-    ul: document.createElement('ul'),
-    button: document.createElement('section'),
-    illustrationOfProject: document.createElement('div'),
-    render: function render() {
-      var _this = this;
-
-      this.titlOfProject.innerHTML = "<h1 class=\"".concat(_project.projects[numberProject].modifier, "\">").concat(_project.projects[numberProject].title, "</h1><h2 class=\"type__of__projet\" >").concat(_project.projects[numberProject].subTitle, "</h2>");
-      this.descriptionText.innerHTML = "<p>".concat(_project.projects[numberProject].description, "</p>");
-
-      _project.projects[numberProject].skills.forEach(function (element) {
-        _this.ul.innerHTML += "<li>".concat(element, "</li>");
-      });
-
-      this.button.className = "button";
-      this.button.innerHTML = "<button>".concat(_project.projects[numberProject].button, "</button>");
-      this.descriptionSkills.append(view.ul);
-      this.descriptionText.append(view.descriptionSkills);
-      this.descriptionText.append(view.button);
-      this.description.append(view.descriptionText);
-      this.titlOfProject.append(view.description);
-      this.project.append(view.titlOfProject);
-    },
-    renderAssets: function renderAssets() {
-      var _this2 = this;
-
-      _project.projects[numberProject].assets.image0fProject.forEach(function (element) {
-        var divImage = document.createElement('div');
-        var image = document.createElement('img');
-        image.src = element;
-        divImage.appendChild(image);
-        divImage.className = "image";
-
-        _this2.description.appendChild(divImage);
-      });
-    }
-  };
-  view.project.className = "project";
-  view.titlOfProject.className = "title__of__project";
-  view.descriptionText.className = "description__text";
-  view.description.className = "description";
-  view.descriptionSkills.className = "description__skills"; // view.
-
-  view.render();
-  view.renderAssets();
-  return view;
-}
-},{"./cursor":"app/cursor.js","./scroll":"app/scroll.js","./animation":"app/animation.js","./MenuBurger":"app/MenuBurger.js","./project":"app/project.js"}],"app/changeOfProject.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.changeOfProject = changeOfProject;
-exports.numberProject = void 0;
-
-var _project = require("./project");
-
-var _renderNavProject = require("./renderNavProject");
-
-var _theproject = require("./theproject.js");
-
-var numberProject = 0;
-exports.numberProject = numberProject;
-
-function changeOfProject() {
-  renderChangeOfProject();
-}
-
-function renderChangeOfProject() {
-  var project = document.querySelector('#home__page .project');
-  project.innerHTML = "";
-  exports.numberProject = numberProject = numberProject + 1;
-
-  if (numberProject > _project.projects.length - 1) {
-    exports.numberProject = numberProject = 0;
-  }
-
-  var tween = TweenLite.to(".circlesWhite", 15, {
-    css: {
-      animation: 'rotationCircle 15s infinite , retractation 4s forwards'
-    }
-  });
-  setTimeout(function () {
-    var tween = TweenLite.to(".circlesWhite", 15, {
-      css: {
-        animation: 'rotationCircle 15s infinite'
-      }
-    });
-  }, 2900);
-  var view = ChangeOfProjectView(_project.projects[numberProject]);
-  project.appendChild(view.illustrationOfProject);
-  project.appendChild(view.titlOfProject);
-  (0, _renderNavProject.renderNavProject)(project);
-}
-
-var ChangeOfProjectView = function ChangeOfProjectView(project) {
-  var view = {
-    img: document.createElement('img'),
-    titlOfProject: document.createElement('div'),
-    illustrationOfProject: document.createElement('div'),
-    a: document.createElement('a'),
-    button: document.createElement('button'),
-    render: function render() {
-      this.a.href = "#hideenDiv";
-      this.img.src = project.assets.pesentation;
-      view.a.appendChild(this.img);
-      this.illustrationOfProject.appendChild(this.a);
-      this.titlOfProject.innerHTML = "<h3 class='".concat(project.modifier, "'>").concat(project.title, "</h3> <h4 class=\"type__of__projet\" >").concat(project.subTitle, "</h4>");
-    }
-  };
-  view.illustrationOfProject.className = 'illustration__of__project';
-  view.illustrationOfProject.addEventListener('click', function () {
-    (0, _theproject.Theproject)(numberProject);
-  });
-  view.titlOfProject.className = 'title__of__project';
-  view.render();
-  return view;
-};
-},{"./project":"app/project.js","./renderNavProject":"app/renderNavProject.js","./theproject.js":"app/theproject.js"}],"app/renderNavProject.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.renderNavProject = void 0;
-
-var _project = require("./project");
-
-var _changeOfProject = require("./changeOfProject");
-
-var renderNavProject = function renderNavProject(project) {
-  var nav = document.querySelector('.nav__project p'); // console.log(numberProject)
-
-  nav.classList.add('trasition__back');
-  setTimeout(function () {
-    nav.innerHTML = "";
-    nav.className = "trasition__come";
-    setTimeout(function () {
-      nav.innerHTML = _changeOfProject.numberProject + 1;
-      nav.className = "";
-    }, 200);
-  }, 400);
-};
-
-exports.renderNavProject = renderNavProject;
-},{"./project":"app/project.js","./changeOfProject":"app/changeOfProject.js"}],"app/app.js":[function(require,module,exports) {
+},{"./viewPort":"app/viewPort.js"}],"app/app.js":[function(require,module,exports) {
 "use strict";
 
 var _timers = require("timers");
@@ -1820,7 +1530,29 @@ module.exports = function loadHTMLBundle(bundle) {
     return res.text();
   });
 };
+},{}],"../node_modules/parcel/src/builtins/loaders/browser/js-loader.js":[function(require,module,exports) {
+module.exports = function loadJSBundle(bundle) {
+  return new Promise(function (resolve, reject) {
+    var script = document.createElement('script');
+    script.async = true;
+    script.type = 'text/javascript';
+    script.charset = 'utf-8';
+    script.src = bundle;
+
+    script.onerror = function (e) {
+      script.onerror = script.onload = null;
+      reject(e);
+    };
+
+    script.onload = function () {
+      script.onerror = script.onload = null;
+      resolve();
+    };
+
+    document.getElementsByTagName('head')[0].appendChild(script);
+  });
+};
 },{}],0:[function(require,module,exports) {
-var b=require("../node_modules/parcel/src/builtins/bundle-loader.js");b.register("html",require("../node_modules/parcel/src/builtins/loaders/browser/html-loader.js"));b.load([["So__comptoir.html","pages/So__comptoir.html"]]).then(function(){require("app/app.js");});
+var b=require("../node_modules/parcel/src/builtins/bundle-loader.js");b.register("html",require("../node_modules/parcel/src/builtins/loaders/browser/html-loader.js"));b.register("js",require("../node_modules/parcel/src/builtins/loaders/browser/js-loader.js"));b.load([["So__comptoir.ef495521.html","pages/So__comptoir.html"],["theproject.adebc047.js","app/theproject.js"]]).then(function(){require("app/app.js");});
 },{}]},{},["../node_modules/parcel/src/builtins/hmr-runtime.js",0], null)
 //# sourceMappingURL=/app.e87ca0bd.js.map

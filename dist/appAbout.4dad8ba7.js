@@ -117,112 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"app/cursor.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.cursor = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var cursor = function cursor() {
-  var elipse = document.querySelector('.cursor.cursor__Two');
-  var circle = document.querySelector('.cursor__one');
-  var pointerCircle = new givPotionPointer(circle);
-  var pointerEliplse = new givPotionPointer(elipse);
-};
-
-exports.cursor = cursor;
-
-var givPotionPointer =
-/*#__PURE__*/
-function () {
-  function givPotionPointer(element, child) {
-    _classCallCheck(this, givPotionPointer);
-
-    this.element = element;
-    this.x = null;
-    this.y = null;
-    this.detectMoveCursor();
-    this.child = child;
-    this.scaleX = 0;
-    this.scaleY = 0;
-    this.clearDeformatiom();
-  }
-
-  _createClass(givPotionPointer, [{
-    key: "detectMoveCursor",
-    value: function detectMoveCursor() {
-      var _this = this;
-
-      window.addEventListener('mousemove', function (event) {
-        _this.x = event.clientX - _this.element.getBoundingClientRect().width / 2;
-        _this.y = window.pageYOffset + event.clientY - _this.element.getBoundingClientRect().height / 2;
-
-        _this.giveMemoXY();
-
-        if (_this.memoX > _this.x) {
-          _this.scaleX++;
-        } else {
-          _this.scaleX--;
-        }
-
-        if (_this.memoY > _this.y) {
-          _this.scaleY++;
-        } else {
-          _this.scaleY--;
-        }
-
-        _this.element.style.left = "".concat(_this.x, "px");
-        _this.element.style.top = "".concat(_this.y, "px");
-        _this.element.style.transform = "skew(".concat(_this.scaleX * 1.5, "deg , ").concat(_this.scaleY * 1.5, "deg)");
-      });
-    }
-  }, {
-    key: "giveMemoXY",
-    value: function giveMemoXY() {
-      if (!this.x && !this.y) {
-        this.memoX = this.x;
-        this.memoY = this.y;
-      }
-    }
-  }, {
-    key: "clearDeformatiom",
-    value: function clearDeformatiom() {
-      var _this2 = this;
-
-      setInterval(function () {
-        if (_this2.scaleY < 0) {
-          _this2.scaleY++;
-        } else {
-          _this2.scaleY--;
-        }
-
-        if (_this2.scaleX < 0) {
-          _this2.scaleX++;
-        } else {
-          _this2.scaleX--;
-        }
-      }, 25);
-      setInterval(function () {
-        _this2.element.style.transform = "skew(".concat(_this2.scaleX, "deg , ").concat(_this2.scaleY, "deg)");
-      }, 10);
-      setInterval(function () {
-        _this2.memoX = _this2.x;
-        _this2.memoY = _this2.y;
-      }, 100);
-    }
-  }]);
-
-  return givPotionPointer;
-}();
-},{}],"app/MenuBurger.js":[function(require,module,exports) {
+})({"app/MenuBurger.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -362,102 +257,6 @@ function () {
 
 
 exports.menuBurger = menuBurger;
-},{}],"app/viewPort.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.ViewPort = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var ViewPort =
-/*#__PURE__*/
-function () {
-  function ViewPort(element) {
-    var elementPartTouch = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'top';
-    var bodyPartTouch = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'bottom';
-    var add = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-
-    _classCallCheck(this, ViewPort);
-
-    this.element = element;
-    this.body = {
-      bottom: element.getBoundingClientRect().bottom + add,
-      left: element.getBoundingClientRect().left + add,
-      right: element.getBoundingClientRect().right + add,
-      top: element.getBoundingClientRect().top + add
-    };
-    this.screen = {
-      positionScreenBottom: null,
-      positionScreenTop: null
-    };
-    this.elementPartTouch = elementPartTouch;
-    this.screenPartTouch = bodyPartTouch;
-    this.topNegatif();
-  }
-
-  _createClass(ViewPort, [{
-    key: "detectViewport",
-    value: function detectViewport(callback) {
-      var _this = this;
-
-      window.addEventListener('scroll', function (event) {
-        _this.screen.positionScreenBottom = window.pageYOffset + window.innerHeight;
-        _this.screen.positionScreenTop = window.pageYOffset; // console.log( this.body.top , this.screen.positionScreenTop  )
-
-        if (_this.elementPartTouch === 'top') {
-          if (_this.screenPartTouch === 'bottom') {
-            if (_this.body.top <= _this.screen.positionScreenBottom) {
-              return callback(true);
-            } else {
-              return callback(false);
-            }
-          } else {
-            if (_this.body.top <= 0) {
-              return callback(true);
-            } else {
-              return callback(false);
-            }
-          }
-        } else {
-          if (_this.screenPartTouch === 'bottom') {
-            // console.log( this.body.bottom , this.screen.positionScreenBottom )
-            if (_this.body.bottom <= _this.screen.positionScreenBottom) {
-              return callback(true);
-            } else {
-              return callback(false);
-            }
-          } else {
-            if (_this.body.bottom <= _this.screen.positionScreenTop) {
-              return callback(true);
-            } else {
-              return callback(false);
-            }
-          }
-        }
-      });
-    }
-  }, {
-    key: "topNegatif",
-    value: function topNegatif() {
-      if (this.body.top < 0) {// this.body.top =  String(this.body.top) ;
-        // this.body.top = this.body.top.substr(1);
-        // this.body.top = Number( this.body.top )
-        // this.body.bottom = this.body.bottom + this.body.top  ;
-      }
-    }
-  }]);
-
-  return ViewPort;
-}();
-
-exports.ViewPort = ViewPort;
 },{}],"../node_modules/parcel/src/builtins/_empty.js":[function(require,module,exports) {
 
 },{}],"app/infinitScroll.js":[function(require,module,exports) {
@@ -757,5 +556,144 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel/src/builtins/hmr-runtime.js","app/appAbout.js"], null)
+},{}],"../node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/parcel/src/builtins/bundle-loader.js":[function(require,module,exports) {
+var getBundleURL = require('./bundle-url').getBundleURL;
+
+function loadBundlesLazy(bundles) {
+  if (!Array.isArray(bundles)) {
+    bundles = [bundles];
+  }
+
+  var id = bundles[bundles.length - 1];
+
+  try {
+    return Promise.resolve(require(id));
+  } catch (err) {
+    if (err.code === 'MODULE_NOT_FOUND') {
+      return new LazyPromise(function (resolve, reject) {
+        loadBundles(bundles.slice(0, -1)).then(function () {
+          return require(id);
+        }).then(resolve, reject);
+      });
+    }
+
+    throw err;
+  }
+}
+
+function loadBundles(bundles) {
+  return Promise.all(bundles.map(loadBundle));
+}
+
+var bundleLoaders = {};
+
+function registerBundleLoader(type, loader) {
+  bundleLoaders[type] = loader;
+}
+
+module.exports = exports = loadBundlesLazy;
+exports.load = loadBundles;
+exports.register = registerBundleLoader;
+var bundles = {};
+
+function loadBundle(bundle) {
+  var id;
+
+  if (Array.isArray(bundle)) {
+    id = bundle[1];
+    bundle = bundle[0];
+  }
+
+  if (bundles[bundle]) {
+    return bundles[bundle];
+  }
+
+  var type = (bundle.substring(bundle.lastIndexOf('.') + 1, bundle.length) || bundle).toLowerCase();
+  var bundleLoader = bundleLoaders[type];
+
+  if (bundleLoader) {
+    return bundles[bundle] = bundleLoader(getBundleURL() + bundle).then(function (resolved) {
+      if (resolved) {
+        module.bundle.register(id, resolved);
+      }
+
+      return resolved;
+    }).catch(function (e) {
+      delete bundles[bundle];
+      throw e;
+    });
+  }
+}
+
+function LazyPromise(executor) {
+  this.executor = executor;
+  this.promise = null;
+}
+
+LazyPromise.prototype.then = function (onSuccess, onError) {
+  if (this.promise === null) this.promise = new Promise(this.executor);
+  return this.promise.then(onSuccess, onError);
+};
+
+LazyPromise.prototype.catch = function (onError) {
+  if (this.promise === null) this.promise = new Promise(this.executor);
+  return this.promise.catch(onError);
+};
+},{"./bundle-url":"../node_modules/parcel/src/builtins/bundle-url.js"}],"../node_modules/parcel/src/builtins/loaders/browser/js-loader.js":[function(require,module,exports) {
+module.exports = function loadJSBundle(bundle) {
+  return new Promise(function (resolve, reject) {
+    var script = document.createElement('script');
+    script.async = true;
+    script.type = 'text/javascript';
+    script.charset = 'utf-8';
+    script.src = bundle;
+
+    script.onerror = function (e) {
+      script.onerror = script.onload = null;
+      reject(e);
+    };
+
+    script.onload = function () {
+      script.onerror = script.onload = null;
+      resolve();
+    };
+
+    document.getElementsByTagName('head')[0].appendChild(script);
+  });
+};
+},{}],0:[function(require,module,exports) {
+var b=require("../node_modules/parcel/src/builtins/bundle-loader.js");b.register("js",require("../node_modules/parcel/src/builtins/loaders/browser/js-loader.js"));b.load([]).then(function(){require("app/appAbout.js");});
+},{}]},{},["../node_modules/parcel/src/builtins/hmr-runtime.js",0], null)
 //# sourceMappingURL=/appAbout.4dad8ba7.js.map
