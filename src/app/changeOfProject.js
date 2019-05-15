@@ -43,6 +43,8 @@ var ChangeOfProjectView = function(project) {
     titlOfProject : document.createElement('div'),
     illustrationOfProject : document.createElement('div'),
     a :  document.createElement('a') ,
+    button : document.createElement('button'),
+
     render: function() {
       this.a.href = `#hideenDiv`;
       this.img.src = project.assets.pesentation;

@@ -578,10 +578,22 @@ exports.setImmediate = typeof self !== "undefined" && self.setImmediate || typeo
 exports.clearImmediate = typeof self !== "undefined" && self.clearImmediate || typeof global !== "undefined" && global.clearImmediate || this && this.clearImmediate;
 },{"setimmediate":"../node_modules/setimmediate/setImmediate.js"}],"assets/MontreConnecter.svg":[function(require,module,exports) {
 module.exports = "/MontreConnecter.d1308733.svg";
+},{}],"assets/projets/armani/home__page.png":[function(require,module,exports) {
+module.exports = "/home__page.51700597.png";
+},{}],"assets/projets/armani/page_produits.png":[function(require,module,exports) {
+module.exports = "/page_produits.7b11d942.png";
 },{}],"assets/logoSocomptoir.svg":[function(require,module,exports) {
 module.exports = "/logoSocomptoir.905e08d9.svg";
+},{}],"assets/projets/so-comptoir/Page-S’inscrire.svg":[function(require,module,exports) {
+module.exports = "/Page-S’inscrire.d91acaac.svg";
+},{}],"assets/projets/so-comptoir/Home_page.svg":[function(require,module,exports) {
+module.exports = "/Home_page.d891bdc8.svg";
+},{}],"assets/projets/so-comptoir/Plan de travail – 1.svg":[function(require,module,exports) {
+module.exports = "/Plan de travail – 1.514ff065.svg";
 },{}],"assets/alien.svg":[function(require,module,exports) {
 module.exports = "/alien.06625d74.svg";
+},{}],"assets/projets/space-invaders/portrait.svg":[function(require,module,exports) {
+module.exports = "/portrait.a3bc38dd.svg";
 },{}],"app/project.js":[function(require,module,exports) {
 "use strict";
 
@@ -597,7 +609,8 @@ var projects = [{
   description: "R\xE9aliser un redesign du site Armani dans le quel j\u2019ai du fair le design des pages News , Produits et de la home page.\n    J\u2019ai aussi int\xE9gr\xE9 de tout le site en Mobile first responsive. ",
   skills: ['xd', 'JavaScript', 'Rellax', 'Html', 'Sass'],
   assets: {
-    pesentation: require('../assets/MontreConnecter.svg')
+    pesentation: require('../assets/MontreConnecter.svg'),
+    image0fProject: [require('../assets/projets/armani/home__page.png'), require('../assets/projets/armani/page_produits.png')]
   },
   button: 'VISITER LE SITE',
   modifier: 'armani'
@@ -606,10 +619,11 @@ var projects = [{
   type: 'Projet école',
   numberProject: '2',
   subTitle: 'Projet : UI / UI',
-  description: "R\xE9aliser un redesign pour un site \n    E-commer de vente de salade en ligne.</br>\n    Pour ce projet nous \xE9tions une \xE9quipe de 4 dans la quelle j\u2019\xE9tais Chef de projet ",
+  description: "R\xE9aliser un redesign pour un site \n    E-commerce d\u2019un bar \xE0 salade.\n    Pour ce projet nous \xE9tions une \xE9quipe de quatre dans laquelle j\u2019\xE9tais Chef de projet.\n    Les maquette \u2026\u2026  ",
   skills: ['xd', 'illustrator'],
   assets: {
-    pesentation: require('../assets/logoSocomptoir.svg')
+    pesentation: require('../assets/logoSocomptoir.svg'),
+    image0fProject: [require('../assets/projets/so-comptoir/Page-S’inscrire.svg'), require('../assets/projets/so-comptoir/Home_page.svg'), require('../assets/projets/so-comptoir/Plan de travail – 1.svg')]
   },
   link: require('../pages/So__comptoir.html'),
   button: 'REGARDER LES MAQUETTES',
@@ -619,17 +633,18 @@ var projects = [{
   type: 'Projet personnel',
   numberProject: '3',
   subTitle: 'Projet : Javascript',
-  description: "R\xE9aliser la cr\xE9ation d\u2019un jeu original en JavaScript.\n    J\u2019ai fait Le jeu en Canvas JavaScript natif sans l\u2019utilisation d\u2019aucune librairie .\n    Avec l\u2019ajout d\u2019\xE9l\xE9ments de gamplay qui ne sont pas dans le jeu original  ",
+  description: "R\xE9aliser la cr\xE9ation d\u2019un jeu r\xE9tro en JavaScript. \n    </br>\n    J\u2019ai fait le jeu en Canvas ainsi qu\u2019en JavaScript natif sans l\u2019usage d\u2019aucune librairie . En ajoutant des fonctionnalit\xE9s\n    non pr\xE9sentes dans le jeu original.  ",
   skills: ['JavaScript', 'Canvas', 'Html', 'Sass'],
   link: '',
   assets: {
-    pesentation: require('../assets/alien.svg')
+    pesentation: require('../assets/alien.svg'),
+    image0fProject: [require('../assets/projets/space-invaders/portrait.svg')]
   },
   button: 'JOUER AU JEU',
   modifier: 'space_invaders'
 }];
 exports.projects = projects;
-},{"../assets/MontreConnecter.svg":"assets/MontreConnecter.svg","../assets/logoSocomptoir.svg":"assets/logoSocomptoir.svg","../pages/So__comptoir.html":"pages/So__comptoir.html","../assets/alien.svg":"assets/alien.svg"}],"app/cursor.js":[function(require,module,exports) {
+},{"../assets/MontreConnecter.svg":"assets/MontreConnecter.svg","../assets/projets/armani/home__page.png":"assets/projets/armani/home__page.png","../assets/projets/armani/page_produits.png":"assets/projets/armani/page_produits.png","../assets/logoSocomptoir.svg":"assets/logoSocomptoir.svg","../assets/projets/so-comptoir/Page-S’inscrire.svg":"assets/projets/so-comptoir/Page-S’inscrire.svg","../assets/projets/so-comptoir/Home_page.svg":"assets/projets/so-comptoir/Home_page.svg","../assets/projets/so-comptoir/Plan de travail – 1.svg":"assets/projets/so-comptoir/Plan de travail – 1.svg","../pages/So__comptoir.html":"pages/So__comptoir.html","../assets/alien.svg":"assets/alien.svg","../assets/projets/space-invaders/portrait.svg":"assets/projets/space-invaders/portrait.svg"}],"app/cursor.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -882,7 +897,7 @@ function () {
 
         if (_this.positionX < 0) {
           _this.positionX = _this.positionX + event.deltaY / 1.5;
-          _this.translateZ = _this.translateZ + event.deltaY / 4.5 * 35;
+          _this.translateZ = _this.translateZ + event.deltaY / 4.5 * 55;
 
           if (_this.positionX >= 0 && !_this.waitTime) {
             _this.positionX = 0;
@@ -1047,7 +1062,6 @@ function () {
 }();
 
 exports.SrollPosition = SrollPosition;
-;
 },{"./changeOfProject":"app/changeOfProject.js","./viewPort":"app/viewPort.js","./project":"app/project.js"}],"app/animation.js":[function(require,module,exports) {
 "use strict";
 
@@ -1077,45 +1091,140 @@ exports.animation = animation;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.menuBurge = void 0;
+exports.menuBurger = void 0;
 
-var menuBurge = function menuBurge() {
-  var nav = document.querySelector('nav');
-  nav.addEventListener('click', function () {
-    var p = nav.querySelectorAll('p');
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    if (p[0].classList.value[0] !== 'active') {
-      for (var i = 0; i < p.length; i++) {
-        p[i].classList.add('active');
-      }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-      nav.querySelector('.croi').classList.add('active');
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var menuBurger =
+/*#__PURE__*/
+function () {
+  function menuBurger() {
+    _classCallCheck(this, menuBurger);
+
+    this.navMenu = document.querySelector('nav');
+    this.buttonCloseMenu = document.querySelector('nav .croi');
+    this.buttons = undefined;
+    this.links = undefined;
+    this.bool = false;
+    this.quryButtonAndLink();
+    this.openMenu();
+    this.closeMenu();
+  }
+
+  _createClass(menuBurger, [{
+    key: "quryButtonAndLink",
+    value: function quryButtonAndLink() {
+      this.buttons = this.navMenu.querySelectorAll('p');
+      this.links = this.navMenu.querySelectorAll('a');
     }
-  }, true);
-  nav.querySelector('.croi').addEventListener('click', function () {
-    var p = nav.querySelectorAll('p');
+  }, {
+    key: "openMenu",
+    value: function openMenu() {
+      var _this = this;
 
-    for (var i = 0; i < p.length; i++) {
-      p[i].classList.remove('active');
+      this.links.forEach(function (button) {
+        button.addEventListener('click', function (e) {
+          if (_this.buttonCloseMenu.className !== 'croi active') {
+            _this.links.forEach(function (link) {
+              link.classList.add('active');
+            });
+
+            _this.buttons.forEach(function (button) {
+              button.classList.add('active');
+            });
+
+            _this.buttonCloseMenu.classList.add('active');
+          }
+        }, true);
+      });
     }
+  }, {
+    key: "closeMenu",
+    value: function closeMenu() {
+      var _this2 = this;
 
-    nav.querySelector('.croi').classList.remove('active');
-  }, true);
-  window.addEventListener('scroll', function (event) {
-    var p = nav.querySelector('p');
+      this.buttonCloseMenu.addEventListener('click', function () {
+        if (_this2.buttonCloseMenu.className === 'croi active') {
+          _this2.links.forEach(function (link) {
+            link.classList.remove('active');
+          });
 
-    if (p.className === 'active') {
-      nav.classList.add('move');
+          _this2.buttons.forEach(function (button) {
+            button.classList.remove('active');
+          });
+
+          _this2.buttonCloseMenu.classList.remove('active');
+        }
+      });
     }
+  }, {
+    key: "move",
+    value: function move() {
+      window.addEventListener('scroll', function (event) {
+        var p = nav.querySelector('p');
 
-    window.clearTimeout(isScrolling);
-    var isScrolling = setTimeout(function () {
-      nav.classList.remove('move');
-    }, 1000);
-  }, false);
-};
+        if (p.className === 'active') {
+          nav.classList.add('move');
+          var navLinks = document.querySelectorAll('nav a');
+          navLinks.forEach(function (link) {
+            link.classList.remove('active');
+          });
+        }
+      });
+    }
+  }]);
 
-exports.menuBurge = menuBurge;
+  return menuBurger;
+}(); //  var menuBurge = function(){
+//   var nav = document.querySelector('nav');
+//   nav.addEventListener('click', function(){
+//     let p =  nav.querySelectorAll('p');
+//     if(p[0].classList.value[0] !== 'active'){
+//       for (let i = 0; i < p.length; i++) {
+//         p[i].classList.add('active')
+//       }
+//       nav.querySelector('.croi').classList.add('active')
+//       toogleLink()
+//     }
+//   } , true)
+//   nav.querySelector('.croi').addEventListener('click', function(){
+//     let p =  nav.querySelectorAll('p');
+//     for (let i = 0; i < p.length; i++) {
+//       p[i].classList.remove('active')
+//       if( p[0].classList.value[0] !== 'active' ){
+//         toogleLink();
+//       }
+//     }
+//     nav.querySelector('.croi').classList.remove('active')
+//   }, true )
+//   window.addEventListener('scroll', function ( event ) {
+//     let p = nav.querySelector('p');
+//     if ( p.className === 'active' ) {
+//       nav.classList.add('move')
+//       var navLinks = document.querySelectorAll('nav a');
+//       navLinks.forEach( link => { link.classList.remove('active') });
+//     }
+//     window.clearTimeout( isScrolling );
+//     let isScrolling = setTimeout( ()=> {
+//       nav.classList.remove('move');
+//       var navLinks = document.querySelectorAll('nav a');
+//       navLinks.forEach( link => { link.classList.remove('active') });
+//     }, 1000);
+//   }, true);
+// }
+// var toogleLink = function(){
+//   var navLinks = document.querySelectorAll('nav a');
+//   for (let index = 0; index < navLinks.length; index++) {
+//     navLinks[index].classList.toggle('active')
+//   }
+// }
+
+
+exports.menuBurger = menuBurger;
 },{}],"app/theproject.js":[function(require,module,exports) {
 "use strict";
 
@@ -1134,18 +1243,7 @@ var _MenuBurger = require("./MenuBurger");
 
 var _project = require("./project");
 
-(0, _MenuBurger.menuBurge)(); // console.log( srollPosition  )
-// document.addEventListener('mousemove', function(event){
-//   const x = event.pageX;
-//   const y = event.pageY;
-//   const target = document.querySelector('.projects')
-//   const targetCoords = target.getBoundingClientRect()
-//   const targetX = targetCoords.left + ( target.offsetWidth / 2);
-//   const targetY = targetCoords.top + ( target.offsetHeight / 2);
-//   const angleX = ( targetY - y ) / 105 ;
-//   const angleY = ( targetX - x ) / 105 ;
-//   target.style.transform = "rotateX("+ angleX +"deg) rotateY("+ angleY +"deg)"
-// })
+new _MenuBurger.menuBurger();
 
 var Theproject = function Theproject(numberProject) {
   var main = document.querySelector('main');
@@ -1194,9 +1292,8 @@ var Theproject = function Theproject(numberProject) {
   if (window.innerWidth < 800) {
     TweenLite.to(".circle", 3, {
       css: {
-        top: "-100px",
+        top: "-50px",
         animation: "circleGoCenter 0s",
-        boxShadow: "inset 0 0 50px #fff, inset 20px 0 80px #FF5722, inset -20px 0 80px #F44336, inset 20px 0 300px #FF5722, inset -20px 0 300px #F44336, 0 0 50px #fff, -10px 0 80px #F44336, 10px 0 80px #F44336",
         position: 'sticky'
       },
       ease: Power2.easeOut
@@ -1245,20 +1342,37 @@ function viewPoject(numberProject) {
         _this.ul.innerHTML += "<li>".concat(element, "</li>");
       });
 
-      this.button.innerHTML = "<a><p>".concat(_project.projects[numberProject].button, "</p></a>");
+      this.button.className = "button";
+      this.button.innerHTML = "<button>".concat(_project.projects[numberProject].button, "</button>");
       this.descriptionSkills.append(view.ul);
       this.descriptionText.append(view.descriptionSkills);
+      this.descriptionText.append(view.button);
       this.description.append(view.descriptionText);
       this.titlOfProject.append(view.description);
       this.project.append(view.titlOfProject);
+    },
+    renderAssets: function renderAssets() {
+      var _this2 = this;
+
+      _project.projects[numberProject].assets.image0fProject.forEach(function (element) {
+        var divImage = document.createElement('div');
+        var image = document.createElement('img');
+        image.src = element;
+        divImage.appendChild(image);
+        divImage.className = "image";
+
+        _this2.description.appendChild(divImage);
+      });
     }
   };
   view.project.className = "project";
   view.titlOfProject.className = "title__of__project";
   view.descriptionText.className = "description__text";
   view.description.className = "description";
-  view.descriptionSkills.className = "description__skills";
+  view.descriptionSkills.className = "description__skills"; // view.
+
   view.render();
+  view.renderAssets();
   return view;
 }
 },{"./cursor":"app/cursor.js","./scroll":"app/scroll.js","./animation":"app/animation.js","./MenuBurger":"app/MenuBurger.js","./project":"app/project.js"}],"app/changeOfProject.js":[function(require,module,exports) {
@@ -1316,6 +1430,7 @@ var ChangeOfProjectView = function ChangeOfProjectView(project) {
     titlOfProject: document.createElement('div'),
     illustrationOfProject: document.createElement('div'),
     a: document.createElement('a'),
+    button: document.createElement('button'),
     render: function render() {
       this.a.href = "#hideenDiv";
       this.img.src = project.assets.pesentation;
@@ -1372,31 +1487,16 @@ var _scroll = require("./scroll");
 
 var _animation = require("./animation");
 
-var _MenuBurger = require("./MenuBurger");
-
-(0, _animation.animation)();
-(0, _MenuBurger.menuBurge)();
+// import { menuBurger} from "./MenuBurger";
+(0, _animation.animation)(); // new menuBurger();
 
 if (window.innerWidth > 800) {
-  console.log(window.innerWidth);
   (0, _cursor.cursor)();
 }
 
 var srollPosition = new _scroll.SrollPosition(document.querySelector('.sroll__barre'));
 srollPosition.detectScroll();
-console.log(window.location.href); // document.addEventListener('mousemove', function(event){
-//   const x = event.pageX;
-//   const y = event.pageY;
-//   const target = document.querySelector('.projects')
-//   const targetCoords = target.getBoundingClientRect()
-//   const targetX = targetCoords.left + ( target.offsetWidth / 2);
-//   const targetY = targetCoords.top + ( target.offsetHeight / 2);
-//   console.log(targetCoords)
-//   const angleX = ( targetY - y ) / 105 ;
-//   const angleY = ( targetX - x ) / 105 ;
-//   target.style.transform = "rotateX("+ angleX +"deg) rotateY("+ angleY +"deg)"
-// })
-},{"timers":"../node_modules/timers-browserify/main.js","./renderNavProject":"app/renderNavProject.js","./cursor":"app/cursor.js","./scroll":"app/scroll.js","./animation":"app/animation.js","./MenuBurger":"app/MenuBurger.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"timers":"../node_modules/timers-browserify/main.js","./renderNavProject":"app/renderNavProject.js","./cursor":"app/cursor.js","./scroll":"app/scroll.js","./animation":"app/animation.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1424,7 +1524,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61667" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53208" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

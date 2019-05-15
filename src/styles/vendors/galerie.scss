@@ -13,16 +13,17 @@
     width: 90vw;
     display: block;
     margin: auto;
-    .image{
+    .image__container{
       width: 324px;
       height: 500px;
+      margin: auto;
     }
     .image__information{
       position: relative;
       height: 300px;
       width: 100%;
       background-color: rgba(0, 0, 0, 0.897);
-      transform: translateY(-300px);
+      transform: translateY(-400px);
       h2{
         font-size: 32px;
         font-family: 'Lemon/Milk';
@@ -44,7 +45,53 @@
       width: 324px;
       display: block;
       margin: auto;
-      margin: 10% auto 10% auto;
+      margin: 100px auto 100px auto;
+    }
+  }.background__feature__container{
+    height: 0px;
+    width: 0px;
+  }
+  .background__feature{
+    position: absolute;
+    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    top: 35%;
+    left: 0;
+    right: 0;
+    width: 90%;
+    height: 1000vh;
+    z-index: -1;
+  }
+  @media screen and ( min-width : 800px ) {
+    h1{
+      font-family: 'Lemon/Milk';
+      font-size: 94px;
+      margin-top: 15%;
+    }
+    .images.galerie__image--one{
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      margin: auto;
+    } .images .image__information{
+      height: 300px;
+      width: 466px;
+    }
+    .image__container{
+      width: 466px;
+      height: 668px;
+      transition-duration: transform 0.5s ;
+      &:nth-child(even){
+        margin-left: 55%;
+        margin-top: 10%;
+      }&:nth-child(odd){
+        margin-left: 10%;
+      }
+      img{
+        width: 466px;
+        height: 668px;
+      }
     }
   }
 }

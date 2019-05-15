@@ -3,38 +3,15 @@ import { renderNavProject } from "./renderNavProject";
 import { cursor } from "./cursor" ;
 import {SrollPosition } from "./scroll";
 import { animation } from "./animation";
-import { menuBurge} from "./MenuBurger";
+// import { menuBurger} from "./MenuBurger";
 
 
 animation();
-menuBurge();
+// new menuBurger();
 if ( window.innerWidth > 800 ) {
-  console.log(window.innerWidth)
   cursor();
 }
 
 
 let srollPosition = new SrollPosition( document.querySelector('.sroll__barre') );
 srollPosition.detectScroll()
-
-console.log( window.location.href  )
-
-
-// document.addEventListener('mousemove', function(event){
-//   const x = event.pageX;
-//   const y = event.pageY;
-
-//   const target = document.querySelector('.projects')
-//   const targetCoords = target.getBoundingClientRect()
-
-//   const targetX = targetCoords.left + ( target.offsetWidth / 2);
-//   const targetY = targetCoords.top + ( target.offsetHeight / 2);
-
-//   console.log(targetCoords)
-
-//   const angleX = ( targetY - y ) / 105 ;
-//   const angleY = ( targetX - x ) / 105 ;
-
-//   target.style.transform = "rotateX("+ angleX +"deg) rotateY("+ angleY +"deg)"
-
-// })

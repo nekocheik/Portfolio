@@ -37,24 +37,10 @@ class InfinitScroll {
     })
   }
   deformpation(){
-    // TweenLite.to(".images img", 3, 
-    // {css:{    
-    //   transform : `scale( ${1} , 1.${this.scaleDeformation} )`
-    // }, 
-    // ease:Power2.easeOut});
+    
   }
   clearDeformation(){
     setInterval(() => {
-      if( this.scaleDeformation < 0 &&  this.scaleDeformation > 1 ) {
-        this.scaleDeformation = 0 ;
-        this.deformpation() 
-        return;
-      }
-      if ( this.scaleDeformation >0 ) {
-        console.log(this.scaleDeformation)
-        this.scaleDeformation  = parseFloat( this.scaleDeformation - 0.2 ); 
-        this.deformpation()
-      }
     }, 100);
   }
 }

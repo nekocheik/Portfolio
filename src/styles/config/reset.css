@@ -24,7 +24,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-	text-decoration: none;
+	text-decoration: none; 
 }
 
 article, aside, details, figcaption, figure, 
@@ -67,9 +67,12 @@ button:active {
 	
 }
 
+
+
 a{
 	display: block;
 	color: white;
+	text-decoration: none;
 }
 a:-webkit-any-link {
 	text-decoration: none;

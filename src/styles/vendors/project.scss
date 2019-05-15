@@ -3,7 +3,6 @@
     top: -100px;
     animation: rotation 4s infinite linear , circleGoCenter 10s forwards;
     position: sticky;
-    // margin-bottom: -20vh;
   }
   .project{
     .title__of__project{
@@ -30,19 +29,17 @@
           font-size: 20px;
         }
         .button{
-          display: flex;
-          margin: auto;
-          justify-content: center;
-          p{
-            border: solid white 1px;
-            padding: 5px;
-            margin-top: 50px;
-            display: inline-block;
+          margin: 20px auto auto auto;
+          padding-top: 30px ;
+          button{
+            margin-top: 15px;
+            margin: auto;
+            display: block;
           }
         }
         .description__skills ul{
           display: flex;
-          justify-content: space-between;
+          justify-content: space-around;
           width: 90%;
           max-width: 499px;
           li{
@@ -86,14 +83,19 @@
           max-width: 80vw;
           flex-wrap: nowrap;
           justify-content: space-between;
+          flex-wrap: wrap;
           .description__text{
             max-width: 504px;
+            padding-bottom: 20%;
           }
           p{
             font-size: 20px;
           }
           .image{
             padding-top: 0%;
+            img{
+              margin-bottom: 60px
+            }
           }
         }
       }

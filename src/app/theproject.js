@@ -1,57 +1,11 @@
 import { cursor } from "./cursor" ;
 import {SrollPosition } from "./scroll";
 import { animation } from "./animation";
-import { menuBurge} from "./MenuBurger";
+import { menuBurger} from "./MenuBurger";
 
 
 
-menuBurge();
-
-
-
-// console.log( srollPosition  )
-
-
-// document.addEventListener('mousemove', function(event){
-//   const x = event.pageX;
-//   const y = event.pageY;
-
-//   const target = document.querySelector('.projects')
-//   const targetCoords = target.getBoundingClientRect()
-
-//   const targetX = targetCoords.left + ( target.offsetWidth / 2);
-//   const targetY = targetCoords.top + ( target.offsetHeight / 2);
-
-
-//   const angleX = ( targetY - y ) / 105 ;
-//   const angleY = ( targetX - x ) / 105 ;
-
-//   target.style.transform = "rotateX("+ angleX +"deg) rotateY("+ angleY +"deg)"
-
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+new menuBurger();
 
 
 import { projects  } from './project'; 
@@ -100,19 +54,13 @@ var Theproject = function ( numberProject ){
   },
   ease:Power2.easeOut});
   
-  
-  
-  
-  
-  
-  
+
   
 if ( window.innerWidth < 800  ) {
     TweenLite.to(".circle", 3, 
     {css:{    
-      top: "-100px",
+      top: "-50px",
       animation : "circleGoCenter 0s" ,
-      boxShadow: "inset 0 0 50px #fff, inset 20px 0 80px #FF5722, inset -20px 0 80px #F44336, inset 20px 0 300px #FF5722, inset -20px 0 300px #F44336, 0 0 50px #fff, -10px 0 80px #F44336, 10px 0 80px #F44336",
       position: 'sticky',
     }, 
     ease:Power2.easeOut});
@@ -156,27 +104,46 @@ function viewPoject( numberProject ){
       projects[numberProject].skills.forEach(element => {
         this.ul.innerHTML += `<li>${element}</li>` ;
       });
-      this.button.innerHTML = `<a><p>${projects[numberProject].button}</p></a>`
+
+      this.button.className = "button";
+      this.button.innerHTML = `<button>${projects[numberProject].button}</button>`;
+      
       
       this.descriptionSkills.append(view.ul)
-      this.descriptionText.append( view.descriptionSkills )
+      this.descriptionText.append( view.descriptionSkills );
+      this.descriptionText.append( view.button );
       
       
-      this.description.append( view.descriptionText )
-      
-      this.titlOfProject.append( view.description )
-      this.project.append( view.titlOfProject )
+      this.description.append( view.descriptionText );
+
+      this.titlOfProject.append( view.description );
+      this.project.append( view.titlOfProject );
     },
+
+
+    renderAssets: function(){
+      projects[numberProject].assets.image0fProject.forEach(element => {
+        let divImage = document.createElement('div');
+        let image = document.createElement('img');
+        image.src = element;
+        divImage.appendChild(image)
+        divImage.className = "image";
+        this.description.appendChild(divImage)
+      });
+    }
   }
-  
   
   view.project.className = "project" ;
   view.titlOfProject.className = "title__of__project";
   view.descriptionText.className = "description__text" ;
   view.description.className = "description";
   view.descriptionSkills.className = "description__skills";
-  
+
+  // view.
+
+
   view.render();
+  view.renderAssets();
   return view ;
 }
 

@@ -228,45 +228,140 @@ function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.menuBurge = void 0;
+exports.menuBurger = void 0;
 
-var menuBurge = function menuBurge() {
-  var nav = document.querySelector('nav');
-  nav.addEventListener('click', function () {
-    var p = nav.querySelectorAll('p');
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    if (p[0].classList.value[0] !== 'active') {
-      for (var i = 0; i < p.length; i++) {
-        p[i].classList.add('active');
-      }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-      nav.querySelector('.croi').classList.add('active');
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var menuBurger =
+/*#__PURE__*/
+function () {
+  function menuBurger() {
+    _classCallCheck(this, menuBurger);
+
+    this.navMenu = document.querySelector('nav');
+    this.buttonCloseMenu = document.querySelector('nav .croi');
+    this.buttons = undefined;
+    this.links = undefined;
+    this.bool = false;
+    this.quryButtonAndLink();
+    this.openMenu();
+    this.closeMenu();
+  }
+
+  _createClass(menuBurger, [{
+    key: "quryButtonAndLink",
+    value: function quryButtonAndLink() {
+      this.buttons = this.navMenu.querySelectorAll('p');
+      this.links = this.navMenu.querySelectorAll('a');
     }
-  }, true);
-  nav.querySelector('.croi').addEventListener('click', function () {
-    var p = nav.querySelectorAll('p');
+  }, {
+    key: "openMenu",
+    value: function openMenu() {
+      var _this = this;
 
-    for (var i = 0; i < p.length; i++) {
-      p[i].classList.remove('active');
+      this.links.forEach(function (button) {
+        button.addEventListener('click', function (e) {
+          if (_this.buttonCloseMenu.className !== 'croi active') {
+            _this.links.forEach(function (link) {
+              link.classList.add('active');
+            });
+
+            _this.buttons.forEach(function (button) {
+              button.classList.add('active');
+            });
+
+            _this.buttonCloseMenu.classList.add('active');
+          }
+        }, true);
+      });
     }
+  }, {
+    key: "closeMenu",
+    value: function closeMenu() {
+      var _this2 = this;
 
-    nav.querySelector('.croi').classList.remove('active');
-  }, true);
-  window.addEventListener('scroll', function (event) {
-    var p = nav.querySelector('p');
+      this.buttonCloseMenu.addEventListener('click', function () {
+        if (_this2.buttonCloseMenu.className === 'croi active') {
+          _this2.links.forEach(function (link) {
+            link.classList.remove('active');
+          });
 
-    if (p.className === 'active') {
-      nav.classList.add('move');
+          _this2.buttons.forEach(function (button) {
+            button.classList.remove('active');
+          });
+
+          _this2.buttonCloseMenu.classList.remove('active');
+        }
+      });
     }
+  }, {
+    key: "move",
+    value: function move() {
+      window.addEventListener('scroll', function (event) {
+        var p = nav.querySelector('p');
 
-    window.clearTimeout(isScrolling);
-    var isScrolling = setTimeout(function () {
-      nav.classList.remove('move');
-    }, 1000);
-  }, false);
-};
+        if (p.className === 'active') {
+          nav.classList.add('move');
+          var navLinks = document.querySelectorAll('nav a');
+          navLinks.forEach(function (link) {
+            link.classList.remove('active');
+          });
+        }
+      });
+    }
+  }]);
 
-exports.menuBurge = menuBurge;
+  return menuBurger;
+}(); //  var menuBurge = function(){
+//   var nav = document.querySelector('nav');
+//   nav.addEventListener('click', function(){
+//     let p =  nav.querySelectorAll('p');
+//     if(p[0].classList.value[0] !== 'active'){
+//       for (let i = 0; i < p.length; i++) {
+//         p[i].classList.add('active')
+//       }
+//       nav.querySelector('.croi').classList.add('active')
+//       toogleLink()
+//     }
+//   } , true)
+//   nav.querySelector('.croi').addEventListener('click', function(){
+//     let p =  nav.querySelectorAll('p');
+//     for (let i = 0; i < p.length; i++) {
+//       p[i].classList.remove('active')
+//       if( p[0].classList.value[0] !== 'active' ){
+//         toogleLink();
+//       }
+//     }
+//     nav.querySelector('.croi').classList.remove('active')
+//   }, true )
+//   window.addEventListener('scroll', function ( event ) {
+//     let p = nav.querySelector('p');
+//     if ( p.className === 'active' ) {
+//       nav.classList.add('move')
+//       var navLinks = document.querySelectorAll('nav a');
+//       navLinks.forEach( link => { link.classList.remove('active') });
+//     }
+//     window.clearTimeout( isScrolling );
+//     let isScrolling = setTimeout( ()=> {
+//       nav.classList.remove('move');
+//       var navLinks = document.querySelectorAll('nav a');
+//       navLinks.forEach( link => { link.classList.remove('active') });
+//     }, 1000);
+//   }, true);
+// }
+// var toogleLink = function(){
+//   var navLinks = document.querySelectorAll('nav a');
+//   for (let index = 0; index < navLinks.length; index++) {
+//     navLinks[index].classList.toggle('active')
+//   }
+// }
+
+
+exports.menuBurger = menuBurger;
 },{}],"app/viewPort.js":[function(require,module,exports) {
 "use strict";
 
@@ -431,33 +526,11 @@ function () {
     }
   }, {
     key: "deformpation",
-    value: function deformpation() {// TweenLite.to(".images img", 3, 
-      // {css:{    
-      //   transform : `scale( ${1} , 1.${this.scaleDeformation} )`
-      // }, 
-      // ease:Power2.easeOut});
-    }
+    value: function deformpation() {}
   }, {
     key: "clearDeformation",
     value: function clearDeformation() {
-      var _this2 = this;
-
-      setInterval(function () {
-        if (_this2.scaleDeformation < 0 && _this2.scaleDeformation > 1) {
-          _this2.scaleDeformation = 0;
-
-          _this2.deformpation();
-
-          return;
-        }
-
-        if (_this2.scaleDeformation > 0) {
-          console.log(_this2.scaleDeformation);
-          _this2.scaleDeformation = parseFloat(_this2.scaleDeformation - 0.2);
-
-          _this2.deformpation();
-        }
-      }, 100);
+      setInterval(function () {}, 100);
     }
   }]);
 
@@ -476,12 +549,9 @@ var _infinitScroll = require("./infinitScroll");
 
 var _viewPort = require("./viewPort");
 
-(0, _MenuBurger.menuBurge)();
-var infinitScroll = new _infinitScroll.InfinitScroll();
-infinitScroll.detecteLimitScroll();
+new _MenuBurger.menuBurger();
 
 if (window.innerWidth > 800) {
-  console.log(window.innerWidth);
   (0, _cursor.cursor)();
 }
 },{"./cursor":"app/cursor.js","./MenuBurger":"app/MenuBurger.js","./infinitScroll":"app/infinitScroll.js","./viewPort":"app/viewPort.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -512,7 +582,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61667" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53208" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,13 +1,12 @@
 import { cursor } from "./cursor" ;
-import { menuBurge} from "./MenuBurger";
+import { menuBurger} from "./MenuBurger";
 import { InfinitScroll } from "./infinitScroll";
 import { ViewPort } from "./viewPort";
-menuBurge();
 
-var infinitScroll = new InfinitScroll();
-infinitScroll.detecteLimitScroll();
+new menuBurger();
+
+
 if ( window.innerWidth > 800 ) {
-  console.log(window.innerWidth)
   cursor();
 }
 

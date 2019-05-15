@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="123" height="97.703" viewBox="0 0 123 97.703">
+  <g id="Symbole_3_18" data-name="Symbole 3 – 18" transform="translate(-24.5 24.396)" opacity="0.197">
+    <g id="Symbole_2" data-name="Symbole 2" transform="translate(-29 83.307) rotate(-90)">
+      <text id="K" transform="translate(49.703 149.5)" fill="#fff" stroke="#fff" stroke-width="1" font-size="97" font-family="SourceSansPro-Regular, Source Sans Pro" letter-spacing="0.027em"><tspan x="0" y="0">K</tspan></text>
+      <text id="C" transform="translate(11 149.5)" fill="#fff" stroke="#fff" stroke-width="1" font-size="97" font-family="SourceSansPro-Regular, Source Sans Pro" letter-spacing="0.027em"><tspan x="0" y="0">C</tspan></text>
+      <g id="Ellipse_6" data-name="Ellipse 6" transform="translate(106.307 109.174) rotate(90)" fill="#fff" stroke="#fff" stroke-width="1">
+        <circle cx="6.264" cy="6.264" r="6.264" stroke="none"/>
+        <circle cx="6.264" cy="6.264" r="5.764" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>

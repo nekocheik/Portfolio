@@ -1,9 +1,14 @@
+html{
+  scroll-behavior: smooth;
+}
+*{
+  text-decoration: none; 
+}
 body{
   background-color: black;
   color: white;
   font-family: Avenir ;
   overscroll-behavior: none;
-  scroll-behavior: smooth;
   cursor: none ;
   .cursor{
     display: none;
@@ -34,9 +39,20 @@ body{
       &.active{
         transform: initial;
         opacity: initial;
+        z-index: 10;
       }
     }
+    a{
+      // pointer-events: none;
+      &.active{
+        // pointer-events: initial;
+      }
+    }
+    div{
+      // pointer-events: none;
+    }
     p{
+      // pointer-events: none;
       transition: font-size 0.3s , width 0.7s 0.4s  ;
       z-index: 2;
       font-size: 1px;
@@ -48,6 +64,7 @@ body{
       background-color: rgba(0, 0, 0, 0.589);
       width: 0vw;
       &.active{
+        pointer-events: initial;
         transition: all 0.5s 0.4s ,font-size 0.5s 0.3s , width 0.5s  ;
         font-size: initial;
         color: white;
@@ -58,6 +75,7 @@ body{
         padding: 5px;
       }
     }
+    
     ////////////////////////////
     ///////// Desktop /////////
     //////////////////////////

@@ -46,12 +46,19 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  text-decoration: none;
+}
+
 body {
   background-color: black;
   color: white;
   font-family: Avenir;
   overscroll-behavior: none;
-  scroll-behavior: smooth;
   cursor: none;
 }
 body .cursor {
@@ -90,6 +97,7 @@ body nav .croi {
 body nav .croi.active {
   transform: initial;
   opacity: initial;
+  z-index: 10;
 }
 body nav p {
   transition: font-size 0.3s, width 0.7s 0.4s;
@@ -109,6 +117,7 @@ body nav p {
   width: 0vw;
 }
 body nav p.active {
+  pointer-events: initial;
   transition: all 0.5s 0.4s, font-size 0.5s 0.3s, width 0.5s;
   font-size: initial;
   color: white;
@@ -736,22 +745,20 @@ body {
   font-size: 1.25rem;
 }
 #page__project .project .title__of__project .description .button {
-  display: flex;
-  margin: auto;
-  justify-content: center;
+  margin: 20px auto auto auto;
+  margin: 1.25rem auto auto auto;
+  padding-top: 30px;
+  padding-top: 1.875rem;
 }
-#page__project .project .title__of__project .description .button p {
-  border: solid white 1px;
-  border: solid white 0.0625rem;
-  padding: 5px;
-  padding: 0.3125rem;
-  margin-top: 50px;
-  margin-top: 3.125rem;
-  display: inline-block;
+#page__project .project .title__of__project .description .button button {
+  margin-top: 15px;
+  margin-top: 0.9375rem;
+  margin: auto;
+  display: block;
 }
 #page__project .project .title__of__project .description .description__skills ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 90%;
   max-width: 499px;
   max-width: 31.1875rem;
@@ -797,10 +804,12 @@ body {
     max-width: 80vw;
     flex-wrap: nowrap;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
   #page__project .project .title__of__project .description .description__text {
     max-width: 504px;
     max-width: 31.5rem;
+    padding-bottom: 20%;
   }
   #page__project .project .title__of__project .description p {
     font-size: 20px;
@@ -808,6 +817,10 @@ body {
   }
   #page__project .project .title__of__project .description .image {
     padding-top: 0%;
+  }
+  #page__project .project .title__of__project .description .image img {
+    margin-bottom: 60px;
+    margin-bottom: 3.75rem;
   }
 }
 #page__project .circlesWhite {
@@ -899,7 +912,7 @@ body {
 }
 @media screen and (min-width: 800px) {
   #about .part__about {
-    margin-top: 10%;
+    margin-top: 5%;
     margin-left: 10%;
   }
   #about h1 {
@@ -950,11 +963,12 @@ body {
   display: block;
   margin: auto;
 }
-#galerie .images .image {
+#galerie .images .image__container {
   width: 324px;
   width: 20.25rem;
   height: 500px;
   height: 31.25rem;
+  margin: auto;
 }
 #galerie .images .image__information {
   position: relative;
@@ -962,8 +976,8 @@ body {
   height: 18.75rem;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.897);
-  transform: translateY(-300px);
-  transform: translateY(-18.75rem);
+  transform: translateY(-400px);
+  transform: translateY(-25rem);
 }
 #galerie .images .image__information h2 {
   font-size: 32px;
@@ -993,7 +1007,66 @@ body {
   width: 20.25rem;
   display: block;
   margin: auto;
-  margin: 10% auto 10% auto;
+  margin: 100px auto 100px auto;
+  margin: 6.25rem auto 6.25rem auto;
+}
+#galerie .background__feature__container {
+  height: 0px;
+  height: 0;
+  width: 0px;
+  width: 0;
+}
+#galerie .background__feature {
+  position: absolute;
+  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  top: 35%;
+  left: 0;
+  right: 0;
+  width: 90%;
+  height: 1000vh;
+  z-index: -1;
+}
+@media screen and (min-width: 800px) {
+  #galerie h1 {
+    font-family: "Lemon/Milk";
+    font-size: 94px;
+    font-size: 5.875rem;
+    margin-top: 15%;
+  }
+  #galerie .images.galerie__image--one {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: auto;
+  }
+  #galerie .images .image__information {
+    height: 300px;
+    height: 18.75rem;
+    width: 466px;
+    width: 29.125rem;
+  }
+  #galerie .image__container {
+    width: 466px;
+    width: 29.125rem;
+    height: 668px;
+    height: 41.75rem;
+    transition-duration: transform 0.5s;
+  }
+  #galerie .image__container:nth-child(even) {
+    margin-left: 55%;
+    margin-top: 10%;
+  }
+  #galerie .image__container:nth-child(odd) {
+    margin-left: 10%;
+  }
+  #galerie .image__container img {
+    width: 466px;
+    width: 29.125rem;
+    height: 668px;
+    height: 41.75rem;
+  }
 }
 
 /*# sourceMappingURL=/styles.c86c3119.css.map */
