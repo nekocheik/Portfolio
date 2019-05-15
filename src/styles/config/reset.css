@@ -1,10 +1,6 @@
 html{
 	scroll-behavior: smooth;
 }
-
-a:any-link {
-	text-decoration: none ;
-}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -51,7 +47,6 @@ table {
 }
 
 
-button:hover,
 button:focus {
 	background: #0053ba;
 }
@@ -64,10 +59,7 @@ button:focus {
 
 button:active {
 	text-decoration: none;
-	
 }
-
-
 
 a{
 	display: block;
@@ -80,9 +72,7 @@ a:-webkit-any-link {
 a:visited{
 	text-decoration: none;
 }
-a:active{
-	
-}
+
 a:link {
 	color: #E17A04; 
 	text-decoration: none;
